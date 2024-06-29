@@ -41,7 +41,7 @@ fi
 
 # Clone the repository using vcsh
 echo "Cloning the home repository..."
-vcsh clone --branch mr https://github.com/DNajjarzade/vcsh_mr_template.git mr
+vcsh clone -b mr https://github.com/DNajjarzade/vcsh_mr_template.git mr
 vcsh mr checkout mr
 vcsh mr branch --track mr origin/mr
 
