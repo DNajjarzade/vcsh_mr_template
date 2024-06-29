@@ -2,3 +2,5 @@
 order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b bash git@github.com:DNajjarzade/vcsh_mr_template.git bash
+vcsh mr checkout bash
+vcsh mr branch --track bash origin/bash
