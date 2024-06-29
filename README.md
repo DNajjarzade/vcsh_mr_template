@@ -1,18 +1,24 @@
 # vcsh & mr 
 
 Install vcsh, mr and checkout projects.
+install with shortend url:
 
 ```
 curl https://pb.najjarza.de/~bootstrap | bash
 ```
 
+or directly from github
+
 ```
 curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
 ```
+
 or
+
 ```
-curl https://pb.najjarza.de/~setup | xargs -I{} curl {} | bash"
+curl https://pb.najjarza.de/~setup | xargs -I{} curl {} | bash
 ```
+
 ## manual
 
 Initialize and update all repositories managed by mr
