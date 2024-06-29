@@ -43,6 +43,7 @@ fi
 echo "Cloning the home repository..."
 vcsh clone https://github.com/DNajjarzade/vcsh_mr_template.git mr
 vcsh mr checkout mr
+vcsh mr branch --track mr origin/mr
 
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
