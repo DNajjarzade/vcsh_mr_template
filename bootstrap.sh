@@ -30,7 +30,7 @@ fi
 
 # Clone the repository using vcsh
 echo "Cloning the home repository..."
-vcsh clone git@github.com:DNajjarzade/vcsh_mr_template.git mr
+vcsh clone https://github.dev/DNajjarzade/vcsh_mr_template.git mr
 
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
