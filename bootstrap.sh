@@ -1,5 +1,5 @@
 #!/bin/bash
-echo '
+cat << 'EOF'
  _____        _   _                          __ _ _      
 |  __ \      | \ | |                        / _(_) |     
 | |  | | __ _|  \| | __ _   _ __  _ __ ___ | |_ _| | ___ 
@@ -9,7 +9,7 @@ echo '
                            | |                           
                            |_|                           
        curl https://pb.najjarza.de/~bootstrap | bash
-'
+EOF
 
 # Function to check if a command exists
 command_exists() {
