@@ -50,6 +50,50 @@ This setup allows you to transparently work with encrypted files in your Git rep
 
 Remember to never commit the encryption key to the repository itself, and to manage access to the key securely[5].
 
+## Troubleshoot 
+If your *.yml pattern didn't work as expected, there could be a few reasons for this. Let's troubleshoot and ensure your YAML files get encrypted properly:
+
+Check your .gitattributes file:
+Make sure the pattern for YAML files is correctly specified. It should look like this:
+
+```
+    *.yml filter=git-crypt diff=git-crypt
+```
+
+Ensure the .gitattributes file is committed:
+The .gitattributes file must be committed for the patterns to take effect.
+
+Clean the Git cache:
+If you added the YAML files before setting up git-crypt, you might need to clean the Git cache:
+
+```
+git rm --cached '*.yml'
+git add '*.yml'
+```
+
+Verify git-crypt status:
+Run this command to see which files git-crypt is managing:
+
+```
+git-crypt status
+```
+
+This should show your YAML files as encrypted.
+Check for nested .gitattributes:
+Ensure there are no nested .gitattributes files overriding your root configuration.
+Try a more specific pattern:
+If you have YAML files in specific directories, you might want to use a more specific pattern:
+
+```
+path/to/config/*.yml filter=git-crypt diff=git-crypt
+```
+
+Commit and push:
+After making these changes, commit your files and push to the remote repository.
+
+Verify encryption:
+Clone the repository to a new location without unlocking it. The YAML files should appear as binary/encrypted content.
+
 Citations:
 [1] https://thearjunmdas.github.io/entries/encrypt-decrypt-files-with-git/
 [2] https://www.reddit.com/r/selfhosted/comments/11fvug8/howto_to_encrypt_selected_files_in_a_git/
