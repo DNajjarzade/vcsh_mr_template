@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 a91966224929954f4627c4e56178c9a78179eaa6 Dariush Najjarzade <dariush@najjarza.de> 1719628722 +0330	branch: Created from HEAD
+a91966224929954f4627c4e56178c9a78179eaa6 c78ff676a68de545c39aec41a10247bad1adb737 Dariush Najjarzade <dariush@najjarza.de> 1719632124 +0330	pull origin bootstrap: Fast-forward
+c78ff676a68de545c39aec41a10247bad1adb737 16721b6366d99bfde66a65c4e4bb1cae16bafec4 Dariush Najjarzade <dariush@najjarza.de> 1719632507 +0330	commit: fix(biitstrap.sh): make it executeable
+16721b6366d99bfde66a65c4e4bb1cae16bafec4 881eb455a1a07730bf7aef9f2d1402a5d9e927a8 Dariush Najjarzade <dariush@najjarza.de> 1719670213 +0330	pull --all: Fast-forward
+881eb455a1a07730bf7aef9f2d1402a5d9e927a8 74fb8f1d4b62d17111d1eb98e38633ea2f6c6cf4 Dariush Najjarzade <dariush@najjarza.de> 1719697588 +0330	commit: updated Readme

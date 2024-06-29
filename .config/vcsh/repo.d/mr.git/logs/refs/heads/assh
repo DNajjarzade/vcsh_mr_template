@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 682f0b4d7add545865fd8f6510f5338920b7ce0a Dariush Najjarzade <dariush@najjarza.de> 1719692889 +0330	commit (initial): Add .gitattributes for git-crypt
+682f0b4d7add545865fd8f6510f5338920b7ce0a d828862f6b4276002e2488ce6c2f11286ef9066b Dariush Najjarzade <dariush@najjarza.de> 1719692949 +0330	commit: Add encrypted secret file
+d828862f6b4276002e2488ce6c2f11286ef9066b ed7caa45a349cd177a4e3ea19f951a0cc687ab9e Dariush Najjarzade <dariush@najjarza.de> 1719693399 +0330	commit: Add encrypted secret file
+ed7caa45a349cd177a4e3ea19f951a0cc687ab9e cb5f958123ff2e18db5cf56dc28602fd0de41480 Dariush Najjarzade <dariush@najjarza.de> 1719693550 +0330	commit: Add encrypted secret file
+cb5f958123ff2e18db5cf56dc28602fd0de41480 9c7ab0e78b691686fc8c1e87ccbe21508c8054cb Dariush Najjarzade <dariush@najjarza.de> 1719693750 +0330	commit: Add encrypted files

@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 a91966224929954f4627c4e56178c9a78179eaa6 Dariush Najjarzade <dariush@najjarza.de> 1719628605 +0330	commit (initial): feat(bootstrap.sh): added script for quick installation
+a91966224929954f4627c4e56178c9a78179eaa6 8cf2c79848547398d2c3308592c1e48c0ca0c066 Dariush Najjarzade <dariush@najjarza.de> 1719670268 +0330	pull: Fast-forward
+8cf2c79848547398d2c3308592c1e48c0ca0c066 7be778273e33e13063829cee28d7b5d943a724c8 Dariush Najjarzade <dariush@najjarza.de> 1719671547 +0330	commit: docs(README.md): updated Readme
+7be778273e33e13063829cee28d7b5d943a724c8 d410bb7f62e4bacbf97a1485b600a7915d660a90 Dariush Najjarzade <dariush@najjarza.de> 1719671614 +0330	pull --rebase (finish): refs/heads/bootstrap onto 45dfb32e2307d12cf5a0e76a4518f826df9cef5a
+d410bb7f62e4bacbf97a1485b600a7915d660a90 00b18c774e2b6a4d7b4582fdfc99fa31c95984dc Dariush Najjarzade <dariush@najjarza.de> 1719677642 +0330	commit: updated header
