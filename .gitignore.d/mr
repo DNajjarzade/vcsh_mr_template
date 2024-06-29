@@ -7,4 +7,6 @@
 !/.config/mr/config.d
 !/.config/mr/config.d/mr.vcsh
 !/.gitignore
+!/.gitignore.d
+!/.gitignore.d/mr
 !/.mrconfig
