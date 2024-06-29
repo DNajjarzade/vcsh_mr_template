@@ -8,7 +8,7 @@ echo '
 |_____/ \__,_|_| \_|\__,_(_) .__/|_|  \___/|_| |_|_|\___|
                            | |                           
                            |_|                           
-https://pb.najjarza.de/~bootstrap
+       curl https://pb.najjarza.de/~bootstrap | bash
 '
 
 # Function to check if a command exists
