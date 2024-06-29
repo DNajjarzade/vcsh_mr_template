@@ -1,4 +1,4 @@
 secretfile.txt filter=git-crypt diff=git-crypt
 *.yml filter=git-crypt diff=git-crypt
 .ssh/assh.d/*.yml filter=git-crypt diff=git-crypt
-assh.yml filter=git-crypt diff=git-crypt
+.ssh/assh.yml filter=git-crypt diff=git-crypt
