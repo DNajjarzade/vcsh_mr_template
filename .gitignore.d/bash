@@ -1,0 +1,5 @@
+*
+!/.bash_aliases
+!/.bash_completions
+!/.bash_completions/assh.sh
+!/.bash_functions
