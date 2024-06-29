@@ -1,0 +1,13 @@
+*
+!/.gitattributes
+!/README.md
+!/secretfile.txt
+!/.ssh
+!/.ssh/assh.d
+!/.ssh/assh.d/amir.yml
+!/.ssh/assh.d/eniac.yml
+!/.ssh/assh.d/home.yml
+!/.ssh/assh.d/ik3c.yml
+!/.ssh/assh.d/kama.yml
+!/.ssh/assh.d/nipco.yml
+!/.ssh/assh.yml
