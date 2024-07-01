@@ -66,3 +66,6 @@ dd58896d8d44d0ae7ae25fb5b43cc3515197c8d9 85b1ea67fd9df8053dcca355b82b140ffe95332
 881eb455a1a07730bf7aef9f2d1402a5d9e927a8 74fb8f1d4b62d17111d1eb98e38633ea2f6c6cf4 Dariush Najjarzade <dariush@najjarza.de> 1719697588 +0330	commit: updated Readme
 74fb8f1d4b62d17111d1eb98e38633ea2f6c6cf4 74fb8f1d4b62d17111d1eb98e38633ea2f6c6cf4 Dariush Najjarzade <dariush@najjarza.de> 1719697785 +0330	checkout: moving from main to main
 74fb8f1d4b62d17111d1eb98e38633ea2f6c6cf4 85b1ea67fd9df8053dcca355b82b140ffe953322 Dariush Najjarzade <dariush@najjarza.de> 1719697793 +0330	checkout: moving from main to mr
+85b1ea67fd9df8053dcca355b82b140ffe953322 d3174a7ef9198dee930af4330e90b5c66001afdf Dariush Najjarzade <dariush@najjarza.de> 1719698824 +0330	commit: fix(vcsh): added local folder
+d3174a7ef9198dee930af4330e90b5c66001afdf d3174a7ef9198dee930af4330e90b5c66001afdf Dariush Najjarzade <dariush@najjarza.de> 1719786980 +0330	checkout: moving from mr to mr
+d3174a7ef9198dee930af4330e90b5c66001afdf d3174a7ef9198dee930af4330e90b5c66001afdf Dariush Najjarzade <dariush@najjarza.de> 1719787036 +0330	checkout: moving from mr to mr

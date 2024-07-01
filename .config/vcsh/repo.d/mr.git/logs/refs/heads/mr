@@ -9,3 +9,4 @@ f3a2785e00e773451999eb84bda27006fddc2ca8 486c121cf9a690de1bc079b090869b767e10027
 63d8e6abd46fdb8c98d6dd30793681bb1cf23599 2a041bb80ab1f3f3b4e334bdbe52d506b1e819a3 Dariush Najjarzade <dariush@najjarza.de> 1719685765 +0330	commit: fix(bash): clone command update
 2a041bb80ab1f3f3b4e334bdbe52d506b1e819a3 dd58896d8d44d0ae7ae25fb5b43cc3515197c8d9 Dariush Najjarzade <dariush@najjarza.de> 1719687427 +0330	rebase (finish): refs/heads/mr onto dd58896d8d44d0ae7ae25fb5b43cc3515197c8d9
 dd58896d8d44d0ae7ae25fb5b43cc3515197c8d9 85b1ea67fd9df8053dcca355b82b140ffe953322 Dariush Najjarzade <dariush@najjarza.de> 1719694311 +0330	commit: fix(bash): updated bash checkout command
+85b1ea67fd9df8053dcca355b82b140ffe953322 d3174a7ef9198dee930af4330e90b5c66001afdf Dariush Najjarzade <dariush@najjarza.de> 1719698824 +0330	commit: fix(vcsh): added local folder
