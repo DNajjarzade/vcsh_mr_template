@@ -1,6 +1,7 @@
 alias emacs="/usr/bin/emacsclient -c -a 'emacs'"
 alias joplinc='~/.joplin-bin/bin/joplin'
-alias cat='bat'
+alias c='bat'
+alias a='alias'
 alias k='/usr/local/bin/kubectl'
 alias kdp="k get pods --all-namespaces | fzf | awk '{print $1 }' | xargs -n1 kubectl describe pod "
 alias d='/usr/bin/docker'
