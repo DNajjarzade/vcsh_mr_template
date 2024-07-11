@@ -112,8 +112,8 @@ function toggle_proxy() {
             echo "NO_PROXY:    ${NO_PROXY:-Not set}"
             ;;
         *)
-            echo "Usage: toggle_http_proxy {set|unset|status} [proxy_url] [no_proxy_list]"
-            echo "Example: toggle_http_proxy set http://proxy.example.com:8080 'localhost,127.0.0.1'"
+            echo "Usage: toggle_proxy {set|unset|status} [proxy_url] [no_proxy_list]"
+            echo "Example: toggle_proxy set http://proxy.example.com:8080 'localhost,127.0.0.1'"
             return 1
             ;;
     esac
@@ -231,4 +231,67 @@ bashrc() {
     else
         echo "No changes detected in .$file_name."
     fi
+}
+#
+#           _                  _   
+#  _____  _| |_ _ __ __ _  ___| |_ 
+# / _ \ \/ / __| '__/ _` |/ __| __|
+#|  __/>  <| |_| | | (_| | (__| |_ 
+# \___/_/\_\\__|_|  \__,_|\___|\__|
+#                                  
+# extract() - Extract various archive formats
+#
+# Usage: extract <file>
+#
+# This function extracts various archive formats based on the file extension.
+# It supports the following formats:
+#   - tar.gz, tar.lz, tar.xz, tar.bz2, tar.bz, tar.Z, tar.zst (bsdtar)
+#   - 7z (7z)
+#   - Z (uncompress)
+#   - bz2 (bunzip2)
+#   - exe (cabextract)
+#   - gz (gunzip)
+#   - rar (unrar)
+#   - xz (unxz)
+#   - zip (unzip)
+#   - zst (unzstd)
+#
+# Author: dariush najjarzade
+# Created: July 11, 2024
+# Last Modified: July 11, 2024
+#
+extract() {
+    local c e i
+
+    (($#)) || return
+
+    for i; do
+        c=''
+        e=1
+
+        if [[ ! -r $i ]]; then
+            echo "$0: file is unreadable: \`$i'" >&2
+            continue
+        fi
+
+        case $i in
+            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz|zst)))))
+                   c=(bsdtar xvf);;
+            *.7z)  c=(7z x);;
+            *.Z)   c=(uncompress);;
+            *.bz2) c=(bunzip2);;
+            *.exe) c=(cabextract);;
+            *.gz)  c=(gunzip);;
+            *.rar) c=(unrar x);;
+            *.xz)  c=(unxz);;
+            *.zip) c=(unzip);;
+            *.zst) c=(unzstd);;
+            *)     echo "$0: unrecognized file extension: \`$i'" >&2
+                   continue;;
+        esac
+
+        command "${c[@]}" "$i"
+        ((e = e || $?))
+    done
+    return "$e"
 }
