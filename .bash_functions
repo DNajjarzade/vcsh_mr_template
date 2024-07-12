@@ -150,10 +150,11 @@ sssh() {
     fi
 
     # Use fzf to interactively select a host
-    local selected_host=$(eval "$cmd" | \
-        fzf --delimiter=":" \
+    local selected_host=$(eval "$cmd" | grep ">" | print_with_colors | \
+        fzf --ansi --delimiter=":" \
+            --color \
             --with-nth=1 \
-            --preview='echo {1}:{2}' \
+            --preview='echo {1}:{2} | bat --color=always -l bash ' \
             --header='Line:Host' | \
         cut -d: -f1 | \
         awk '{print $3}')
@@ -294,4 +295,18 @@ extract() {
         ((e = e || $?))
     done
     return "$e"
+}
+#
+#
+#
+# Function to print with alternating colors
+print_with_colors() {
+  local colors=("\033[33m" "\033[34m") # Yellow and Blue
+  local reset_color="\033[0m"
+  local i=0
+
+  while IFS= read -r line; do
+    echo -e "${colors[$((i % 2))]}$line${reset_color}"
+    i=$((i + 1))
+  done
 }

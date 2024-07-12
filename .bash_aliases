@@ -1,32 +1,53 @@
+#alias a='alias | fzf | awk -F"'\''" '\''{print $2}'\'' | xargs -I{} echo $({})'
+alias a='alias | print_with_colors | fzf --ansi --color --tac --no-sort --preview  "echo -e {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16} {17} {18} {19} | bat --color=always -l bash"  | awk -F"'\''" '\''{print $2}'\'' '
+alias c='bat --color=always --style=numbers'
+alias h='history'
+alias j='jobs -l'
+alias path='echo -e ${PATH//:/\\n}'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowd='date +"%d-%m-%Y"'
+alias nowdate='date +"%d-%m-%Y" ; date +"%T"'
 alias emacs='/usr/bin/emacsclient -c -a '\''emacs'\'''
 alias joplinc='~/.joplin-bin/bin/joplin'
-alias c='bat'
-
-
-#alias a='alias | fzf | awk -F"'\''" '\''{print $2}'\'' | xargs -I{} echo $({})'
-alias a='alias | fzf --tac --no-sort --preview  "echo -e {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16} {17} {18} {19}"  | awk -F"'\''" '\''{print $2}'\'' '
-
-
+alias home-manager='nix --extra-experimental-features nix-command --extra-experimental-features flakes  run  home-manager $@'
+alias ik3c-vpn='sudo openvpn --config ~/.config/k3c/d.najarzadeh@irankish.com__ssl_vpn_config.ovpn'
+#
+# firewall aliases
+#
+alias ipt='sudo /sbin/iptables' # shortcut  for iptables and pass it via sudo
+# display all rules #
+alias iptlist='ipt -L -n -v --line-numbers'
+alias iptlistin='ipt -L INPUT -n -v --line-numbers'
+alias iptlistout='ipt -L OUTPUT -n -v --line-numbers'
+alias iptlistfw='ipt -L FORWARD -n -v --line-numbers'
+alias firewall=iptlist
+#
+# kubernetes aliases
+#
 alias k='/usr/local/bin/kubectl'
 alias kdp='k get pods --all-namespaces | fzf | awk '\''{print $1 }'\'' | xargs -n1 kubectl describe pod '
+alias argo_pass='kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d'
+#
+# docker aliases
+#
 alias d='/usr/bin/docker'
 alias dc='/usr/bin/docker-compose'
 alias dcu='dc up -d'
+alias dcd='dc down'
+alias dcr='dc down & sleep 3 & dc up -d'
 alias dcl='dc logs -f'
-alias home-manager='nix --extra-experimental-features nix-command --extra-experimental-features flakes  run  home-manager $@'
-alias ik3c-vpn='sudo openvpn --config ~/.config/k3c/d.najarzadeh@irankish.com__ssl_vpn_config.ovpn'
-alias argo_pass='kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d'
 #
 # tmux aliases
 #
-alias tm='tmux' #	Start tmux.
-# alias tma='tmux attach-session' #	Attach to a tmux session.
-alias tma='tmux attach-session -t' #	Attach to a tmux session with name.
-alias tmk='tmux kill-session -t' #	Kill all tmux sessions.
-alias tml='tmux list-sessions' # List tmux sessions.
-alias tmn='tmux new-session' 	# Start a new tmux session.
-alias tmns='tmux new -s' #	Start a new tmux session with name.
-alias tms='tmux new-session -s' #	Start a new tmux session.
+alias t='tmux' #	Start tmux.
+# alias tma='t attach-session' #	Attach to a tmux session.
+alias tma='t attach-session -t' #	Attach to a tmux session with name.
+alias tmk='t kill-session -t' #	Kill all tmux sessions.
+alias tml='t list-sessions' # List tmux sessions.
+alias tmn='t new-session' 	# Start a new tmux session.
+alias tmns='t new -s' #	Start a new tmux session with name.
+alias tms='t new-session -s' #	Start a new tmux session.
 #
 # eza aliases 
 #
@@ -46,6 +67,6 @@ alias ga='g add –verbose '
 alias gco='g checkout '
 alias gls='g ls-files '
 alias gpa='g push –all '
-alias grep='grep –color=auto'
+# alias grep='grep –color=auto'
 alias gca='g commit –all '
 alias gc='g commit -v '
