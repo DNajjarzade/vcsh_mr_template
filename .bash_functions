@@ -315,3 +315,45 @@ print_with_colors() {
     i=$((i + 1))
   done
 }
+#
+# _                    _                         _ _   
+#| |_ ___   __ _  __ _| | ___  __   ____ _ _   _| | |_ 
+#| __/ _ \ / _` |/ _` | |/ _ \ \ \ / / _` | | | | | __|
+#| || (_) | (_| | (_| | |  __/  \ V / (_| | |_| | | |_ 
+# \__\___/ \__, |\__, |_|\___|___\_/ \__,_|\__,_|_|\__|
+#          |___/ |___/      |_____|                    
+#
+# Author: dariush najjarzade
+# Created: July 13, 2024
+# Last Modified: July 13, 2024
+#
+# Function to toggle Ansible Vault encryption/decryption
+#
+# Usage: toggle_vault [file]
+#
+toggle_vault() {
+    local VAULT_FILE=$1
+
+    # Check if a file path is provided
+    if [ -z "$VAULT_FILE" ]; then
+        echo "Usage: toggle_vault <vault_file>"
+        return 1
+    fi
+
+    # Check if the file exists
+    if [ ! -f "$VAULT_FILE" ]; then
+        echo "Error: File $VAULT_FILE does not exist."
+        return 1
+    fi
+
+    # Check if the file is encrypted or not
+    if ansible-vault view --vault-password-file ~/.ansible_vault_password "$VAULT_FILE" > /dev/null 2>&1; then
+        # File is encrypted, decrypt it
+        ansible-vault decrypt --vault-password-file ~/.ansible_vault_password "$VAULT_FILE"
+        echo "File decrypted: $VAULT_FILE"
+    else
+        # File is not encrypted, encrypt it
+        ansible-vault encrypt --vault-password-file ~/.ansible_vault_password "$VAULT_FILE"
+        echo "File encrypted: $VAULT_FILE"
+    fi
+}
