@@ -178,12 +178,13 @@ sssh() {
 # Usage: bashrc [option]
 #   Options:
 #     (no option) : Edit ~/.bashrc
-#     alias, aliases : Edit ~/.bash_aliases
-#     func, functions : Edit ~/.bash_functions
+#     a, alias, aliases : Edit ~/.bash_aliases
+#     f, func, functions : Edit ~/.bash_functions
+#     p, prof, profile : Edit ~/.profile
 # 
 # Author: dariush najjarzade
 # Created: July 10, 2024
-# Last Modified: July 10, 2024
+# Last Modified: July 12, 2024
 #
 # This function allows easy editing of .bashrc, .bash_aliases, and .bash_functions
 # files using vim. After editing, it automatically sources the file if changes
@@ -202,6 +203,10 @@ bashrc() {
         "f" | "func" | "functions")
             file_to_edit="$HOME/.bash_functions"
             file_name="bash_functions"
+            ;;
+        "p" | "prof" | "profile")
+            file_to_edit="$HOME/.profile"
+            file_name="profile"
             ;;
         *)
             file_to_edit="$HOME/.bashrc"

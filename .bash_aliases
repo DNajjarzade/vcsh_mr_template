@@ -1,5 +1,7 @@
-#alias a='alias | fzf | awk -F"'\''" '\''{print $2}'\'' | xargs -I{} echo $({})'
-alias a='alias | print_with_colors | fzf --ansi --color --tac --no-sort --preview  "echo -e {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16} {17} {18} {19} | bat --color=always -l bash"  | awk -F"'\''" '\''{print $2}'\'' '
+# 
+# Common shortcuts
+#
+alias a='alias | print_with_colors | fzf --ansi --color --tac --preview "echo {}" | sed "s/alias \([^=]*\)=.*/\1/" | xargs -I {} bash -ic "{}"'
 alias c='bat --color=always --style=numbers'
 alias h='history'
 alias j='jobs -l'
@@ -70,3 +72,4 @@ alias gpa='g push –all '
 # alias grep='grep –color=auto'
 alias gca='g commit –all '
 alias gc='g commit -v '
+alias s='sssh'
