@@ -2,3 +2,5 @@ secretfile.txt filter=git-crypt diff=git-crypt
 *.yml filter=git-crypt diff=git-crypt
 .ssh/assh.d/*.yml filter=git-crypt diff=git-crypt
 .ssh/assh.yml filter=git-crypt diff=git-crypt
+README.md !filter !diff
+.gitattributes !filter !diff
