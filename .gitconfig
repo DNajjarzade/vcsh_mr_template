@@ -9,9 +9,9 @@
 	version = HTTP/1.1
 	sslverify = false
 
-[url "https://github.com/"]
-    insteadOf = git@github.com:
-    fetch = +refs/heads/*:refs/remotes/origin/*
-
-[url "git@github.com:"]
-    pushInsteadOf = https://github.com/  
+# [url "https://github.com/"]
+#     insteadOf = git@github.com:
+#     fetch = +refs/heads/*:refs/remotes/origin/*
+# 
+# [url "git@github.com:"]
+#     pushInsteadOf = https://github.com/  
