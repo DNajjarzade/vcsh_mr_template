@@ -1,0 +1,5 @@
+[$HOME/.config/vcsh/repo.d/assh.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout =
+  vcsh clone -b assh https://github.com/DNajjarzade/vcsh_mr_template.git assh 
