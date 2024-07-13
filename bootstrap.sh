@@ -47,7 +47,7 @@ install_package() {
 # Install vcsh and mr if not already installed
 if ! command_exists vcsh; then
     echo "Installing vcsh ..."
-    curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/bin/vcsh
+    curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/.local/bin/vcsh
 fi
 
 # Install vcsh and mr if not already installed
