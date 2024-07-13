@@ -194,7 +194,10 @@ export PATH=~/.kubectx:$PATH
 alias ssh="assh wrapper ssh --"
 
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+if [ -f ~/.fzf.bash ]; then
+  . ~/.fzf.bash
+  eval "$(fzf --bash)"
+fi
 
 # include fzf-git if it exists
 if [ -f "$HOME/fzf-git.sh/fzf-git.sh" ]; then
@@ -219,5 +222,6 @@ if [ -n "$BASH_VERSION" ]; then
 			# . "$HOME/.profile"
     # fi
 fi
+
 
 
