@@ -8,12 +8,14 @@ echo '
 |_____/ \__,_|_| \_|\__,_(_) .__/|_|  \___/|_| |_|_|\___|
                            | |                           
                            |_|                           
-       curl https://pb.najjarza.de/~bootstrap | bash
+       curl https://pb.najjarza.de/~setup | bash
        
-       create if short url not exist with:
-       curl -F c=@- https://pb.najjarza.de/~bootstrap <<< $(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)
+       create short url with:
        
-       long command:
+       curl -F c=@- https://pb.najjarza.de/~setup <<< '$(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)'
+       
+       long url command:
+       
        curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
 '
 
@@ -33,6 +35,9 @@ install_package() {
         sudo yum install -y "$@"
     elif command_exists pacman; then
         sudo pacman -Sy --noconfirm "$@"
+    elif command_exists apk; then
+        sudo apk update
+        sudo apk add -y "$@"        
     else
         echo "Unsupported package manager. Please install $@ manually."
         exit 1
