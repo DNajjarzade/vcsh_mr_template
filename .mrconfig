@@ -6,6 +6,11 @@ include = cat ~/.config/mr/config.d/*
 
 [.fzf]
 checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
+post_checkout = 
+    if [ ! -f ~/.fzf_installed ]; then
+        ~/.fzf/install --all
+        touch ~/.fzf_installed
+    fi
 
 [.oh-my-bash]
 checkout = git clone 'https://github.com/DNajjarzade/oh-my-bash.git' '.oh-my-bash'
@@ -23,13 +28,13 @@ checkout = git clone 'https://github.com/DNajjarzade/fancy-motd.git' 'fancy-motd
 checkout = git clone --depth 1 'https://github.com/SpaceVim/SpaceVim.git' '.SpaceVim'
 
 [.pyenv]
-checkout = git clone 'https://github.com/pyenv/pyenv.git' '.pyenv'
+checkout = git clone --depth 1 'https://github.com/pyenv/pyenv.git' '.pyenv'
 
 [ble.sh]
-checkout = git clone 'https://github.com/akinomyoga/ble.sh.git' 'ble.sh'
+checkout = git clone --depth 1 'https://github.com/akinomyoga/ble.sh.git' 'ble.sh'
 
 [.rbenv]
-checkout = git clone 'https://github.com/rbenv/rbenv.git' '.rbenv'
+checkout = git clone --depth 1 'https://github.com/rbenv/rbenv.git' '.rbenv'
 
 [fzf-git.sh]
-checkout = git clone 'https://github.com/junegunn/fzf-git.sh.git' 'fzf-git.sh'
+checkout = git clone --depth 1 'https://github.com/junegunn/fzf-git.sh.git' 'fzf-git.sh'
