@@ -11,7 +11,7 @@ echo '
        curl https://pb.najjarza.de/~bootstrap | bash
        
        create if short url not exist with:
-       curl -F c=@- https://pb.najjarza.de/~bootstrap <<< https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh
+       curl -F c=@- https://pb.najjarza.de/~bootstrap <<< $(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)
        
        long command:
        curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
