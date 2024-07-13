@@ -1,0 +1,5 @@
+[$HOME/.config/vcsh/repo.d/git.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout = vcsh clone -b git https://github.com/DNajjarzade/vcsh_mr_template.git git 
+# && vcsh mr checkout bash && vcsh mr branch --track bash origin/bash
