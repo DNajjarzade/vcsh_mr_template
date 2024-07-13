@@ -45,9 +45,15 @@ install_package() {
 }
 
 # Install vcsh and mr if not already installed
-if ! command_exists vcsh || ! command_exists mr; then
+if ! command_exists vcsh; then
+    echo "Installing vcsh ..."
+    curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/bin/vcsh
+fi
+
+# Install vcsh and mr if not already installed
+if ! command_exists mr; then
     echo "Installing vcsh and mr..."
-    install_package vcsh mr mc vim git curl ansible gpg git-crypt
+    install_package myrepos mc vim git curl ansible gpg gpg-agent git-crypt
 fi
 
 # Clone the repository using vcsh
