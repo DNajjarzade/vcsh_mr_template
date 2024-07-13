@@ -12,7 +12,7 @@ echo '
        
        create short url with:
        
-       curl -F c=@- https://pb.najjarza.de/~setup <<< '$(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)'
+       curl -F c=@- https://pb.najjarza.de/~setup <<< $(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)
        
        long url command:
        
