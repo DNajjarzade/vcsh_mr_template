@@ -24,3 +24,6 @@ checkout = git clone --depth 1 'https://github.com/SpaceVim/SpaceVim.git' '.Spac
 
 [.pyenv]
 checkout = git clone 'https://github.com/pyenv/pyenv.git' '.pyenv'
+
+[ble.sh]
+checkout = git clone 'https://github.com/akinomyoga/ble.sh.git' 'ble.sh'
