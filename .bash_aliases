@@ -5,6 +5,7 @@ alias a='alias | print_with_colors | fzf --ansi --color --tac --preview "echo {}
 alias c='bat --color=always --style=numbers'
 alias h='history'
 alias j='jobs -l'
+alias svim='vim -u ~/.SpaceVim/vimrc'
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date +"%T"'
 alias nowtime=now
