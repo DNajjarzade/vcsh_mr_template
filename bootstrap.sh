@@ -37,7 +37,7 @@ install_package() {
         sudo pacman -Sy --noconfirm "$@"
     elif command_exists apk; then
         sudo apk update
-        sudo apk add -y "$@"        
+        sudo apk add "$@"        
     else
         echo "Unsupported package manager. Please install $@ manually."
         exit 1
