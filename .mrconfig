@@ -6,11 +6,11 @@ include = cat ~/.config/mr/config.d/*
 
 [.fzf]
 checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
-post_checkout = 
-    if [ ! -f ~/.fzf_installed ]; then
-        ~/.fzf/install --all
-        touch ~/.fzf_installed
-    fi
+# post_checkout = 
+#    if [ ! -f ~/.fzf_installed ]; then
+#        ~/.fzf/install --all
+#        touch ~/.fzf_installed
+#    fi
 
 [.oh-my-bash]
 checkout = git clone 'https://github.com/DNajjarzade/oh-my-bash.git' '.oh-my-bash'
