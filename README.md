@@ -1,4 +1,19 @@
-# assh Branch
+#  use on remotes:
+
+decrypt git-crypt key:
+
+```
+toggle_vault  ~/Documents/projects/personal/secret/key/assh-decrypt-key
+
+```
+
+unlock git-encrypted files
+
+```
+vcsh run assh git-crypt unlock ~/Documents/projects/personal/secret/key/assh-decrypt-key
+```
+
+# under the hood assh Branch
 To encrypt files before adding them to Git, you can use the tool `git-crypt`. Here's how to set it up and use it:
 
 1. Install git-crypt:
