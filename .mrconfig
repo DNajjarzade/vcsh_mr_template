@@ -17,7 +17,7 @@ checkout = git clone 'https://github.com/DNajjarzade/liquidprompt.git' '.liquidp
 checkout = git clone 'https://github.com/tmux-plugins/tpm' 'tpm'
 
 [fancy-motd]
-checkout = git clone 'https://github.com/bcyran/fancy-motd.git' 'fancy-motd'
+checkout = git clone 'https://github.com/DNajjarzade/fancy-motd.git' 'fancy-motd'
 
 [.SpaceVim]
 checkout = git clone --depth 1 'https://github.com/SpaceVim/SpaceVim.git' '.SpaceVim'
