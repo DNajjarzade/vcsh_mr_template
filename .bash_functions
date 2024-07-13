@@ -266,6 +266,9 @@ bashrc() {
 # Created: July 11, 2024
 # Last Modified: July 11, 2024
 #
+# Enable extended globbing
+shopt -s extglob
+
 extract() {
     local c e i
 
