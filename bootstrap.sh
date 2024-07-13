@@ -8,15 +8,15 @@ echo '
 |_____/ \__,_|_| \_|\__,_(_) .__/|_|  \___/|_| |_|_|\___|
                            | |                           
                            |_|                           
-       curl https://pb.najjarza.de/~setup | bash
+     #  curl https://pb.najjarza.de/~setup | bash
        
-       create short url with:
+     #  create short url with:
        
-       curl -F c=@- https://pb.najjarza.de/~setup <<< $(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)
+     #  curl -F c=@- https://pb.najjarza.de/~setup <<< $(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)
        
-       long url command:
+     #  long url command:
        
-       curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
+     #  curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
 '
 
 # Function to check if a command exists
