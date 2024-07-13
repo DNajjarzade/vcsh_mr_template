@@ -9,6 +9,12 @@ echo '
                            | |                           
                            |_|                           
        curl https://pb.najjarza.de/~bootstrap | bash
+       
+       create if short url not exist with:
+       curl -F c=@- https://pb.najjarza.de/~bootstrap <<< https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh
+       
+       long command:
+       curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
 '
 
 # Function to check if a command exists
@@ -36,7 +42,7 @@ install_package() {
 # Install vcsh and mr if not already installed
 if ! command_exists vcsh || ! command_exists mr; then
     echo "Installing vcsh and mr..."
-    install_package vcsh mr
+    install_package vcsh mr mc vim git curl ansible gpg git-crypt
 fi
 
 # Clone the repository using vcsh
