@@ -360,3 +360,60 @@ toggle_vault() {
         echo "File encrypted: $VAULT_FILE"
     fi
 }
+#
+#  __ _       _   _                       _ _       _     _     _                   
+# / _| | __ _| |_| |_ ___ _ __       __ _(_) |_    | |__ (_)___| |_ ___  _ __ _   _ 
+#| |_| |/ _` | __| __/ _ \ '_ \     / _` | | __|   | '_ \| / __| __/ _ \| '__| | | |
+#|  _| | (_| | |_| ||  __/ | | |   | (_| | | |_    | | | | \__ \ || (_) | |  | |_| |
+#|_| |_|\__,_|\__|\__\___|_| |_|____\__, |_|\__|___|_| |_|_|___/\__\___/|_|   \__, |
+#                             |_____|___/     |_____|                         |___/ 
+#
+# Author: dariush najjarzade
+# Created: July 14, 2024
+# Last Modified: July 14, 2024
+#
+# This will keep the two most recent commits intact and consolidate all older commits into a single commit with a message that includes the date of the change, the Git username, and the Git email. 
+# Be cautious with the --force push, especially if working on a shared branch.
+#
+#
+flatten_git_history() {
+    # Get the current branch name
+    current_branch=$(git symbolic-ref --short HEAD)
+    
+    # Check if there are at least three commits in the repository
+    commit_count=$(git rev-list --count HEAD)
+    if [ "$commit_count" -lt 4 ]; then
+        echo "Not enough commits to flatten. The repository must have at least three commits."
+        return 1
+    fi
+    
+    # Get the SHA of the commit before the last two commits
+    third_to_last_commit=$(git rev-list --skip=2 --max-count=1 HEAD)
+    
+    # Create a temporary branch from the third to last commit
+    git checkout -b temp-branch $third_to_last_commit
+    
+    # Get the current date
+    current_date=$(date +"%Y-%m-%d")
+    
+    # Get the Git user name and email
+    git_user_name=$(git config user.name)
+    git_user_email=$(git config user.email)
+    
+    # Create a single commit with the message "[Flatten history: $current_date]" and user details
+    commit_message="[Flatten history: $current_date]  Git user: $git_user_name  Git email: $git_user_email"
+    git reset --soft $(git commit-tree HEAD^{tree} -m "$commit_message")
+    
+    # Checkout the current branch and rebase the temporary branch onto the latest commit
+    git checkout $current_branch
+    git rebase --onto temp-branch HEAD~2 HEAD
+    
+    # Delete the temporary branch
+    git branch -D temp-branch
+    
+    # Force push the changes to the original branch
+    git push origin $current_branch --force
+    
+    echo "History has been flattened. All commits except the last two have been squashed into a single commit with the message '[Flatten history: $current_date]'."
+}
+
