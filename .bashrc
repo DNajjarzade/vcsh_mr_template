@@ -8,7 +8,7 @@ esac
 #export OSH_DEBUG=1
 
 # Path to your oh-my-bash installation.
-export OSH='~/.oh-my-bash'
+export OSH=~/.oh-my-bash
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -88,12 +88,10 @@ completions=(
   tmux
   git
   ssh
-  k3d
   helm
   kubectl
   docker
   docker-compose
-  task
 )
 
 # Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
