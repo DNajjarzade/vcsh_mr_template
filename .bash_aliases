@@ -1,6 +1,7 @@
 # 
 # Common shortcuts
 #
+alias _='sudo '
 alias a='alias | print_with_colors | fzf --ansi --color --tac --preview "echo {}" | sed "s/alias \([^=]*\)=.*/\1/" | xargs -I {} bash -ic "{}"'
 alias c='bat --color=always --style=numbers'
 alias h='history'
