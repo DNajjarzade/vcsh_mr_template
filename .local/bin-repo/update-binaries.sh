@@ -49,6 +49,7 @@ declare -A binaries=(
     ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz:0.17.0"
     ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-musl.tar.gz:0.18.21"
     ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz:0.9.4"
+    ["sesh"]="targz:https://github.com/joshmedeski/sesh/releases/download/v1.2.0/sesh_Linux_x86_64.tar.gz:1.2.0"
     ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
 )
 
@@ -181,6 +182,14 @@ get_binary_version() {
         eza)
             if [ -x "$bin_dir/$name" ]; then
                 version=$("$bin_dir/$name" --version 2>/dev/null | awk NR=='2 {print $1; exit}')
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
+        sesh)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $3; exit}')
             else
                 echo "n/a"
                 return
