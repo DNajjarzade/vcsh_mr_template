@@ -2,6 +2,21 @@
 git_gc = git gc "$@"
 jobs = 5
 
+# Set global remote configurations
+lib =
+    # Function to update remote URLs
+    update_remote_urls() {
+        local repo_name=$(basename $(pwd))
+        local github_user="DNajjarzade"  # Replace with your GitHub username
+        
+        # Set HTTP URL for fetching
+        git remote set-url origin --push "git@github.com:${github_user}/${repo_name}.git"
+        git remote set-url origin "https://github.com/${github_user}/${repo_name}.git"
+    }
+
+# Apply the remote URL updates after checkout
+post_checkout = update_remote_urls
+
 include = cat ~/.config/mr/config.d/*
 
 [.fzf]
@@ -11,33 +26,60 @@ checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
 #        ~/.fzf/install --all
 #        touch ~/.fzf_installed
 #    fi
+tag = tools, shell
+skip = ${SKIP_FZF:-false}
 
 [.oh-my-bash]
 checkout = git clone 'https://github.com/DNajjarzade/oh-my-bash.git' '.oh-my-bash'
+tag = shell, customization
+skip = ${SKIP_OH_MY_BASH:-false}
 
 [.liquidprompt]
 checkout = git clone 'https://github.com/DNajjarzade/liquidprompt.git' '.liquidprompt'
+tag = shell, prompt
+skip = ${SKIP_LIQUIDPROMPT:-false}
 
 [.tmux/plugins/tpm]
 checkout = git clone 'https://github.com/tmux-plugins/tpm' 'tpm'
+tag = tmux, plugins
+skip = ${SKIP_TMUX_TPM:-false}
 
 [fancy-motd]
 checkout = git clone 'https://github.com/DNajjarzade/fancy-motd.git' 'fancy-motd'
+tag = system, customization
+skip = ${SKIP_FANCY_MOTD:-false}
 
 [.SpaceVim]
 checkout = git clone --depth 1 'https://github.com/SpaceVim/SpaceVim.git' '.SpaceVim'
+tag = editor, vim
+skip = ${SKIP_SPACEVIM:-false}
 
 [.pyenv]
 checkout = git clone --depth 1 'https://github.com/pyenv/pyenv.git' '.pyenv'
+tag = python, development
+skip = ${SKIP_PYENV:-false}
 
 [ble.sh]
 checkout = git clone --depth 1 'https://github.com/akinomyoga/ble.sh.git' 'ble.sh'
+tag = shell, enhancement
+skip = ${SKIP_BLE_SH:-false}
 
 [.rbenv]
 checkout = git clone --depth 1 'https://github.com/rbenv/rbenv.git' '.rbenv'
+tag = ruby, development
+skip = ${SKIP_RBENV:-false}
 
 [fzf-git.sh]
 checkout = git clone --depth 1 'https://github.com/junegunn/fzf-git.sh.git' 'fzf-git.sh'
+tag = git, tools
+skip = ${SKIP_FZF_GIT:-false}
 
 [.config/emacs]
-checkout = git clone 'https://github.com/doomemacs/doomemacs' 'emacs'
+checkout = git clone  --depth 1 'https://github.com/doomemacs/doomemacs' 'emacs'
+# post_checkout = 
+#    if [ ! -f ~/.emacs_installed ]; then
+#        ~/.config/emacs/bin/doom install
+#        touch ~/.emacs_installed
+#    fi
+tag = editor, emacs
+skip = ${SKIP_DOOM_EMACS:-false}
