@@ -153,6 +153,22 @@ get_binary_version() {
                 return
             fi
             ;;
+        zoxide)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
+        eza)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | awk NR=='2 {print $1; exit}')
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
         *)
             echo "unknown"
             return
@@ -177,6 +193,8 @@ declare -A binaries=(
     ["assh"]="targz:https://github.com/moul/assh/releases/download/v2.16.0/assh_2.16.0_linux_amd64.tar.gz:2.16.0"
     ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz:0.24.0"
     ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz:0.17.0"
+    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz:0.18.21"
+    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz:0.9.4"
     ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
 )
 
