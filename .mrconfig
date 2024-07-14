@@ -1,3 +1,32 @@
+# In this modified configuration:
+#
+# 1. Tags have been added to each repository using the `tag` attribute. These tags describe the purpose or category of each repository.
+#
+# 2. A `skip` attribute has been added to each repository, which uses an environment variable to determine whether the repository should be skipped during checkout. The environment variables are named `SKIP_*` (e.g., `SKIP_FZF`, `SKIP_OH_MY_BASH`, etc.).
+# 
+# 3. The `${VAR:-false}` syntax is used for the `skip` attribute. This means if the environment variable is not set, it defaults to `false`, allowing the repository to be checked out.
+#
+# To use this configuration:
+#
+# - You can now use tags to selectively checkout repositories. For example:
+#  ```
+#  mr -t shell checkout
+#  ```
+#  This will checkout all repositories tagged with "shell".
+#
+# - To skip specific repositories, you can set the corresponding environment variables before running `mr`. For example:
+# ```
+#  export SKIP_FZF=true
+#  export SKIP_SPACEVIM=true
+#  mr checkout
+#  ```
+#  This will skip the fzf and SpaceVim repositories during checkout.
+#
+# Remember to adjust the tags according to your preferences and add any additional tags you find useful for organizing your repositories.
+#
+# Citations:
+# [1] https://github.com/junegunn/fzf
+
 [DEFAULT]
 git_gc = git gc "$@"
 jobs = 5
