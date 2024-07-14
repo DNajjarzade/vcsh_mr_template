@@ -44,14 +44,14 @@ alias dcl='dc logs -f'
 #
 # tmux aliases
 #
-alias t='tmux' #	Start tmux.
-# alias tma='t attach-session' #	Attach to a tmux session.
-alias tma='t attach-session -t' #	Attach to a tmux session with name.
-alias tmk='t kill-session -t' #	Kill all tmux sessions.
-alias tml='t list-sessions' # List tmux sessions.
-alias tmn='t new-session' 	# Start a new tmux session.
-alias tmns='t new -s' #	Start a new tmux session with name.
-alias tms='t new-session -s' #	Start a new tmux session.
+alias tm='tmux' #	Start tmux.
+# alias tma='tm attach-session' #	Attach to a tmux session.
+alias tma='tm attach-session -t' #	Attach to a tmux session with name.
+alias tmk='tm kill-session -t' #	Kill all tmux sessions.
+alias tml='tm list-sessions' # List tmux sessions.
+alias tmn='tm new-session' 	# Start a new tmux session.
+alias tmns='tm new -s' #	Start a new tmux session with name.
+alias tms='tm new-session -s' #	Start a new tmux session.
 #
 # eza aliases 
 #
