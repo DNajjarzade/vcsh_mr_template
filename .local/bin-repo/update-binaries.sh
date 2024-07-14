@@ -40,6 +40,23 @@
 
 set -e  # Exit immediately if a command exits with a non-zero status.
 # set -x  # Print commands and their arguments as they are executed.
+
+# List of binaries to manage
+declare -A binaries=(
+    ["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz:14.1.0"
+    ["assh"]="targz:https://github.com/moul/assh/releases/download/v2.16.0/assh_2.16.0_linux_amd64.tar.gz:2.16.0"
+    ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz:0.24.0"
+    ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz:0.17.0"
+    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-musl.tar.gz:0.18.21"
+    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz:0.9.4"
+    ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
+)
+
+# Where to copy 
+BIN_DIR="$HOME/.local/bin"
+mkdir -p "$BIN_DIR"
+
+
 # Function to download and extract tar.gz binary
 download_targz_binary() {
     local name=$1
@@ -186,20 +203,6 @@ get_binary_version() {
 version_gt() {
     test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"
 }
-
-# List of binaries to manage
-declare -A binaries=(
-    ["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz:14.1.0"
-    ["assh"]="targz:https://github.com/moul/assh/releases/download/v2.16.0/assh_2.16.0_linux_amd64.tar.gz:2.16.0"
-    ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz:0.24.0"
-    ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz:0.17.0"
-    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz:0.18.21"
-    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz:0.9.4"
-    ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
-)
-
-BIN_DIR="$HOME/.local/bin"
-mkdir -p "$BIN_DIR"
 
 # Download and extract/copy binaries
 for name in "${!binaries[@]}"; do
