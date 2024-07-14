@@ -46,7 +46,7 @@
   untrack = rm --cache --
 [core]
   # Don't paginate output by default
-  pager = cat
+  pager = delta # cat
   # Global ignore file (not shared)
   excludesfile = ~/.gitignore_global
   # Global shared hooks directory
@@ -62,9 +62,21 @@
   # editor = 'c:/Program Files/Sublime Text 3/subl.exe' -w
   #
   # VSCode
-  editor = code --wait
+  # editor = code --wait
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
+  editor = vim
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+
+    # delta detects terminal colors automatically; set one of these to disable auto-detection
+    # dark = true
+    # light = true
+
 [diff]
   # Use better, descriptive initials (c, i, w) instead of a/b.
   mnemonicPrefix = true
@@ -76,6 +88,7 @@
   submodule = log
   # Use VSCode as default diff tool when running `git diff-tool`
   tool = vscode
+  colorMoved = default
 [difftool "vscode"]
   cmd = code --wait --diff $LOCAL $REMOTE
 [fetch]
@@ -101,6 +114,7 @@
   # Disable fast-forward merges as default merge strategy.
   # Force explicit call of `git merge --ff …`.
   ff = false
+  conflictstyle = diff3
   # Custom/dedicated merge drive for npm lock files (`package-lock.json`).
   # Also works with Yarn.
   # Use Git attributes to set targeted files (located at `~/.config/git/attributes``
