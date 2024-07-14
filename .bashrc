@@ -217,9 +217,13 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bash_completions" ]; then
 	    . "$HOME/.bash_completions/*"
     fi
-    # include .profile if it exists
+    # include ~/.local/bin if it exists
     if [ -f "$HOME/.local/bin" ]; then
 			export PATH="$HOME/.local/bin:$PATH"
+    fi
+    # include ~/.fzf/bin/ if it exists
+    if [ -f "$HOME/.local/bin" ]; then
+			export PATH="$HOME/.fzf/bin:$PATH"
     fi
 fi
 
