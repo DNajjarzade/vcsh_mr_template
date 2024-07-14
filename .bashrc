@@ -218,9 +218,9 @@ if [ -n "$BASH_VERSION" ]; then
 	    . "$HOME/.bash_completions/*"
     fi
     # include .profile if it exists
-    # if [ -f "$HOME/.profile" ]; then
-			# . "$HOME/.profile"
-    # fi
+    if [ -f "$HOME/.local/bin" ]; then
+			export PATH="$HOME/.local/bin:$PATH"
+    fi
 fi
 
 
