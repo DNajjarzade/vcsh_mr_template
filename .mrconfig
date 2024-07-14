@@ -38,3 +38,6 @@ checkout = git clone --depth 1 'https://github.com/rbenv/rbenv.git' '.rbenv'
 
 [fzf-git.sh]
 checkout = git clone --depth 1 'https://github.com/junegunn/fzf-git.sh.git' 'fzf-git.sh'
+
+[.config/emacs]
+checkout = git clone 'https://github.com/doomemacs/doomemacs' 'emacs'
