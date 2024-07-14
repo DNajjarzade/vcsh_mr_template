@@ -193,6 +193,14 @@ export PATH=~/.kubectx:$PATH
 # source /home/dariush/.bash_completions/ecm.sh
 alias ssh="assh wrapper ssh --"
 
+# zoxide is a smarter cd command, inspired by z and autojump.
+if [ -f ~/.local/bin/zoxide ]; then
+  eval "$(zoxide init bash)"
+fi
+#
+#
+#
+#
 # Set up fzf key bindings and fuzzy completion
 if [ -f ~/.fzf.bash ]; then
   . ~/.fzf.bash
