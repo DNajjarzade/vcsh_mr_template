@@ -1,1 +1,6 @@
 *
+!/.gitignore.d
+!/.gitignore.d/bin-repo
+!/.local
+!/.local/bin-repo
+!/.local/bin-repo/update-binaries.sh
