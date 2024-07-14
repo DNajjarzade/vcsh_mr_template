@@ -60,7 +60,7 @@ download_targz_binary() {
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "bat-v0.24.0-i686-unknown-linux-gnu/bat"
                 ;;
             delta)
-                tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "delta-0.17.0-x86_64-unknown-linux-gnu/delta"
+                tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "delta-0.17.0-x86_64-unknown-linux-musl/delta"
                 ;;                
             *)
                 tar -xzf "$name.tar.gz" -C "$extract_dir"
