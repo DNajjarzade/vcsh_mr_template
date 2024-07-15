@@ -162,13 +162,30 @@ vcsh clone -b "$BRANCH_NAME" "$REPO_URL" mr &
 show_progress $!
 
 vcsh mr checkout "$BRANCH_NAME"
-vcsh mr branch --track "$BRANCH_NAME" origin/"$BRANCH_NAME"
+# vcsh mr branch --track "$BRANCH_NAME" origin/"$BRANCH_NAME"
 
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
+# Run mr update
+echo "Running mr update..."
 mr update &
 show_progress $!
 
+# Run update-binaries.sh if it exists
+if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
+    echo "Running update-binaries.sh..."
+    bash ~/.local/bin-repo/update-binaries.sh &
+    show_progress $!
+    echo "update-binaries.sh completed."
+else
+    echo "update-binaries.sh not found, skipping."
+fi
+
+# Run mr update
+echo "Running mr update..."
+mr update &
+show_progress $!
+ 
 echo "Setup complete!"
 
 # Cleanup function
