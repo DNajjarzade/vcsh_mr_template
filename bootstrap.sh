@@ -194,6 +194,7 @@ show_progress $!
 
 # Run update-binaries.sh if it exists
 if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
+    AUTO_YES = true
     if [ "$AUTO_YES" = true ]; then
         echo "Running update-binaries.sh..."
         bash ~/.local/bin-repo/update-binaries.sh &
