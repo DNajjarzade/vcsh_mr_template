@@ -32,16 +32,16 @@ git_gc = git gc "$@"
 jobs = 5
 
 # Set global remote configurations
-lib =
-    # Function to update remote URLs
-    update_remote_urls() {
-        local repo_name=$(basename $(pwd))
-        local github_user="DNajjarzade"  # Replace with your GitHub username
-        
-        # Set HTTP URL for fetching
-        git remote set-url origin --push "git@github.com:${github_user}/${repo_name}.git"
-        git remote set-url origin "https://github.com/${github_user}/${repo_name}.git"
-    }
+lib = 
+	   # Function to update remote URLs
+	   update_remote_urls() {
+	       local repo_name=$(basename $(pwd))
+	       local github_user="DNajjarzade"  # Replace with your GitHub username
+	       
+	       # Set HTTP URL for fetching
+	       git remote set-url origin --push "git@github.com:${github_user}/${repo_name}.git"
+	       git remote set-url origin "https://github.com/${github_user}/${repo_name}.git"
+	   }
 
 # Apply the remote URL updates after checkout
 post_checkout = update_remote_urls
@@ -51,10 +51,10 @@ include = cat ~/.config/mr/config.d/*
 [.fzf]
 checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
 post_checkout = 
-   if [ ! -f ~/.fzf_installed ]; then
-       ~/.fzf/install --all
-       touch ~/.fzf_installed
-   fi
+	  if [ ! -f ~/.fzf_installed ]; then
+	      ~/.fzf/install --all
+	      touch ~/.fzf_installed
+	  fi
 tag = tools, shell
 skip = ${SKIP_FZF:-false}
 
@@ -106,9 +106,12 @@ skip = ${SKIP_FZF_GIT:-false}
 [.config/emacs]
 checkout = git clone  --depth 1 'https://github.com/doomemacs/doomemacs' 'emacs'
 post_checkout = 
-   if [ ! -f ~/.emacs_installed ]; then
-       ~/.config/emacs/bin/doom install
-       touch ~/.emacs_installed
-   fi
+	  if [ ! -f ~/.emacs_installed ]; then
+	      ~/.config/emacs/bin/doom install
+	      touch ~/.emacs_installed
+	  fi
 tag = editor, emacs
 skip = ${SKIP_DOOM_EMACS:-false}
+
+[.asdf]
+checkout = git clone 'https://github.com/asdf-vm/asdf.git' '.asdf'
