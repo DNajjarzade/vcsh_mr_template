@@ -83,10 +83,10 @@ done
 shift $((OPTIND -1))
 
 # Check for root privileges
-# if [[ $EUID -ne 0 ]]; then
-   # echo "This script must be run as root or with sudo privileges"
-   # exit 1
-# fi
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root or with sudo privileges"
+   exit 1
+fi
 
 # Setup logging
 exec > >(tee -a "$LOG_FILE") 2>&1
