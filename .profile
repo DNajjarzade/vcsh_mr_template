@@ -49,7 +49,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 [ -f ~/xmodemap ] && xmodmap ~/xmodemap
 
 # Homebrew setup
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Nix installation path
 export XDG_DATA_DIRS="$HOME/.nix-profile/share:$HOME/.share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
