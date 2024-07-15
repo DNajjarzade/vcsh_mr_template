@@ -1,14 +1,5 @@
 #!/bin/bash
 
-##############################################################################
-# Script Name: bootstrap.sh
-# Description: This script sets up VCSH and MR for managing dotfiles
-# Author: DNajjarzade (GitHub)
-# Usage: ./setup_vcsh_mr.sh
-# Creation Date: 2024-07-01 (Retrieved from GitHub on 2024-07-15)
-# Last Modified: 2024-07-15 (Retrieved from GitHub on 2024-07-15)
-##############################################################################
-
 echo '
             ____          _   _                          __ _ _      
            |  _ \  __ _  | \ | | __ _   _ __  _ __ ___  / _(_) | ___ 
@@ -32,6 +23,14 @@ echo '
        
      #  curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
 '
+##############################################################################
+# Script Name: bootstrap.sh
+# Description: This script sets up VCSH and MR for managing dotfiles
+# Author: DNajjarzade (GitHub)
+# Usage: ./setup_vcsh_mr.sh
+# Creation Date: 2024-07-01 (Retrieved from GitHub on 2024-07-15)
+# Last Modified: 2024-07-15 (Retrieved from GitHub on 2024-07-15)
+##############################################################################
 
 # Function to check if a command exists
 command_exists() {
