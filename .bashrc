@@ -35,25 +35,6 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 OMB_USE_SUDO=true
 OMB_PROMPT_SHOW_PYTHON_VENV=true
-# Define arrays for completions, aliases, and plugins
-completions=(
-  tmux
-  git
-  ssh
-  helm
-  kubectl
-  docker
-  docker-compose
-)
-
-aliases=(
-  general
-)
-
-plugins=(
-  git
-  bashmarks
-)
 
 [[ $- = *i* ]] && source "$OSH/oh-my-bash.sh"
 [[ $- = *i* ]] && source ~/.config/liquidpromptrc
