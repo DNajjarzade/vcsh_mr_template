@@ -50,11 +50,11 @@ include = cat ~/.config/mr/config.d/*
 
 [.fzf]
 checkout = git clone 'https://github.com/junegunn/fzf.git' '.fzf'
-# post_checkout = 
-#    if [ ! -f ~/.fzf_installed ]; then
-#        ~/.fzf/install --all
-#        touch ~/.fzf_installed
-#    fi
+post_checkout = 
+   if [ ! -f ~/.fzf_installed ]; then
+       ~/.fzf/install --all
+       touch ~/.fzf_installed
+   fi
 tag = tools, shell
 skip = ${SKIP_FZF:-false}
 
@@ -105,10 +105,10 @@ skip = ${SKIP_FZF_GIT:-false}
 
 [.config/emacs]
 checkout = git clone  --depth 1 'https://github.com/doomemacs/doomemacs' 'emacs'
-# post_checkout = 
-#    if [ ! -f ~/.emacs_installed ]; then
-#        ~/.config/emacs/bin/doom install
-#        touch ~/.emacs_installed
-#    fi
+post_checkout = 
+   if [ ! -f ~/.emacs_installed ]; then
+       ~/.config/emacs/bin/doom install
+       touch ~/.emacs_installed
+   fi
 tag = editor, emacs
 skip = ${SKIP_DOOM_EMACS:-false}
