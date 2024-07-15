@@ -194,24 +194,10 @@ show_progress $!
 
 # Run update-binaries.sh if it exists
 if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
-    AUTO_YES = true
-    if [ "$AUTO_YES" = true ]; then
-        echo "Running update-binaries.sh..."
-        bash ~/.local/bin-repo/update-binaries.sh &
-        show_progress $!
-        echo "update-binaries.sh completed."
-    else
-        read -p "Do you want to run update-binaries.sh? (y/n) " -n 1 -r
-        echo    # Move to a new line
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            echo "Running update-binaries.sh..."
-            bash ~/.local/bin-repo/update-binaries.sh &
-            show_progress $!
-            echo "update-binaries.sh completed."
-        else
-            echo "Skipping update-binaries.sh."
-        fi
-    fi
+    echo "Running update-binaries.sh..."
+    bash ~/.local/bin-repo/update-binaries.sh &
+    show_progress $!
+    echo "update-binaries.sh completed."
 else
     echo "update-binaries.sh not found, skipping."
 fi
