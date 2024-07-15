@@ -196,6 +196,15 @@ get_binary_version() {
                 return
             fi
             ;;
+
+        jq)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | cut -d "-' -f 2)
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
         *)
             echo "unknown"
             return
