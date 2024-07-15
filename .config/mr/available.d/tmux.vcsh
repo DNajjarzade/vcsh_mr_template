@@ -4,5 +4,6 @@ order = 10
 # checkout = vcsh clone -b tmux https://github.com/DNajjarzade/vcsh_mr_template.git tmux
 # && vcsh tmux checkout tmux && vcsh tmux branch --track tmux origin/tmux
 checkout = vcsh clone -b tmux https://github.com/DNajjarzade/vcsh_mr_template.git tmux && \
-           vcsh tmux checkout tmux && \
+           vcsh tmux branch --set-upstream-to=origin/tmux tmux
+           vcsh tmux checkout -b tmux && \
            vcsh tmux branch --track tmux origin/tmux
