@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo '
+echo "
             ____          _   _                          __ _ _      
            |  _ \  __ _  | \ | | __ _   _ __  _ __ ___  / _(_) | ___ 
            | | | |/ _` | |  \| |/ _` | | '_ \| '__/ _ \| |_| | |/ _ \
@@ -22,7 +22,7 @@ echo '
      #  long url command:
        
      #  curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
-'
+"
 ##############################################################################
 # Script Name: bootstrap.sh
 # Description: This script sets up VCSH and MR for managing dotfiles
