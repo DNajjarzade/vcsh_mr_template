@@ -2,4 +2,12 @@
 !/.bash_aliases
 !/.bash_completions
 !/.bash_completions/assh.sh
+!/.bash_completions/fzf.sh
+!/.bash_completions/tmux.sh
 !/.bash_functions
+!/.bashrc
+!/.config
+!/.config/liquidpromptrc
+!/.gitignore.d
+!/.gitignore.d/bash
+!/.profile
