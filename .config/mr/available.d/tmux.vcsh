@@ -1,5 +1,8 @@
 [$HOME/.config/vcsh/repo.d/tmux.git]
 order = 10
 # NOTE: put the correct url for your repository
-checkout = vcsh clone -b tmux https://github.com/DNajjarzade/vcsh_mr_template.git tmux 
-# && vcsh mr checkout bash && vcsh mr branch --track bash origin/bash
+# checkout = vcsh clone -b tmux https://github.com/DNajjarzade/vcsh_mr_template.git tmux
+# && vcsh tmux checkout tmux && vcsh tmux branch --track tmux origin/tmux
+checkout = vcsh clone -b tmux https://github.com/DNajjarzade/vcsh_mr_template.git tmux && \
+           vcsh tmux checkout tmux && \
+           vcsh tmux branch --track tmux origin/tmux
