@@ -97,10 +97,10 @@ done
 shift $((OPTIND -1))
 
 # Check for root privileges
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root or with sudo privileges"
-   exit 1
-fi
+# if [[ $EUID -ne 0 ]]; then
+#    echo "This script must be run as root or with sudo privileges"
+#    exit 1
+# fi
 
 # Setup logging
 exec > >(tee -a "$LOG_FILE") 2>&1
@@ -119,17 +119,17 @@ command_exists() {
 # Function to install packages based on the package manager
 install_package() {
     if command_exists apt-get; then
-        apt-get update
-        apt-get install -y "$@"
+       sudo apt-get update
+        sudo apt-get install -y "$@"
     elif command_exists dnf; then
-        dnf install -y "$@"
+        sudo dnf install -y "$@"
     elif command_exists yum; then
-        yum install -y "$@"
+        sudo yum install -y "$@"
     elif command_exists pacman; then
-        pacman -Sy --noconfirm "$@"
+        sudo pacman -Sy --noconfirm "$@"
     elif command_exists apk; then
-        apk update
-        apk add "$@"        
+        sudo apk update
+        sudo apk add "$@"        
     else
         echo "Unsupported package manager. Please install $@ manually."
         exit 1
