@@ -46,19 +46,21 @@ export LANG=en_US.UTF-8
 # Default values
 REPO_URL="https://github.com/DNajjarzade/vcsh_mr_template.git"
 BRANCH_NAME="mr"
-LOG_FILE="$HOME/vcsh_mr_setup.log"
+LOG_FILE="/var/log/vcsh_mr_setup.log"
 VERBOSE=false
+AUTO_YES=false
 
 # Function to display help message
 show_help() {
-    echo "Usage: $0 [-h] [-v] [repository_url]"
+    echo "Usage: $0 [-h] [-v] [-y] [repository_url]"
     echo "  -h  Display this help message"
     echo "  -v  Verbose mode"
+    echo "  -y  Automatic yes to prompts"
     echo "  repository_url  Optional: Specify a custom repository URL"
 }
 
 # Parse command-line options
-while getopts ":hv" opt; do
+while getopts ":hvyY" opt; do
     case ${opt} in
         h )
             show_help
@@ -67,6 +69,9 @@ while getopts ":hv" opt; do
         v )
             VERBOSE=true
             set -x
+            ;;
+        y|Y )
+            AUTO_YES=true
             ;;
         \? )
             echo "Invalid Option: -$OPTARG" 1>&2
@@ -166,6 +171,7 @@ vcsh mr checkout "$BRANCH_NAME"
 
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
+
 # Run mr update
 echo "Running mr update..."
 mr update &
@@ -173,10 +179,23 @@ show_progress $!
 
 # Run update-binaries.sh if it exists
 if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
-    echo "Running update-binaries.sh..."
-    bash ~/.local/bin-repo/update-binaries.sh &
-    show_progress $!
-    echo "update-binaries.sh completed."
+    if [ "$AUTO_YES" = true ]; then
+        echo "Running update-binaries.sh..."
+        bash ~/.local/bin-repo/update-binaries.sh &
+        show_progress $!
+        echo "update-binaries.sh completed."
+    else
+        read -p "Do you want to run update-binaries.sh? (y/n) " -n 1 -r
+        echo    # Move to a new line
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "Running update-binaries.sh..."
+            bash ~/.local/bin-repo/update-binaries.sh &
+            show_progress $!
+            echo "update-binaries.sh completed."
+        else
+            echo "Skipping update-binaries.sh."
+        fi
+    fi
 else
     echo "update-binaries.sh not found, skipping."
 fi
@@ -185,9 +204,8 @@ fi
 echo "Running mr update..."
 mr update &
 show_progress $!
- 
-echo "Setup complete!"
 
+echo "Setup complete!"
 # Cleanup function
 cleanup() {
     echo "Cleaning up..."
