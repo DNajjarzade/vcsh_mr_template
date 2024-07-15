@@ -187,10 +187,10 @@ vcsh mr checkout "$BRANCH_NAME"
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
 
-# Run mr update
-echo "Running mr update..."
-mr update &
-show_progress $!
+# # Run mr update
+# echo "Running mr update..."
+# mr update &
+# show_progress $!
 
 # Run update-binaries.sh if it exists
 if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
