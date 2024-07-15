@@ -95,10 +95,11 @@ if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bash_functions" ]; then
 fi
 
 # add asdf
-if [ -f  "$HOME/.asdf/asdf.sh"]; then
+if [ -f  "$HOME/.asdf/asdf.sh" ]; then
   . "$HOME/.asdf/asdf.sh"
 fi
 
-if [-f  "$HOME/.asdf/completions/asdf.bash"]; then
+#add asdf Completions 
+if [ -f  "$HOME/.asdf/completions/asdf.bash" ]; then
   . "$HOME/.asdf/completions/asdf.bash"
 fi
