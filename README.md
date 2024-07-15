@@ -1,4 +1,3 @@
-# DaNa Profile
 ```
  ____        _   _                          __ _ _      
 |  _ \  __ _| \ | | __ _   _ __  _ __ ___  / _(_) | ___ 
@@ -8,6 +7,34 @@
                           |_|                           
 
 ```
+# DaNa Profile
+This repository uses VCSH and MR for managing dotfiles and git repositorys. 
+
+# Repository Disclaimer
+
+## ⚠️ Private Use Only ⚠️
+
+This git repository, although publicly visible, is intended for **private use only**.
+
+### 🔒 Sensitive Information
+This repository contains sensitive and confidential information. Unauthorized access, use, or distribution of its contents is strictly prohibited.
+
+### 📜 No License Granted
+No license, express or implied, is granted to any third party to use, modify, or distribute the code or information contained in this repository.
+
+### 🚫 Access Restrictions
+While this repository is publicly visible, it is not intended for public use or contribution. Only authorized individuals should interact with or make changes to this repository.
+
+### ⚖️ Legal Notice
+Any unauthorized access, copying, or use of the information contained herein may be subject to legal action.
+
+### 👤 Responsibility
+The repository owner(s) and authorized contributors are responsible for ensuring that sensitive information is properly protected and that appropriate access controls are in place.
+
+---
+
+By accessing or using this repository, you acknowledge that you have read this disclaimer and agree to abide by its terms.
+
 ## setup script
 
 ```
