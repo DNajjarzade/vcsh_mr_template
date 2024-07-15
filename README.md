@@ -11,12 +11,13 @@
 |                                         888                                          |
 |                                         888                                          |
 \                                         888                                          /
- --------------------------------------------------------------------------------------
+ ______________________________________________________________________________________
         \   ^__^
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
                 ||     ||
+curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
 ```
 This repository uses VCSH and MR for managing dotfiles and git repositorys. 
 
