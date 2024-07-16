@@ -36,7 +36,7 @@ EOF
 # Description: Check and Installs some common Nerd Fonts 
 # Author: dariush najjarzade
 # Creation Date: 2024-07-16
-# Last Modified: 2024-07-16
+# Last Modified: 2024-07-16 19:16
 #
 # Usage: ./install_asdf_packages.sh <package1> <package2> ...
 # Example: ./install_asdf_packages.sh python nodejs rust go kubectl
