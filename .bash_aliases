@@ -6,6 +6,7 @@ alias a='alias | print_with_colors | fzf --ansi --color --tac --preview "echo {}
 alias c='bat --color=always --style=numbers'
 alias h='history'
 alias j='jobs -l'
+alias s='sssh'
 alias svim='vim -u ~/.SpaceVim/vimrc'
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date +"%T"'
@@ -17,6 +18,7 @@ alias joplinc='~/.joplin-bin/bin/joplin'
 alias home-manager='nix --extra-experimental-features nix-command --extra-experimental-features flakes  run  home-manager $@'
 alias ik3c-vpn='sudo openvpn --config ~/.config/k3c/d.najarzadeh@irankish.com__ssl_vpn_config.ovpn'
 alias asdf-install='~/.local/bin-repo/install_asdf_packages.sh '
+alias bin-repo='vcsh bin-repo commit -m "$1" && vcsh bin-repo push'
 #
 # firewall aliases
 #
@@ -75,4 +77,3 @@ alias gpa='g push –all '
 # alias grep='grep –color=auto'
 alias gca='g commit –all '
 alias gc='g commit -v '
-alias s='sssh'
