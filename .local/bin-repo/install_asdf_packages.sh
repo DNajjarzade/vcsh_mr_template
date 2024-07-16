@@ -98,7 +98,7 @@ for package in "${packages[@]}"; do
     if [ $? -ne 0 ]; then
       echo "Skipping $package"
       continue
-    }
+    fi
     
     if ! asdf_plugin_exists "$plugin"; then
       echo "Adding ASDF plugin for $plugin..."
@@ -126,4 +126,4 @@ for package in "${packages[@]}"; do
   fi
 done
 
-echo "Process completed. Check .tool-versions file for installed packages."
+echo "Process completed. Check .tool-versions file for installed packages."            

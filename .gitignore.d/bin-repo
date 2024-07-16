@@ -3,4 +3,5 @@
 !/.gitignore.d/bin-repo
 !/.local
 !/.local/bin-repo
+!/.local/bin-repo/install_asdf_packages.sh
 !/.local/bin-repo/update-binaries.sh
