@@ -35,7 +35,7 @@ LP_TEMP_THRESHOLD=60
 # Use the shorten path feature if the path is too long to fit in the prompt
 # line.
 # Recommended value is 1
-LP_ENABLE_SHORTEN_PATH=1
+LP_ENABLE_SHORTEN_PATH=0
 
 # The maximum percentage of the screen width used to display the path before
 # removing the center portion of the path and replacing with '...'.
@@ -109,19 +109,19 @@ LP_ENABLE_GIT=1
 
 # Enable the Subversion special features.
 # Recommended value is 1
-LP_ENABLE_SVN=1
+LP_ENABLE_SVN=0
 
 # Enable the Mercurial special features.
 # Recommended value is 1
-LP_ENABLE_HG=1
+LP_ENABLE_HG=0
 
 # Enable the Fossil special features.
 # Recommended value is 1
-LP_ENABLE_FOSSIL=1
+LP_ENABLE_FOSSIL=0
 
 # Enable the Bazaar special features.
 # Recommended value is 1
-LP_ENABLE_BZR=1
+LP_ENABLE_BZR=0
 
 # Show time of when the current prompt was displayed.
 LP_ENABLE_TIME=1
