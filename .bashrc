@@ -94,7 +94,7 @@ if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bash_functions" ]; then
     . "$HOME/.bash_functions"
 fi
 
-# add asdf
+# asdf-vm.com
 if [ -f  "$HOME/.asdf/asdf.sh" ]; then
   . "$HOME/.asdf/asdf.sh"
 fi
@@ -102,4 +102,9 @@ fi
 #add asdf Completions 
 if [ -f  "$HOME/.asdf/completions/asdf.bash" ]; then
   . "$HOME/.asdf/completions/asdf.bash"
+fi
+
+#docs.pkgx.sh/shellcode
+if [ -f  "$HOME/.local/bin/pkgx" ]; then
+  eval "$(pkgx --shellcode)"  
 fi

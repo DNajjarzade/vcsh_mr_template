@@ -3,10 +3,12 @@
 #
 alias _='sudo '
 alias a='alias | print_with_colors | fzf --ansi --color --tac --preview "echo {}" | sed "s/alias \([^=]*\)=.*/\1/" | xargs -I {} bash -ic "{}"'
-alias c='bat --color=always --style=numbers'
+# alias c='bat --color=always --style=numbers'
+alias c='clear'
 alias h='history'
 alias j='jobs -l'
 alias s='sssh'
+alias aalias='add_alias'
 alias svim='vim -u ~/.SpaceVim/vimrc'
 alias path='echo -e ${PATH//:/\\n}'
 alias now='date +"%T"'
@@ -77,3 +79,11 @@ alias gpa='g push –all '
 # alias grep='grep –color=auto'
 alias gca='g commit –all '
 alias gc='g commit -v '
+
+alias motd='~/fancy-motd/motd.sh'
+
+alias gum='pkgx gum'
+
+alias git-stage='~/.local/bin-repo/git-stage.sh'
+
+alias git-commit='~/.local/bin-repo/git-commit.sh'

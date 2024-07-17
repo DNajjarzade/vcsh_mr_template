@@ -416,4 +416,14 @@ flatten_git_history() {
     
     echo "History has been flattened. All commits except the last two have been squashed into a single commit with the message '[Flatten history: $current_date]'."
 }
-
+# add_alias
+# Easy add alias with aalias key=value
+add_alias() {
+    KEY=$(echo $1 | cut -d"=" -f 1)
+    VALUE=$(echo $1 | cut -d"=" -f 2-)
+    echo -e "\nalias $KEY='$VALUE'" >> ~/.bash_aliases
+    echo "New permanent bash alias set: alias $KEY='$VALUE'"
+    if [ -f ~/.bash_aliases ]; then
+            . ~/.bash_aliases
+        fi
+}
