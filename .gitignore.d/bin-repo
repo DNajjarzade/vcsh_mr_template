@@ -3,5 +3,8 @@
 !/.gitignore.d/bin-repo
 !/.local
 !/.local/bin-repo
+!/.local/bin-repo/check_nerd_fonts.sh
 !/.local/bin-repo/install_asdf_packages.sh
 !/.local/bin-repo/update-binaries.sh
+!/.local/bin-repo/git-stage.sh
+!/.local/bin-repo/git-commit.sh
