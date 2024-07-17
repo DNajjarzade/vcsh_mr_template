@@ -91,3 +91,8 @@ alias git-commit='~/.local/bin-repo/git-commit.sh'
 alias stage='git-stage'
 
 alias commit='git-commit'
+alias check-nerd-fonts='~/.local/bin-repo/check_nerd_fonts.sh'
+alias commit='~/.local/bin-repo/git-commit.sh'
+alias stage='~/.local/bin-repo/git-stage.sh'
+alias asdf_install='~/.local/bin-repo/install_asdf_packages.sh'
+alias update-binaries='~/.local/bin-repo/update-binaries.sh'
