@@ -87,3 +87,7 @@ alias gum='pkgx gum'
 alias git-stage='~/.local/bin-repo/git-stage.sh'
 
 alias git-commit='~/.local/bin-repo/git-commit.sh'
+
+alias stage='git-stage'
+
+alias commit='git-commit'
