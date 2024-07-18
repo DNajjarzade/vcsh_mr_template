@@ -92,3 +92,7 @@ alias commit='git-commit'
 alias bin-repo='vcsh bin-repo && ga'
 alias bash-repo='vcsh bash && ga'
 alias motd='~/fancy-motd/motd.sh'
+
+alias vs='vcsh status'
+
+alias vp='vcsh push'
