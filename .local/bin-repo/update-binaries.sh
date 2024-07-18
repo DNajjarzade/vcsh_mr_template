@@ -1,5 +1,7 @@
 #!/bin/bash
-cat << EOF
+
+#gum style --foreground 212 "$(
+lolcat << EOF
 _____________________________________________________________________________                                                                                                                                                            
 / 888888b.  d8b                                                               \                                                                                                                                                           
 | 888  "88b Y8P                                                               |                                                                                                                                                           
@@ -30,6 +32,7 @@ _____________________________________________________________________________
                 ||----w |                                                                                                                                                                                                                 
                 ||     ||                                                 
 EOF
+#)"
 # [Binary Downloads]
 #
 # This script downloads and installs binaries from specified URLs.
@@ -60,7 +63,6 @@ EOF
 #   ["binary_name"]="type:url:version"
 #   where type is either "targz" or "standalone", and version is the current version.
 #
-
 set -e  # Exit immediately if a command exits with a non-zero status.
 # set -x  # Print commands and their arguments as they are executed.
 
@@ -89,10 +91,10 @@ download_targz_binary() {
     local url=$2
     local extract_dir=$3
 
-    echo "Downloading and extracting $name from $url"
+    echo "Downloading and extracting $name from $url" | lolcat
     wget -q "$url" -O "$name.tar.gz"
     if [ $? -eq 0 ]; then
-        echo "Download successful. Extracting..."
+        echo "Download successful. Extracting..." | lolcat
         mkdir -p "$extract_dir"
         
         case "$name" in
@@ -111,16 +113,16 @@ download_targz_binary() {
         esac
         
         if [ $? -eq 0 ]; then
-            echo "Extraction successful. Removing tar.gz file..."
+            echo "Extraction successful. Removing tar.gz file..." | lolcat
             rm "$name.tar.gz"
-            echo "$name successfully downloaded and extracted."
+            echo "$name successfully downloaded and extracted." | lolcat
         else
-            echo "Failed to extract $name."
+            echo "Failed to extract $name." | lolcat
             rm "$name.tar.gz"
             return 1
         fi
     else
-        echo "Failed to download $name from $url"
+        echo "Failed to download $name from $url" | lolcat
         return 1
     fi
 }
@@ -131,13 +133,13 @@ download_standalone_binary() {
     local url=$2
     local bin_dir=$3
 
-    echo "Downloading $name from $url"
+    echo "Downloading $name from $url" | lolcat
     wget -q "$url" -O "$bin_dir/$name"
     if [ $? -eq 0 ]; then
         chmod +x "$bin_dir/$name"
-        echo "$name successfully downloaded and made executable."
+        echo "$name successfully downloaded and made executable." | lolcat
     else
-        echo "Failed to download $name from $url"
+        echo "Failed to download $name from $url" | lolcat
         return 1
     fi
 }
@@ -229,6 +231,14 @@ get_binary_version() {
                 return
             fi
             ;;
+        pkgx)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
         *)
             echo "unknown"
             return
@@ -249,7 +259,7 @@ version_gt() {
 
 # Download and extract/copy binaries
 for name in "${!binaries[@]}"; do
-    echo "Processing $name..."
+    echo "Processing $name..." | lolcat
     
     value="${binaries[$name]}"
     type="${value%%:*}"
@@ -264,7 +274,7 @@ for name in "${!binaries[@]}"; do
         read -p "Do you want to update $name? (y/n) " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "Skipping $name update."
+            echo "Skipping $name update." | lolcat
             continue
         fi
     else
@@ -274,12 +284,12 @@ for name in "${!binaries[@]}"; do
                 read -p "$name exists (version $current_version). New version ($version) available. Update? (y/n) " -n 1 -r
                 echo
                 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                    echo "Skipping $name update."
+                    echo "Skipping $name update." | lolcat
                     continue
                 fi
             fi
         else
-            echo "$name is up to date (version $current_version). Skipping download."
+            echo "$name is up to date (version $current_version). Skipping download." | lolcat
             continue
         fi
     fi
@@ -290,6 +300,6 @@ for name in "${!binaries[@]}"; do
     elif [ "$type" == "standalone" ]; then
         download_standalone_binary "$name" "$url" "$BIN_DIR"
     else
-        echo "Unknown type for $name: $type"
+        echo "Unknown type for $name: $type" | lolcat
     fi
 done    
