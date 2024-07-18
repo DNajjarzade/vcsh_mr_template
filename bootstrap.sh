@@ -164,7 +164,7 @@ show_progress() {
 # Install required packages
 if ! command_exists vcsh || ! command_exists mr; then
     echo "Installing required packages..."
-    install_package myrepos mc vim git curl ansible gpg gpg-agent git-crypt
+    install_package myrepos mc vim git curl ansible gpg gpg-agent git-crypt lolcat
     
     if ! command_exists vcsh; then
         echo "Installing vcsh ..."
