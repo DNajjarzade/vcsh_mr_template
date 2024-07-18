@@ -20,7 +20,12 @@ alias joplinc='~/.joplin-bin/bin/joplin'
 alias home-manager='nix --extra-experimental-features nix-command --extra-experimental-features flakes  run  home-manager $@'
 alias ik3c-vpn='sudo openvpn --config ~/.config/k3c/d.najarzadeh@irankish.com__ssl_vpn_config.ovpn'
 alias asdf-install='~/.local/bin-repo/install_asdf_packages.sh '
-alias bin-repo='vcsh bin-repo commit -m "$1" && vcsh bin-repo push'
+#
+# binery repositories scripts
+#
+alias check-nerd-fonts='~/.local/bin-repo/check_nerd_fonts.sh'
+alias asdf_install='~/.local/bin-repo/install_asdf_packages.sh'
+alias update-binaries='~/.local/bin-repo/update-binaries.sh'
 #
 # firewall aliases
 #
@@ -70,29 +75,20 @@ alias lt='eza -al --sort=modified' # lt — lists everything sorted by time upda
 # git aliases 
 #
 alias g='git '
+alias ga='stage && commit'
 alias cg='cd `git rev-parse --show-toplevel`'
-alias gs='g status '
-alias ga='g add –verbose '
-alias gco='g checkout '
-alias gls='g ls-files '
-alias gpa='g push –all '
+alias gs='git status '
+alias gco='git checkout '
+alias gls='git ls-files '
+# alias gpa='git push –all '
 # alias grep='grep –color=auto'
 alias gca='g commit –all '
 alias gc='g commit -v '
 
-alias motd='~/fancy-motd/motd.sh'
-
-alias gum='pkgx gum'
-
 alias git-stage='~/.local/bin-repo/git-stage.sh'
-
+alias stage='git-stage '
 alias git-commit='~/.local/bin-repo/git-commit.sh'
-
-alias stage='git-stage'
-
 alias commit='git-commit'
-alias check-nerd-fonts='~/.local/bin-repo/check_nerd_fonts.sh'
-alias commit='~/.local/bin-repo/git-commit.sh'
-alias stage='~/.local/bin-repo/git-stage.sh'
-alias asdf_install='~/.local/bin-repo/install_asdf_packages.sh'
-alias update-binaries='~/.local/bin-repo/update-binaries.sh'
+alias bin-repo='vcsh bin-repo && ga'
+alias bash-repo='vcsh bash && ga'
+alias motd='~/fancy-motd/motd.sh'

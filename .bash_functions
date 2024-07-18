@@ -427,3 +427,9 @@ add_alias() {
             . ~/.bash_aliases
         fi
 }
+# pkgs magic command
+# it was removed due to unsolvable issues
+function command_not_found_handle {
+  pkgx -- "$*"
+}
+# NOTE in zsh append an `r` ie `command_not_found_handler``
