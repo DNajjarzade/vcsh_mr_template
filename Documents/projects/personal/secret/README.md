@@ -1,4 +1,6 @@
-# Secure Repository Setup
+# Securing the Repository
+
+To secure sensitive information in this Git repository, we use **Ansible Vault** and **git-crypt**. **Ansible Vault** encrypts confidential data in Ansible playbooks, keeping passwords and keys safe. **git-crypt** transparently encrypts specified files, ensuring only authorized users can access them. Integrating these tools enhances security while maintaining collaborative capabilities.
 
 ## Prerequisites
 
