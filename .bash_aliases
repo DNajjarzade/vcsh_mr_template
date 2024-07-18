@@ -2,7 +2,7 @@
 # Common shortcuts
 #
 alias _='sudo '
-alias a='alias | print_with_colors | fzf --ansi --color --tac --preview "echo {}" | sed "s/alias \([^=]*\)=.*/\1/" | xargs -I {} bash -ic "{}"'
+alias a='alias | print_with_colors ru | fzf --ansi --color --tac --preview "echo {}" | sed "s/alias \([^=]*\)=.*/\1/" | xargs -I {} bash -ic "{}"'
 # alias c='bat --color=always --style=numbers'
 alias c='clear'
 alias h='history'
@@ -84,7 +84,6 @@ alias gls='git ls-files '
 # alias grep='grep –color=auto'
 alias gca='g commit –all '
 alias gc='g commit -v '
-
 alias git-stage='~/.local/bin-repo/git-stage.sh'
 alias stage='git-stage '
 alias git-commit='~/.local/bin-repo/git-commit.sh'
@@ -92,7 +91,19 @@ alias commit='git-commit'
 alias bin-repo='vcsh bin-repo && ga'
 alias bash-repo='vcsh bash && ga'
 alias motd='~/fancy-motd/motd.sh'
-
 alias vs='vcsh status'
-
 alias vp='vcsh push'
+#
+# Aliases added with aalias shortcut to the end of the file.
+
+alias aa='aalias'
+
+alias b='bashrc'
+
+alias ba='bashrc a'
+
+alias bf='bashrc f'
+
+alias bp='bashrc p'
+
+alias v='vcsh'

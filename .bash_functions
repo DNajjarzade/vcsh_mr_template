@@ -305,18 +305,45 @@ extract() {
     return "$e"
 }
 #
-#
+#             _       _              _ _   _                 _            
+#  _ __  _ __(_)_ __ | |_  __      _(_) |_| |__     ___ ___ | | ___  _ __ 
+# | '_ \| '__| | '_ \| __| \ \ /\ / / | __| '_ \   / __/ _ \| |/ _ \| '__|
+# | |_) | |  | | | | | |_   \ V  V /| | |_| | | | | (_| (_) | | (_) | |   
+# | .__/|_|  |_|_| |_|\__|   \_/\_/ |_|\__|_| |_|  \___\___/|_|\___/|_|   
+# |_|                                                                     
+# 
+# Author: dariush najjarzade
+# Created: July 10, 2024
+# Last Modified: July 18, 2024
 #
 # Function to print with alternating colors
 print_with_colors() {
-  local colors=("\033[33m" "\033[34m") # Yellow and Blue
-  local reset_color="\033[0m"
-  local i=0
+    local ir=("\033[32m" "\033[97m" "\033[31m")      # Green, White, Red (Italy)
+    local ukraine=("\033[33m" "\033[34m")            # Yellow and Blue (Ukraine)
+    local de=("\033[30;47m" "\033[31m" "\033[33m")   # Black on White, Red, Gold (Germany)
+    local ru=("\033[97m" "\033[34m" "\033[31m")      # White, Blue, Red (Russia)
+    local fr=("\033[34m" "\033[97m" "\033[31m")      # Blue, White, Red (France)
+    
+    local colors=("${ir[@]}") # Default to Italian flag colors
+    local reset_color="\033[0m"
+    local i=0
+    
+    # Check if a color set is specified as an argument
+    case "${1,,}" in
+        "ukraine") colors=("${ukraine[@]}") ;;
+        "de") colors=("${de[@]}") ;;
+        "ru") colors=("${ru[@]}") ;;
+        "fr") colors=("${fr[@]}") ;;
+        "ir" | "") colors=("${ir[@]}") ;; # Default to Italian if no arg or "ir" is specified
+        *) echo "Invalid color set. Using default (Italian)." >&2 ;;
+    esac
 
-  while IFS= read -r line; do
-    echo -e "${colors[$((i % 2))]}$line${reset_color}"
-    i=$((i + 1))
-  done
+    local color_count=${#colors[@]}
+
+    while IFS= read -r line; do
+        echo -e "${colors[$((i % color_count))]}$line${reset_color}"
+        i=$((i + 1))
+    done
 }
 #
 # _                    _                         _ _   
