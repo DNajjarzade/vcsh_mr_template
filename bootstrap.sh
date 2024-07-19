@@ -121,16 +121,17 @@ command_exists() {
 install_package() {
     if command_exists apt-get; then
        sudo apt-get update
-        sudo apt-get install -y "$@"
+       sudo apt-get install -y "$@"
     elif command_exists dnf; then
-        sudo dnf install -y "$@"
+         sudo dnf install -y "$@"
     elif command_exists yum; then
-        sudo yum install -y "$@"
+         sudo yum install -y "$@"
     elif command_exists pacman; then
-        sudo pacman -Sy --noconfirm "$@"
+         sudo pacman -Sy --noconfirm "$@"
     elif command_exists apk; then
-        sudo apk update
-        sudo apk add "$@"        
+         echo http://dl-cdn.alpinelinux.org/alpine/edge/testing | sudo tee -a /etc/apk/repositories
+         sudo apk update
+         sudo apk add "$@"        
     else
         echo "Unsupported package manager. Please install $@ manually."
         exit 1
@@ -162,19 +163,20 @@ show_progress() {
 }
 
 # Install required packages
-if ! command_exists vcsh || ! command_exists mr; then
+if ! command_exists mr; then
     echo "Installing required packages..."
-    install_package vcsh myrepos mc vim git curl ansible gpg gpg-agent git-crypt lolcat
+    install_package vcsh myrepos mc vim git curl ansible gpg gpg-agent git-crypt lolcat neofetch
     
     if ! command_exists vcsh; then
         echo "Installing vcsh ..."
-        curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o /usr/local/bin/vcsh
-        chmod +x /usr/local/bin/vcsh
+        curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/.local/bin/vcsh
+        chmod +x ~/.local/bin/vcsh
     fi
 fi
 
-# Check vcsh version
+
 # check_vcsh_version
+echo vcsh version
 
 # Clone the repository using vcsh
 echo "Cloning the home repository..."
