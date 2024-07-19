@@ -460,3 +460,74 @@ function command_not_found_handle {
   pkgx -- "$*"
 }
 # NOTE in zsh append an `r` ie `command_not_found_handler``
+# 
+#
+## Enhanced SSH Host Completion Function
+## Author: dariush najjarzade
+## Last Updated: July 19, 2024
+_complete_hosts() {
+    local cur cache_file cache_age max_cache_age
+    local -a host_list
+
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/ssh_hosts_cache"
+    max_cache_age=3600  # Cache expires after 1 hour
+
+    # Function to generate the host list
+    generate_host_list() {
+        {
+            # SSH config files
+            for c in /etc/ssh_config /etc/ssh/ssh_config ~/.ssh/config "${SSH_CONFIG_EXTRA_FILES[@]}"; do
+                [[ -r "$c" ]] && awk '/^Host|^[[:space:]]*HostName/ {print $2}' "$c"
+            done
+
+            # Known hosts files
+            for k in /etc/ssh_known_hosts /etc/ssh/ssh_known_hosts ~/.ssh/known_hosts "${SSH_KNOWN_HOSTS_EXTRA_FILES[@]}"; do
+                [[ -r "$k" ]] && awk '!/^[#\[]/ {print $1}' "$k" | sed -e 's/[,:].*//g'
+            done
+
+            # /etc/hosts
+            awk '/^[0-9]/ {for (i=2; i<=NF; i++) print $i}' /etc/hosts
+
+            # Custom host list
+            [[ -n "$SSH_CUSTOM_HOST_LIST" ]] && echo "$SSH_CUSTOM_HOST_LIST"
+
+        } | sort -u | grep -v '\*' | grep -v '^$'
+    }
+
+    # Check if cache exists and is fresh
+    if [[ -f "$cache_file" ]]; then
+        cache_age=$(($(date +%s) - $(stat -c %Y "$cache_file")))
+        if (( cache_age < max_cache_age )); then
+            host_list=($(cat "$cache_file"))
+        fi
+    fi
+
+    # Regenerate cache if necessary
+    if (( ${#host_list[@]} == 0 )); then
+        host_list=($(generate_host_list))
+        mkdir -p "$(dirname "$cache_file")"
+        printf '%s\n' "${host_list[@]}" > "$cache_file"
+    fi
+
+    if command -v fzf >/dev/null 2>&1; then
+        # Use fzf interactively
+        selected_host=$(printf '%s\n' "${host_list[@]}" | fzf --height 40% --reverse --query="$cur" --select-1 --exit-0)
+        if [[ -n $selected_host ]]; then
+            COMPREPLY=("$selected_host")
+        fi
+    else
+        # Fallback to basic completion
+        COMPREPLY=($(compgen -W "${host_list[*]}" -- "$cur"))
+    fi
+
+    return 0
+}
+
+# Set up the completion
+complete -F _complete_hosts ssh scp sftp
+
+# Configuration (can be overridden in .bashrc or .bash_profile)
+SSH_CONFIG_EXTRA_FILES=()
+SSH_KNOWN_HOSTS_EXTRA_FILES=()
+SSH_CUSTOM_HOST_LIST=""
