@@ -264,17 +264,25 @@ bashrc() {
 #
 # Author: dariush najjarzade
 # Created: July 11, 2024
-# Last Modified: July 11, 2024
-#
+# Last Modified: July 19, 2024
+# Function to enable extended globbing based on the shell
+enable_extended_globbing() {
+    if [ -n "$ZSH_VERSION" ]; then
+        setopt extendedglob
+    elif [ -n "$BASH_VERSION" ]; then
+        shopt -s extglob
+    fi
+}
+
 # Enable extended globbing
-shopt -s extglob
+enable_extended_globbing
 
 extract() {
     local c e i
 
     (($#)) || return
 
-    for i; do
+    for i in "$@"; do
         c=''
         e=1
 
@@ -284,8 +292,8 @@ extract() {
         fi
 
         case $i in
-            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz|zst)))))
-                   c=(bsdtar xvf);;
+            *.tar.gz|*.tgz|*.tar.lz|*.tar.xz|*.tar.bz2|*.tar.bz|*.tar.az|*.tar.ar|*.tar.arZ|*.tar.arbz|*.tar.arbz2|*.tar.argz|*.tar.arlzma|*.tar.arxz|*.tar.arzst)
+                c=(bsdtar xvf);;
             *.7z)  c=(7z x);;
             *.Z)   c=(uncompress);;
             *.bz2) c=(bunzip2);;
@@ -300,7 +308,7 @@ extract() {
         esac
 
         command "${c[@]}" "$i"
-        ((e = e || $?))
+        e=$((e || $?))
     done
     return "$e"
 }
@@ -461,10 +469,10 @@ function command_not_found_handle {
 }
 # NOTE in zsh append an `r` ie `command_not_found_handler``
 # 
-#
 ## Enhanced SSH Host Completion Function
 ## Author: dariush najjarzade
 ## Last Updated: July 19, 2024
+
 _complete_hosts() {
     local cur cache_file cache_age max_cache_age
     local -a host_list
@@ -482,16 +490,15 @@ _complete_hosts() {
             done
 
             # Known hosts files
-            for k in /etc/ssh_known_hosts /etc/ssh/ssh_known_hosts ~/.ssh/known_hosts "${SSH_KNOWN_HOSTS_EXTRA_FILES[@]}"; do
-                [[ -r "$k" ]] && awk '!/^[#\[]/ {print $1}' "$k" | sed -e 's/[,:].*//g'
-            done
+            # for k in /etc/ssh_known_hosts /etc/ssh/ssh_known_hosts ~/.ssh/known_hosts "${SSH_KNOWN_HOSTS_EXTRA_FILES[@]}"; do
+                # [[ -r "$k" ]] && awk '!/^[#\[]/ {print $1}' "$k" | sed -e 's/[,:].*//g'
+            # done
 
             # /etc/hosts
-            awk '/^[0-9]/ {for (i=2; i<=NF; i++) print $i}' /etc/hosts
+            # awk '/^[0-9]/ {for (i=2; i<=NF; i++) print $i}' /etc/hosts
 
             # Custom host list
             [[ -n "$SSH_CUSTOM_HOST_LIST" ]] && echo "$SSH_CUSTOM_HOST_LIST"
-
         } | sort -u | grep -v '\*' | grep -v '^$'
     }
 
@@ -499,13 +506,13 @@ _complete_hosts() {
     if [[ -f "$cache_file" ]]; then
         cache_age=$(($(date +%s) - $(stat -c %Y "$cache_file")))
         if (( cache_age < max_cache_age )); then
-            host_list=($(cat "$cache_file"))
+            mapfile -t host_list < "$cache_file"
         fi
     fi
 
     # Regenerate cache if necessary
     if (( ${#host_list[@]} == 0 )); then
-        host_list=($(generate_host_list))
+        mapfile -t host_list < <(generate_host_list)
         mkdir -p "$(dirname "$cache_file")"
         printf '%s\n' "${host_list[@]}" > "$cache_file"
     fi
@@ -525,9 +532,15 @@ _complete_hosts() {
 }
 
 # Set up the completion
-complete -F _complete_hosts ssh scp sftp
+if [[ -n "$ZSH_VERSION" ]]; then
+    autoload -U +X compinit && compinit
+    compdef _complete_hosts ssh scp sftp
+else
+    complete -F _complete_hosts ssh scp sftp
+fi
 
 # Configuration (can be overridden in .bashrc or .bash_profile)
 SSH_CONFIG_EXTRA_FILES=()
 SSH_KNOWN_HOSTS_EXTRA_FILES=()
 SSH_CUSTOM_HOST_LIST=""
+
