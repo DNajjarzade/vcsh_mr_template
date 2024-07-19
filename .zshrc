@@ -112,3 +112,7 @@ files_to_source=(
     "$HOME/.bash_aliases"
     "$HOME/.bash_functions"
 )
+
+for file in "${files_to_source[@]}"; do
+    [ -f "$file" ] && source "$file"
+done
