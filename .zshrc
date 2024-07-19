@@ -1,3 +1,23 @@
+#  _____________________________________________________________________________________
+# /  ____        _   _         ____             __ _ _                  _               \
+# | |  _ \  __ _| \ | | __ _  |  _ \ _ __ ___  / _(_) | ___     _______| |__  _ __ ___  |
+# | | | | |/ _` |  \| |/ _` | | |_) | '__/ _ \| |_| | |/ _ \   |_  / __| '_ \| '__/ __| |
+# | | |_| | (_| | |\  | (_| | |  __/| | | (_) |  _| | |  __/  _ / /\__ \ | | | | | (__  |
+# | |____/ \__,_|_| \_|\__,_| |_|   |_|  \___/|_| |_|_|\___| (_)___|___/_| |_|_|  \___| |
+# \                                                                                     /
+#  _____________________________________________________________________________________
+#         \   ^__^
+#          \  (oo)\_______
+#             (__)\       )\/\
+#                 ||----w |
+#                 ||     ||
+#
+# .zshrc - Z Shell Configuration File
+# Description: Configuration and customization for the Z shell.
+# Author: dariush najjarzade
+# Created on: 2024-06-15
+# Modified on: 2024-07-15
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,9 +25,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [[ -f "/opt/homebrew/bin/brew" ]] then
+if [[ -f "/home/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(/home/homebrew/bin/brew shellenv)"
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -34,8 +54,8 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::aws
+#zinit snippet OMZP::linux
+#zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
@@ -85,3 +105,10 @@ eval "$(zoxide init --cmd cd zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
+
+[[ $- = *i* ]] && source ~/.config/liquidpromptrc
+# Source other Bash configuration files
+files_to_source=(
+    "$HOME/.bash_aliases"
+    "$HOME/.bash_functions"
+)
