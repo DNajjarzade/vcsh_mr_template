@@ -326,32 +326,35 @@ extract() {
 #
 # Function to print with alternating colors
 print_with_colors() {
-    local ir=("\033[32m" "\033[97m" "\033[31m")      # Green, White, Red (Italy)
-    local ukraine=("\033[33m" "\033[34m")            # Yellow and Blue (Ukraine)
-    local de=("\033[30;47m" "\033[31m" "\033[33m")   # Black on White, Red, Gold (Germany)
-    local ru=("\033[97m" "\033[34m" "\033[31m")      # White, Blue, Red (Russia)
-    local fr=("\033[34m" "\033[97m" "\033[31m")      # Blue, White, Red (France)
-    
-    local colors=("${ir[@]}") # Default to Italian flag colors
-    local reset_color="\033[0m"
-    local i=0
-    
-    # Check if a color set is specified as an argument
-    case "${1,,}" in
-        "ukraine") colors=("${ukraine[@]}") ;;
-        "de") colors=("${de[@]}") ;;
-        "ru") colors=("${ru[@]}") ;;
-        "fr") colors=("${fr[@]}") ;;
-        "ir" | "") colors=("${ir[@]}") ;; # Default to Italian if no arg or "ir" is specified
-        *) echo "Invalid color set. Using default (Italian)." >&2 ;;
-    esac
+  local ir=("\033[32m" "\033[97m" "\033[31m")      # Green, White, Red (Italy)
+  local ukraine=("\033[33m" "\033[34m")            # Yellow and Blue (Ukraine)
+  local de=("\033[30;47m" "\033[31m" "\033[33m")   # Black on White, Red, Gold (Germany)
+  local ru=("\033[97m" "\033[34m" "\033[31m")      # White, Blue, Red (Russia)
+  local fr=("\033[34m" "\033[97m" "\033[31m")      # Blue, White, Red (France)
 
-    local color_count=${#colors[@]}
+  local colors=("${ir[@]}") # Default to Italian flag colors
+  local reset_color="\033[0m"
+  local i=0
 
-    while IFS= read -r line; do
-        echo -e "${colors[$((i % color_count))]}$line${reset_color}"
-        i=$((i + 1))
-    done
+  # Check if a color set is specified as an argument
+  local arg="${1:-}"
+  arg=$(echo "$arg" | tr '[:upper:]' '[:lower:]')
+
+  case "$arg" in
+    "ukraine") colors=("${ukraine[@]}") ;;
+    "de") colors=("${de[@]}") ;;
+    "ru") colors=("${ru[@]}") ;;
+    "fr") colors=("${fr[@]}") ;;
+    "ir"|"") colors=("${ir[@]}") ;; # Default to Italian if no arg or "ir" is specified
+    *) echo "Invalid color set. Using default (Italian)." >&2 ;;
+  esac
+
+  local color_count=${#colors[@]}
+
+  while IFS= read -r line; do
+    printf "%b%s%b\n" "${colors[$((i % color_count))]}" "$line" "$reset_color"
+    i=$((i + 1))
+  done
 }
 #
 # _                    _                         _ _   
