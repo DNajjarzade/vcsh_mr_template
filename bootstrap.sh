@@ -103,8 +103,23 @@ shift $((OPTIND -1))
 #    exit 1
 # fi
 
+# check for sudo
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Function to run a command with sudo if available and necessary
+run_with_sudo() {
+    if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
+        sudo "$@"
+    else
+        "$@"
+    fi
+}
+
 # Setup logging
-exec > >(tee -a "$LOG_FILE") 2>&1
+exec > >(run_with_sudo tee -a "$LOG_FILE") 2>&1
 echo "Starting setup at $(date)"
 
 # Use custom repository URL if provided
@@ -112,26 +127,21 @@ if [ $# -eq 1 ]; then
     REPO_URL=$1
 fi
 
-# Function to check if a command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
 # Function to install packages based on the package manager
 install_package() {
-    # Function to check if a command exists
-    command_exists() {
-        command -v "$1" >/dev/null 2>&1
-    }
+    # # Function to check if a command exists
+    # command_exists() {
+    #     command -v "$1" >/dev/null 2>&1
+    # }
 
-    # Function to run a command with sudo if available and necessary
-    run_with_sudo() {
-        if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
-            sudo "$@"
-        else
-            "$@"
-        fi
-    }
+    # # Function to run a command with sudo if available and necessary
+    # run_with_sudo() {
+    #     if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
+    #         sudo "$@"
+    #     else
+    #         "$@"
+    #     fi
+    # }
 
     if command_exists apt-get; then
         run_with_sudo apt-get update
