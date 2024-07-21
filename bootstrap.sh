@@ -119,24 +119,39 @@ command_exists() {
 
 # Function to install packages based on the package manager
 install_package() {
+    # Function to check if a command exists
+    command_exists() {
+        command -v "$1" >/dev/null 2>&1
+    }
+
+    # Function to run a command with sudo if available and necessary
+    run_with_sudo() {
+        if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
+            sudo "$@"
+        else
+            "$@"
+        fi
+    }
+
     if command_exists apt-get; then
-       sudo apt-get update
-       sudo apt-get install -y "$@"
+        run_with_sudo apt-get update
+        run_with_sudo apt-get install -y "$@"
     elif command_exists dnf; then
-         sudo dnf install -y "$@"
+        run_with_sudo dnf install -y "$@"
     elif command_exists yum; then
-         sudo yum install -y "$@"
+        run_with_sudo yum install -y "$@"
     elif command_exists pacman; then
-         sudo pacman -Sy --noconfirm "$@"
+        run_with_sudo pacman -Sy --noconfirm "$@"
     elif command_exists apk; then
-         echo http://dl-cdn.alpinelinux.org/alpine/edge/testing | sudo tee -a /etc/apk/repositories
-         sudo apk update
-         sudo apk add "$@"        
+        echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" | run_with_sudo tee -a /etc/apk/repositories
+        run_with_sudo apk update
+        run_with_sudo apk add "$@"
     else
-        echo "Unsupported package manager. Please install $@ manually."
-        exit 1
+        echo "Unsupported package manager. Please install $* manually."
+        return 1
     fi
 }
+
 
 # Function to check vcsh version
 check_vcsh_version() {
@@ -176,7 +191,7 @@ fi
 
 
 # check_vcsh_version
-echo vcsh version
+echo vcsh version $(vcsh version)
 
 # Clone the repository using vcsh
 echo "Cloning the home repository..."
