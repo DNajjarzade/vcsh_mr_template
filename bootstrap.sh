@@ -190,8 +190,7 @@ show_progress() {
 # Install required packages
 if ! command_exists mr; then
     echo "Installing required packages..."
-    install_package vcsh myrepos mc vim git curl ansible gpg gpg-agent git-crypt lolcat neofetch
-    
+    install_package vcsh ansible curl git git-crypt gpg gpg-agent lolcat neofetch mc myrepos wget vim
     if ! command_exists vcsh; then
         echo "Installing vcsh ..."
         curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/.local/bin/vcsh
