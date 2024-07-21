@@ -243,3 +243,4 @@ cleanup() {
 trap cleanup EXIT
 
 echo "Script execution completed at $(date)"
+source ~/.profile
