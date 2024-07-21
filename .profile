@@ -32,6 +32,7 @@ add_to_path() {
 
 # Add user's private bin to PATH
 add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/.local/emacs/bin"
 
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
@@ -60,11 +61,11 @@ export XDG_DATA_DIRS="$HOME/.nix-profile/share:$HOME/.share:${XDG_DATA_DIRS:-/us
 [ -f /nix/var/nix/profiles/default/bin ] && add_to_path "/nix/var/nix/profiles/default/bin"
 
 # Proxy settings
-export HTTP_PROXY="http://192.168.1.12:8081"
-export HTTPS_PROXY="http://192.168.1.12:8081"
+# export HTTP_PROXY="http://192.168.1.12:8081"
+# export HTTPS_PROXY="http://192.168.1.12:8081"
 # export NO_PROXY="*.najarza.de,git.najjarza.de,${no_proxy},$(echo 192.168.1.{1..255} | sed 's/ /,/g')"
-export no_proxy="*.najarza.de,git.najjarza.de,$(echo 192.168.1.{1..10} | sed 's/ /,/g'),$(echo 10.0.0.{20..30} | sed 's/ /,/g'),$(echo 172.16.0.{30..40} | sed 's/ /,/g')"
-export NO_PROXY=${no_proxy}
+# export no_proxy="*.najarza.de,git.najjarza.de,$(echo 192.168.1.{1..10} | sed 's/ /,/g'),$(echo 10.0.0.{20..30} | sed 's/ /,/g'),$(echo 172.16.0.{30..40} | sed 's/ /,/g')"
+# export NO_PROXY=${no_proxy}
 
 # Display fancy MOTD (Message of the Day) if not already shown
 if [ -z "$FANCY_MOTD" ]; then
@@ -73,6 +74,7 @@ if [ -z "$FANCY_MOTD" ]; then
 fi
 
 # Set locale
+# export LC_ALL=C
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
