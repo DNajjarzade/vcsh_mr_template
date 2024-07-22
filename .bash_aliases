@@ -19,13 +19,12 @@ alias emacs='/usr/bin/emacsclient -c -a '\''emacs'\'''
 alias joplinc='~/.joplin-bin/bin/joplin'
 alias home-manager='nix --extra-experimental-features nix-command --extra-experimental-features flakes  run  home-manager $@'
 alias ik3c-vpn='sudo openvpn --config ~/.config/k3c/d.najarzadeh@irankish.com__ssl_vpn_config.ovpn'
-alias asdf-install='~/.local/bin-repo/install_asdf_packages.sh '
 #
 # binery repositories scripts
 #
 alias check-nerd-fonts='~/.local/bin-repo/check_nerd_fonts.sh'
-alias asdf_install='~/.local/bin-repo/install_asdf_packages.sh'
 alias update-binaries='~/.local/bin-repo/update-binaries.sh'
+alias asdf-install='~/.local/bin-repo/install_asdf_packages.sh '
 #
 # firewall aliases
 #
