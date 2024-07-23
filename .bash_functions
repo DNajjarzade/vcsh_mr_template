@@ -517,7 +517,7 @@ _complete_hosts() {
     if (( ${#host_list[@]} == 0 )); then
         mapfile -t host_list < <(generate_host_list)
         mkdir -p "$(dirname "$cache_file")"
-        printf '%s\n' "${host_list[@]}" > "$cache_file"
+        printf '%s\n' "${host_list[@]}" >| "$cache_file"
     fi
 
     if command -v fzf >/dev/null 2>&1; then
