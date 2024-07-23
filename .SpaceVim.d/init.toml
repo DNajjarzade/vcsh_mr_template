@@ -41,3 +41,31 @@ name = "fzf"
 [[layers]]
 name = "telescope"
 
+# Enable the git layer
+[[layers]]
+name = "git"
+
+# Icons for your NERDTree
+[[custom_plugins]]
+repo = 'ryanoasis/vim-devicons'
+merged = false
+
+# Colors according to file type in NERDTree
+[[custom_plugins]]
+repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+merged = false
+
+# Automatically add end to the end of certain Ruby structures
+# [[custom_plugins]]
+# repo = "tpope/vim-endwise"
+# merged = false
+# higlighter
+
+[[custom_plugins]]
+repo = "xiyaowong/transparent.nvim"
+merged = false
+
+[[custom_plugins]]
+repo = "ap/vim-css-color"
+merged = false
+
