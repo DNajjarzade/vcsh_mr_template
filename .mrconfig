@@ -115,3 +115,6 @@ skip = ${SKIP_DOOM_EMACS:-false}
 
 [.asdf]
 checkout = git clone 'https://github.com/asdf-vm/asdf.git' '.asdf'
+
+[polybar-themes]
+checkout = git clone 'https://github.com/adi1090x/polybar-themes.git' 'polybar-themes'
