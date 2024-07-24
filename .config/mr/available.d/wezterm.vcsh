@@ -1,5 +1,7 @@
 [$HOME/.config/vcsh/repo.d/wezterm.git]
 order = 10
 # NOTE: put the correct url for your repository
-checkout = vcsh clone -b wezterm https://github.com/DNajjarzade/vcsh_mr_template.git wezterm
-# && vcsh mr checkout wezterm && vcsh mr branch --track wezterm origin/wezterm
+checkout = vcsh clone -b wezterm https://github.com/DNajjarzade/vcsh_mr_template.git wezterm && \
+           vcsh wezterm branch --set-upstream-to=origin/wezterm wezterm
+           vcsh wezterm checkout -b wezterm && \
+           vcsh wezterm branch --track wezterm origin/wezterm

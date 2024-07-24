@@ -1,2 +1,5 @@
 [$HOME/.config/vcsh/repo.d/zsh.git]
-checkout = vcsh clone -b zsh https://github.com/DNajjarzade/vcsh_mr_template.git zsh  
+checkout = vcsh clone -b zsh https://github.com/DNajjarzade/vcsh_mr_template.git zsh && \
+           vcsh zsh branch --set-upstream-to=origin/zsh zsh:
+           vcsh zsh checkout -b zsh && \
+           vcsh zsh branch --track zsh origin/zsh

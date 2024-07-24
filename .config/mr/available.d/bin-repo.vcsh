@@ -1,5 +1,7 @@
 [$HOME/.config/vcsh/repo.d/bin-repo.git]
 order = 10
 # NOTE: put the correct url for your repository
-checkout = vcsh clone -b bin-repo https://github.com/DNajjarzade/vcsh_mr_template.git bin-repo 
-# && vcsh mr checkout bash && vcsh mr branch --track bash origin/bash
+checkout = vcsh clone -b bin-repo https://github.com/DNajjarzade/vcsh_mr_template.git bin-repo && \
+           vcsh bin-repo branch --set-upstream-to=origin/bin-repo bin-repo
+           vcsh bin-repo checkout -b bin-repo && \
+           vcsh bin-repo branch --track bin-repo origin/bin-repo
