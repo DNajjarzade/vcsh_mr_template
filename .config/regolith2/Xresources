@@ -1,0 +1,5 @@
+i3-wm.program.1: xrandr --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal --output eDP-1-1 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DP-1-1 --off --output DP-1-2 --off
+i3-wm.program.2: exec bash ~/.config/polybar/launch.sh --shapes
+i3-wm.program.3: bash ~/.local/bin-repo/wallpaper_rotate.sh
+regolith.look.path: /usr/share/regolith-look/ayu-mirage
+# !regolith.look.path: /usr/share/regolith-look/solarized-dark
