@@ -1,0 +1,5 @@
+[$HOME/.config/vcsh/repo.d/polybar.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout = vcsh clone -b polybar https://github.com/DNajjarzade/vcsh_mr_template.git polybar 
+# && vcsh mr checkout polybar && vcsh mr branch --track polybar origin/polybar
