@@ -106,3 +106,5 @@ alias bf='bashrc f'
 alias bp='bashrc p'
 
 alias v='vcsh'
+
+alias wallpaper='~/.local/bin-repo/wallpaper_rotate.sh'
