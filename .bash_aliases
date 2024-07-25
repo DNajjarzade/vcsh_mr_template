@@ -108,3 +108,5 @@ alias bp='bashrc p'
 alias v='vcsh'
 
 alias wallpaper='~/.local/bin-repo/wallpaper_rotate.sh'
+
+alias vmr='vs && mr status && echo vs status: finished \($(vs | wc -w) repositorys\)'
