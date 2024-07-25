@@ -111,7 +111,8 @@ command_exists() {
 
 # Function to run a command with sudo if available and necessary
 run_with_sudo() {
-    if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
+    # if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
+    if command_exists sudo; then
         sudo "$@"
     else
         "$@"
