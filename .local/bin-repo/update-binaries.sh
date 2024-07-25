@@ -1,70 +1,69 @@
 #!/bin/bash
+# Function to check if lolcat is available and set up printing
+setup_print() {
+    if command -v lolcat >/dev/null 2>&1; then
+        print_func() { lolcat; }
+    else
+        print_func() { cat; }
+    fi
+}
 
-#gum style --foreground 212 "$(
-lolcat << EOF
-_____________________________________________________________________________                                                                                                                                                            
-/ 888888b.  d8b                                                               \                                                                                                                                                           
-| 888  "88b Y8P                                                               |                                                                                                                                                           
-| 888  .88P                                                                   |                                                                                                                                                           
-| 8888888K. 88888888b.  8888b. 888d888888  888                                |                                                                                                                                                           
-| 888  "Y88b888888 "88b    "88b888P"  888  888                                |                                                                                                                                                           
-| 888    888888888  888.d888888888    888  888                                |                                                                                                                                                           
-| 888   d88P888888  888888  888888    Y88b 888                                |                                                                                                                                                           
-| 8888888P" 888888  888"Y888888888     "Y88888                                |                                                                                                                                                           
-|                                          888                                |                                                                                                                                                           
-|                                     Y8b d88P                                |                                                                                                                                                           
-|                                      "Y88P"                                 |                                                                                                                                                           
-| 8888888b.                              888                     888          |                                                                                                                                                           
-| 888  "Y88b                             888                     888          |                                                                                                                                                           
-| 888    888                             888                     888          |                                                                                                                                                           
-| 888    888 .d88b. 888  888  88888888b. 888 .d88b.  8888b.  .d88888.d8888b   |                                                                                                                                                           
-| 888    888d88""88b888  888  888888 "88b888d88""88b    "88bd88" 88888K       |                                                                                                                                                           
-| 888    888888  888888  888  888888  888888888  888.d888888888  888"Y8888b.  |                                                                                                                                                           
-| 888  .d88PY88..88PY88b 888 d88P888  888888Y88..88P888  888Y88b 888     X88  |                                                                                                                                                           
-| 8888888P"  "Y88P"  "Y8888888P" 888  888888 "Y88P" "Y888888 "Y88888 88888P'  |                                                                                                                                                           
-|                                                                             |                                                                                                                                                           
-|                                                                             |                                                                                                                                                           
-\                                                                             /                                                                                                                                                           
- -----------------------------------------------------------------------------                                                                                                                                                            
-        \   ^__^                                                                                                                                                                                                                          
-         \  (oo)\_______                                                                                                                                                                                                                  
-            (__)\       )\/\                                                                                                                                                                                                              
-                ||----w |                                                                                                                                                                                                                 
-                ||     ||                                                 
+# Call the setup function
+setup_print
+
+cat << EOF | print_func
+[38;5;219m╔═══════════════════════════════════════════════════════════════════════════════════════╗[0m
+[38;5;219m║[0m[38;5;212m _____________________________________________________________________________________[0m [38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m/ 888888b.   d8b                                                                      \[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888  "88b  Y8P                                                                      |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888  .88P                                                                           |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 8888888K.  888 88888b.   8888b.  888d888 888  888                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888  "Y88b 888 888 "88b     "88b 888P"   888  888                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888    888 888 888  888 .d888888 888     888  888                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888   d88P 888 888  888 888  888 888     Y88b 888                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 8888888P"  888 888  888 "Y888888 888      "Y88888                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m|                                               888                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m|                                          Y8b d88P                                   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m|                                           "Y88P"                                    |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 8888888b.                                  888                        888           |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888  "Y88b                                 888                        888           |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888    888                                 888                        888           |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888    888  .d88b.  888  888  888 88888b.  888  .d88b.   8888b.   .d88888 .d8888b   |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888    888 d88""88b 888  888  888 888 "88b 888 d88""88b     "88b d88" 888 88K       |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888    888 888  888 888  888  888 888  888 888 888  888 .d888888 888  888 "Y8888b.  |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 888  .d88P Y88..88P Y88b 888 d88P 888  888 888 Y88..88P 888  888 Y88b 888      X88  |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m| 8888888P"   "Y88P"   "Y8888888P"  888  888 888  "Y88P"  "Y888888  "Y88888  88888P'  |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m|                                                                                     |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m|                                                                                     |[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m\                                                                                     /[0m[38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m -------------------------------------------------------------------------------------[0m [38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m        \   ^__^[0m                                                                       [38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m         \  (oo)\_______[0m                                                               [38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m            (__)\       )\/\[0m                                                           [38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m                ||----w |[0m                                                              [38;5;219m║[0m
+[38;5;219m║[0m[38;5;212m                ||     ||[0m                                                              [38;5;219m║[0m
+[38;5;219m╚═══════════════════════════════════════════════════════════════════════════════════════╝[0m
 EOF
-#)"
+
 # [Binary Downloads]
-#
+
 # This script downloads and installs binaries from specified URLs.
 # It supports both tar.gz archives and standalone executables.
-#
+
 # Usage:
-#   ./update-binaries.sh
-#
+# ./update-binaries.sh
+
 # Author:
-#   dariush najjarzade <dariush@najjarza.de>
-#
+# dariush najjarzade
+
 # Create Date:
-#   14-07-2024 14:32:57
-#
+# 14-07-2024 14:32:57
+
 # Last Modified:
-#   14-07-2024 14:32:57
-# #!/bin/bash
-#
-# Functions:
-#   - download_targz_binary: Downloads and extracts a tar.gz binary.
-#   - download_standalone_binary: Downloads a standalone binary and makes it executable.
-#   - binary_exists: Checks if a binary exists and is executable.
-#   - get_binary_version: Attempts to get the version of an existing binary.
-#   - version_gt: Compares two version strings.
-#
-# Example:
-#   To add a new binary, add an entry to the binaries array in the format:
-#   ["binary_name"]="type:url:version"
-#   where type is either "targz" or "standalone", and version is the current version.
-#
-set -e  # Exit immediately if a command exits with a non-zero status.
-# set -x  # Print commands and their arguments as they are executed.
+# 14-07-2024 14:32:57
+
+set -e # Exit immediately if a command exits with a non-zero status.
+# set -x # Print commands and their arguments as they are executed.
 
 # List of binaries to manage
 declare -A binaries=(
@@ -80,23 +79,20 @@ declare -A binaries=(
     ["pkgx"]="targz:https://pkgx.sh/$(uname)/$(uname -m).tgz:1.1.6"
 )
 
-# Where to copy 
+# Where to copy
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
-
 
 # Function to download and extract tar.gz binary
 download_targz_binary() {
     local name=$1
     local url=$2
     local extract_dir=$3
-
-    echo "Downloading and extracting $name from $url" | lolcat
+    echo "Downloading and extracting $name from $url" | print_func
     wget -q "$url" -O "$name.tar.gz"
     if [ $? -eq 0 ]; then
-        echo "Download successful. Extracting..." | lolcat
+        echo "Download successful. Extracting..." | print_func
         mkdir -p "$extract_dir"
-        
         case "$name" in
             ripgrep)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg"
@@ -106,23 +102,22 @@ download_targz_binary() {
                 ;;
             delta)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "delta-0.17.0-x86_64-unknown-linux-musl/delta"
-                ;;                
+                ;;
             *)
                 tar -xzf "$name.tar.gz" -C "$extract_dir"
                 ;;
         esac
-        
         if [ $? -eq 0 ]; then
-            echo "Extraction successful. Removing tar.gz file..." | lolcat
+            echo "Extraction successful. Removing tar.gz file..." | print_func
             rm "$name.tar.gz"
-            echo "$name successfully downloaded and extracted." | lolcat
+            echo "$name successfully downloaded and extracted." | print_func
         else
-            echo "Failed to extract $name." | lolcat
+            echo "Failed to extract $name." | print_func
             rm "$name.tar.gz"
             return 1
         fi
     else
-        echo "Failed to download $name from $url" | lolcat
+        echo "Failed to download $name from $url" | print_func
         return 1
     fi
 }
@@ -132,14 +127,13 @@ download_standalone_binary() {
     local name=$1
     local url=$2
     local bin_dir=$3
-
-    echo "Downloading $name from $url" | lolcat
+    echo "Downloading $name from $url" | print_func
     wget -q "$url" -O "$bin_dir/$name"
     if [ $? -eq 0 ]; then
         chmod +x "$bin_dir/$name"
-        echo "$name successfully downloaded and made executable." | lolcat
+        echo "$name successfully downloaded and made executable." | print_func
     else
-        echo "Failed to download $name from $url" | lolcat
+        echo "Failed to download $name from $url" | print_func
         return 1
     fi
 }
@@ -156,7 +150,6 @@ get_binary_version() {
     local name=$1
     local bin_dir=$2
     local version
-
     case $name in
         ripgrep)
             if [ -x "$bin_dir/rg" ]; then
@@ -222,7 +215,6 @@ get_binary_version() {
                 return
             fi
             ;;
-
         jq)
             if [ -x "$bin_dir/$name" ]; then
                 version=$("$bin_dir/$name" --version 2>/dev/null | cut -d "-" -f 2)
@@ -244,7 +236,6 @@ get_binary_version() {
             return
             ;;
     esac
-
     if [ -z "$version" ]; then
         echo "unknown"
     else
@@ -259,22 +250,20 @@ version_gt() {
 
 # Download and extract/copy binaries
 for name in "${!binaries[@]}"; do
-    echo "Processing $name..." | lolcat
-    
+    echo "Processing $name..." | print_func
     value="${binaries[$name]}"
     type="${value%%:*}"
     rest="${value#*:}"
     url="${rest%:*}"
     version="${rest##*:}"
-    
     current_version=$(get_binary_version "$name" "$BIN_DIR")
     echo "Current version of $name: $current_version"
     if [ "$name" = "assh" ]; then
-        echo "Download version of $name:  $version (Online Version)"
+        echo "Download version of $name: $version (Online Version)"
         read -p "Do you want to update $name? (y/n) " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "Skipping $name update." | lolcat
+            echo "Skipping $name update." | print_func
             continue
         fi
     else
@@ -284,22 +273,21 @@ for name in "${!binaries[@]}"; do
                 read -p "$name exists (version $current_version). New version ($version) available. Update? (y/n) " -n 1 -r
                 echo
                 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                    echo "Skipping $name update." | lolcat
+                    echo "Skipping $name update." | print_func
                     continue
                 fi
             fi
         else
-            echo "$name is up to date (version $current_version). Skipping download." | lolcat
+            echo "$name is up to date (version $current_version). Skipping download." | print_func
             continue
         fi
     fi
-
     echo "Downloading $name version $version..."
     if [ "$type" == "targz" ]; then
         download_targz_binary "$name" "$url" "$BIN_DIR"
     elif [ "$type" == "standalone" ]; then
         download_standalone_binary "$name" "$url" "$BIN_DIR"
     else
-        echo "Unknown type for $name: $type" | lolcat
+        echo "Unknown type for $name: $type" | print_func
     fi
-done    
+done
