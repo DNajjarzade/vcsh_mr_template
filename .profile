@@ -80,4 +80,4 @@ export LANG=en_US.UTF-8
 
 # Source .bashrc if it exists
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
-[ -f "$HOME/.local/bin-repo/wallpaper_rotate.sh" ] && ~/.local/bin-repo/wallpaper_rotate.sh
+# [ -f "$HOME/.local/bin-repo/wallpaper_rotate.sh" ] && ~/.local/bin-repo/wallpaper_rotate.sh
