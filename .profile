@@ -33,6 +33,7 @@ add_to_path() {
 # Add user's private bin to PATH
 add_to_path "$HOME/.local/bin"
 add_to_path "$HOME/.local/emacs/bin"
+add_to_path "$HOME/.SpaceVim/bin"
 
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
@@ -46,9 +47,6 @@ command -v rbenv >/dev/null && eval "$(rbenv init -)"
 # Krew (Kubernetes plugin manager) setup
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# Apply custom key mappings
-[ -f ~/xmodemap ] && xmodmap ~/xmodemap
-
 # Homebrew setup
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -59,6 +57,7 @@ export XDG_DATA_DIRS="$HOME/.nix-profile/share:$HOME/.share:${XDG_DATA_DIRS:-/us
 [ -f "$HOME/.config/emacs/bin" ] && add_to_path "$HOME/.config/emacs/bin"
 [ -f /usr/local/go/bin ] && add_to_path "/usr/local/go/bin"
 [ -f /nix/var/nix/profiles/default/bin ] && add_to_path "/nix/var/nix/profiles/default/bin"
+
 
 # Proxy settings
 # export HTTP_PROXY="http://192.168.1.12:8081"
@@ -81,3 +80,13 @@ export LANG=en_US.UTF-8
 # Source .bashrc if it exists
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 # [ -f "$HOME/.local/bin-repo/wallpaper_rotate.sh" ] && ~/.local/bin-repo/wallpaper_rotate.sh
+
+if [ -f "~/.nvm" ]; then
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+fi
+
+
+# Apply custom key mappings
+[ -f ~/xmodemap ] && xmodmap ~/xmodemap
+
