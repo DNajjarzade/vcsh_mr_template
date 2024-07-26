@@ -26,13 +26,13 @@
 
 # Enable autocomplete layer
 [[layers]]
-name = 'autocomplete'
+name = "autocomplete"
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
-name = 'shell'
-default_position = 'top'
+name = "shell"
+default_position = "top"
 default_height = 30
 
 [[layers]]
@@ -41,13 +41,66 @@ name = "fzf"
 [[layers]]
 name = "telescope"
 
+[[layers]]
+name = "tmux"
+
+[[layers]]
+name = "treesitter"
+
+
+[[layers]]
+name = "ui"
+
+[[layers]]
+name = "tools"
+
+[[layers]]
+  name = "VersionControl"
 # Enable the git layer
 [[layers]]
 name = "git"
 
+[[layers]]
+name = "gtags"
+
+[[layers]]
+name = "lang#python"
+enable_typeinfo = true
+
+[[layers]]
+name = "lang#typescript"
+
+[[layers]]
+name = "lsp"
+enabled_clients = ["pylsp","vimls",]
+
+[[layers]]
+name = "lang#dockerfile"
+
+[[layers]]
+name = "lang#html"
+
+[[layers]]
+name = "lang#ipynb"
+
+[[layers]]
+name = "lang#json"
+
+[[layers]]
+name = "lang#markdown"
+
+[[layers]]
+name = "lang#sh"
+
+[[layers]]
+name = "lang#yaml"
+
+[[layers]]
+name = "lang#toml"
+
 # Icons for your NERDTree
 [[custom_plugins]]
-repo = 'ryanoasis/vim-devicons'
+repo = "ryanoasis/vim-devicons"
 merged = false
 
 # Colors according to file type in NERDTree
@@ -68,4 +121,3 @@ merged = false
 [[custom_plugins]]
 repo = "ap/vim-css-color"
 merged = false
-
