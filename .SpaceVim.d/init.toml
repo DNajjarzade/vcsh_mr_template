@@ -121,3 +121,6 @@ merged = false
 [[custom_plugins]]
 repo = "ap/vim-css-color"
 merged = false
+
+# inoremap ,t <C-R>=strftime('%H:%M')<CR>
+# inoremap ,d <C-R>=strftime('%Y-%m-%d %H:%M:%S')<CR>
