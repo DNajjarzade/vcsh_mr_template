@@ -1,0 +1,8 @@
+*
+!/Documents/projects/personal/ansible/ansible.cfg
+!/Documents/projects/personal/ansible/group_vars/all.yml
+!/Documents/projects/personal/ansible/local.yml
+!/Documents/projects/personal/ansible/README.md
+!/Documents/projects/personal/ansible/requirements/common.yml
+!/Documents/projects/personal/ansible/tasks/cronjob.yml
+!/Documents/projects/personal/ansible/tasks/packages.yml

@@ -1,0 +1,6 @@
+- name: add ansible-pull cron job
+  cron:
+    name: ansible auto-provision
+    user: dariush
+    minute: "*/10"
+    job: ansible-pull -o -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git

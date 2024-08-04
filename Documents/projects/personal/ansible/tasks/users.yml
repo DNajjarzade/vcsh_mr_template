@@ -1,0 +1,7 @@
+- name: copy sudoers file
+  copy:
+    src: files/sudoers_dariush
+    dest: /etc/sudoers.d/dariush
+    owner: root
+    group: root
+    mode: 0440
