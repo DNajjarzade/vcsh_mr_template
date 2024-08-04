@@ -1,8 +1,8 @@
- ---
- - hosts: localhost
-   connection: local
-   become: true
-   tasks:
-     - include: tasks/packages.yml
-     - include: tasks/cronjob.yml
-     - include: tasks/users.yml
+---
+- hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - include: tasks/packages.yml
+    - include: tasks/cronjob.yml
+    - include: tasks/users.yml
