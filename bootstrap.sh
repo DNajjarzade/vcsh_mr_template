@@ -235,12 +235,13 @@ mr update &
 show_progress $!
 
 echo "Setup complete!"
-# Cleanup function
-cleanup() {
+# Ansible pull function
+ansible_pull() {
     echo "Cleaning up..."
-    # Add any necessary cleanup tasks here
+    # Add any necessary ansible_pull tasks here
+    run_with_sudo ansible-pull -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/local.yml
 }
-trap cleanup EXIT
+trap ansible_pull EXIT
 
 echo "Script execution completed at $(date)"
 source ~/.profile
