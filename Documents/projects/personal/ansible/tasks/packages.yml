@@ -16,5 +16,6 @@
       - myrepos 
       - wget 
       - vim
+      - feh
       - python3-watchdog
  
