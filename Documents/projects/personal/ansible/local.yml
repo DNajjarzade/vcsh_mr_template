@@ -29,6 +29,8 @@
     - name: Detect Host User
       ansible.builtin.import_tasks: tasks/whoami.yml
       become: false
+      vars:
+        ansible_become: false
       tags:
         - always
 
@@ -41,7 +43,7 @@
 
     - name: Display the user variable set in bash
       debug:
-        msg: "Current ssh user is {{ $USER }}"        
+        msg: "Current ssh user is {{ user }}"        
 
   tasks:
     - include: tasks/packages.yml
