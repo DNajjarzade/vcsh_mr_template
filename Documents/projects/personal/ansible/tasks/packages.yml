@@ -17,5 +17,7 @@
       - wget 
       - vim
       - feh
+      - zip
+      - unzip
       - python3-watchdog
  
