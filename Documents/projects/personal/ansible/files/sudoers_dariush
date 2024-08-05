@@ -1,1 +1,1 @@
-dariush    ALL=(ALL:ALL) NOPASSWD:ALL
+{{ ansible_env['USER'] }}   ALL=(ALL:ALL) NOPASSWD:ALL

@@ -1,7 +1,14 @@
-- name: copy sudoers file
-  copy:
-    src: files/sudoers_dariush
-    dest: /etc/sudoers.d/dariush
-    owner: root
-    group: root
-    mode: 0440
+- name: "System | Set sudo user"
+  ansible.builtin.template:
+    dest: "/etc/sudoers.d/{{USER}}"
+    src: sudo_user.j2
+    mode: "0644"
+  become: true
+  when: not ansible_host_environment_is_wsl
+# - name: copy sudoers file
+  # copy:
+    # src: files/sudoers_dariush
+    # dest: /etc/sudoers.d/dariush
+    # owner: root
+    # group: root
+    # mode: 0440
