@@ -36,10 +36,10 @@
       debug:
         msg: "Current user is {{ host_user.stdout }}"        
 
-      tasks:
-        - include: tasks/packages.yml
-        - include: tasks/cronjob.yml
-        - include: tasks/users.yml
+  tasks:
+    - include: tasks/packages.yml
+    - include: tasks/cronjob.yml
+    - include: tasks/users.yml
     # - name: Set roles
       # ansible.builtin.set_fact:
         # run_roles: "{{ ansible_run_tags != ['all'] and ansible_run_tags or default_roles | difference(exclude_roles | default([])) }}"
