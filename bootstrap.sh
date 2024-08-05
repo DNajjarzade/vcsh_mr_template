@@ -55,7 +55,7 @@ EOF
 # trap 'echo "An error occurred. Exiting..."; exit 1' ERR
 
 # Set locale
-export LC_ALL=C
+export LC_ALL=C.UTF-8
 export LANG=en_US.UTF-8
 
 # Default values
@@ -237,11 +237,13 @@ show_progress $!
 echo "Setup complete!"
 # Ansible pull function
 ansible_pull() {
-    echo "Cleaning up..."
+    echo "Setting up locale and ansible-pull..."
     # Add any necessary ansible_pull tasks here
-    echo LANG=en_US.UTF-8 | run_with_sudo tee /etc/default/locale
-    echo LANGUAGE=en_US | run_with_sudo tee -a /etc/default/locale
-    # run_with_sudo update-locate
+    echo LC_ALL=C.UTF-8 | run_with_sudo tee /etc/default/locale
+    echo LANG=en_US.UTF-8 | run_with_sudo tee -a /etc/default/locale
+    echo LANGUAGE=en_US.UTF-8 | run_with_sudo tee -a /etc/default/locale
+    run_with_sudo locale-gen en_US.UTF-8
+    run_with_sudo export LC_ALL=C.UTF-8 
     run_with_sudo ansible-pull -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/local.yml
 }
 trap ansible_pull EXIT
