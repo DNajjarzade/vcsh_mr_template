@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  become: true
+  # become: true
   pre_tasks:
     - name: Detect WSL
       ansible.builtin.import_tasks: tasks/detect_wsl.yml
@@ -43,7 +43,7 @@
 
     - name: Display the user variable set in bash
       debug:
-        msg: "Current ssh user is {{ user }}"        
+        msg: "Current ssh user is {{ USER }}"        
 
   tasks:
     - include: tasks/packages.yml
