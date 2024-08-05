@@ -1,7 +1,7 @@
 - name: "System | Set sudo user"
   ansible.builtin.template:
     dest: "/etc/sudoers.d/{{host_user}}"
-    src: sudo_user.j2
+    src: sudoers_user.j2
     mode: "0644"
   become: true
   when: not ansible_host_environment_is_wsl
