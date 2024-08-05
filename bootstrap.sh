@@ -58,6 +58,11 @@ EOF
 export LC_ALL=C.UTF-8
 export LANG=en_US.UTF-8
 
+# variable USER
+USER=$(whoami)
+# Print the current user
+echo "Current user is: $USER"
+
 # Default values
 REPO_URL="https://github.com/DNajjarzade/vcsh_mr_template.git"
 BRANCH_NAME="mr"
@@ -244,7 +249,7 @@ ansible_pull() {
     echo LANGUAGE=en_US.UTF-8 | run_with_sudo tee -a /etc/default/locale
     run_with_sudo locale-gen en_US.UTF-8
     run_with_sudo export LC_ALL=C.UTF-8 
-    run_with_sudo ansible-pull -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git 'Documents/projects/personal/ansible/local.yml'
+    ansible-pull -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git 'Documents/projects/personal/ansible/local.yml'
 }
 trap ansible_pull EXIT
 
