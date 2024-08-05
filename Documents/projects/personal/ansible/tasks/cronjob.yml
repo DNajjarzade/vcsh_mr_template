@@ -4,3 +4,10 @@
     user: dariush
     minute: "*/10"
     job: ansible-pull -o -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/local.yml
+
+- name: add mr up cron job
+  cron:
+    name: myrepos auto-update
+    user: dariush
+    minute: "*/30"
+    job: mr up
