@@ -78,6 +78,8 @@ declare -A binaries=(
     ["jq"]="targz:https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz:1.7.1"
     ["yq"]="targz:https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64.tar.gz:4.44.3"
     ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
+    ["teller"]="targz:https://github.com/tellerops/teller/releases/download/v2.0.7/teller-$(uname -m)-linux.tar.xz:2.0.7"
+    
     ["pkgx"]="targz:https://pkgx.sh/$(uname)/$(uname -m).tgz:1.1.6"
 )
 
@@ -107,6 +109,9 @@ download_targz_binary() {
                 ;;
             yq)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" && mv "$extract_dir/yq_linux_amd64" "$extract_dir/yq"
+                ;;
+            teller)
+                tar -xf "$name.tar.xz" -C "$extract_dir" && mv "$extract_dir/yq_linux_amd64" "$extract_dir/yq"
                 ;;
             *)
                 tar -xzf "$name.tar.gz" -C "$extract_dir"
