@@ -2,22 +2,27 @@
   become: true
   package:
     name:
-      - htop
-      - vcsh 
-      - ansible 
-      - curl 
+      - ansible
+      - autossh      
+      - curl
+      - feh      
       - git 
       - git-crypt 
       - gpg 
       - gpg-agent 
+      - htop
       - lolcat 
-      - neofetch 
+      - neofetch
+      - ncdu
       - mc 
       - myrepos 
-      - wget 
-      - vim
-      - feh
-      - zip
-      - unzip
       - python3-watchdog
+      - sshuttle
+      - tldr
+      - unzip
+      - vim
+      - vcsh
+      - wget 
+      - zip
+      
  
