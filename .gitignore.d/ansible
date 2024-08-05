@@ -6,3 +6,4 @@
 !/Documents/projects/personal/ansible/requirements/common.yml
 !/Documents/projects/personal/ansible/tasks/cronjob.yml
 !/Documents/projects/personal/ansible/tasks/packages.yml
+callback_plugins/__pycache__/beautiful_output.cpython-310.pyc
