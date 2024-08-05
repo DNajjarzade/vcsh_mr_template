@@ -28,6 +28,7 @@
 
     - name: Detect Host User
       ansible.builtin.import_tasks: tasks/whoami.yml
+      become: no
       tags:
         - always
   tasks:
