@@ -2,4 +2,17 @@
   package:
     name:
       - htop
+      - vcsh 
+      - ansible 
+      - curl 
+      - git 
+      - git-crypt 
+      - gpg 
+      - gpg-agent 
+      - lolcat 
+      - neofetch 
+      - mc 
+      - myrepos 
+      - wget 
+      - vim
  
