@@ -12,6 +12,7 @@ setup_print() {
 setup_print
 
 cat << EOF | print_func
+
 [38;5;219m╔═══════════════════════════════════════════════════════════════════════════════════════╗[0m
 [38;5;219m║[0m[38;5;212m _____________________________________________________________________________________[0m [38;5;219m║[0m
 [38;5;219m║[0m[38;5;212m/ 888888b.   d8b                                                                      \[0m[38;5;219m║[0m
@@ -67,14 +68,15 @@ set -e # Exit immediately if a command exits with a non-zero status.
 
 # List of binaries to manage
 declare -A binaries=(
-    ["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-x86_64-unknown-linux-musl.tar.gz:14.1.0"
+["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-$(uname -m)-unknown-linux-musl.tar.gz:14.1.0"
     ["assh"]="targz:https://github.com/moul/assh/releases/download/v2.16.0/assh_2.16.0_linux_amd64.tar.gz:2.16.0"
     ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz:0.24.0"
-    ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz:0.17.0"
-    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-musl.tar.gz:0.18.21"
-    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz:0.9.4"
-    ["sesh"]="targz:https://github.com/joshmedeski/sesh/releases/download/v1.2.0/sesh_Linux_x86_64.tar.gz:1.2.0"
+    ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-$(uname -m)-unknown-linux-musl.tar.gz:0.17.0"
+    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_$(uname -m)-unknown-linux-musl.tar.gz:0.18.21"
+    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-$(uname -m)-unknown-linux-musl.tar.gz:0.9.4"
+    ["sesh"]="targz:https://github.com/joshmedeski/sesh/releases/download/v1.2.0/sesh_$(uname)_$(uname -m).tar.gz:1.2.0"
     ["jq"]="targz:https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz:1.7.1"
+    ["yq"]="targz:https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64.tar.gz:4.44.3"
     ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
     ["pkgx"]="targz:https://pkgx.sh/$(uname)/$(uname -m).tgz:1.1.6"
 )
