@@ -239,6 +239,8 @@ echo "Setup complete!"
 ansible_pull() {
     echo "Cleaning up..."
     # Add any necessary ansible_pull tasks here
+    echo LANG="en_US.UTF-8" | run_with_sudo tee -a /etc/default/locale
+    run_with_sudo update-locate
     run_with_sudo ansible-pull -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/local.yml
 }
 trap ansible_pull EXIT
