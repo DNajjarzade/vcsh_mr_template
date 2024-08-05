@@ -41,7 +41,7 @@
 
     - name: Display the user variable set in bash
       debug:
-        msg: "Current ssh user is {{ USER }}"        
+        msg: "Current ssh user is {{ $USER }}"        
 
   tasks:
     - include: tasks/packages.yml
