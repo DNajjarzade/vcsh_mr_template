@@ -111,7 +111,7 @@ download_targz_binary() {
                 tar -xzf "$name.tar.gz" -C "$extract_dir" && mv "$extract_dir/yq_linux_amd64" "$extract_dir/yq"
                 ;;
             teller)
-                tar -xf "$name.tar.xz" -C "$extract_dir" && mv "$extract_dir/yq_linux_amd64" "$extract_dir/yq"
+                tar -xf "$name.tar.gz" -C "$extract_dir"  --strip-components=1 "teller-x86_64-linux/teller"
                 ;;
             *)
                 tar -xzf "$name.tar.gz" -C "$extract_dir"
@@ -242,6 +242,14 @@ get_binary_version() {
             fi
             ;;
         pkgx)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
+        teller)
             if [ -x "$bin_dir/$name" ]; then
                 version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
             else
