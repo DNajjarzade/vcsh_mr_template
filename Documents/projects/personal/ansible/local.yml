@@ -31,9 +31,11 @@
       become: false
       tags:
         - always
+
     - name: Display the current user
       debug:
         msg: "Current user is {{ host_user.stdout }}"        
+
       tasks:
         - include: tasks/packages.yml
         - include: tasks/cronjob.yml
