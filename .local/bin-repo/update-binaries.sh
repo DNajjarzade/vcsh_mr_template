@@ -105,6 +105,9 @@ download_targz_binary() {
             delta)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "delta-0.17.0-x86_64-unknown-linux-musl/delta"
                 ;;
+            yq)
+                tar -xzf "$name.tar.gz" -C "$extract_dir" && mv "$extract_dir/yq_linux_amd64" "$extract_dir/yq"
+                ;;
             *)
                 tar -xzf "$name.tar.gz" -C "$extract_dir"
                 ;;
@@ -220,6 +223,14 @@ get_binary_version() {
         jq)
             if [ -x "$bin_dir/$name" ]; then
                 version=$("$bin_dir/$name" --version 2>/dev/null | cut -d "-" -f 2)
+            else
+                echo "n/a"
+                return
+            fi
+            ;;
+        yq)
+            if [ -x "$bin_dir/$name" ]; then
+                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $4; exit}')
             else
                 echo "n/a"
                 return
