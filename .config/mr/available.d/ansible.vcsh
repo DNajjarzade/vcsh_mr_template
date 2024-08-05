@@ -1,0 +1,7 @@
+[$HOME/.config/vcsh/repo.d/ansible.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout = vcsh clone -b ansible https://github.com/DNajjarzade/vcsh_mr_template.git ansible && \
+           vcsh ansible branch --set-upstream-to=origin/ansible ansible
+           vcsh ansible checkout -b ansible && \
+           vcsh ansible branch --track ansible origin/ansible
