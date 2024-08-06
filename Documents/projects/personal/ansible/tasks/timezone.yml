@@ -1,10 +1,12 @@
-- name: Update Timezone to Asia/Tehran
-  become: true
-  copy: content="Asia/Tehran\n" dest=/etc/timezone owner=root group=root mode=0644
-  sudo: true
-  register: timezone
+ - name: Set timezone to Asia/Tehran
+      copy:
+        content: "Asia/Tehran"
+        dest: /etc/timezone
+        owner: root
+        group: root
+        mode: '0644'
+      register: timezone
 
-- name: Reconfigure Timezone Data (if changed)
-  shell: dpkg-reconfigure -f noninteractive tzdata
-  sudo: true
-  when: timezone.changed
+    - name: Reconfigure Timezone Data (if changed)
+      shell: dpkg-reconfigure -f noninteractive tzdata
+      when: timezone.changed
