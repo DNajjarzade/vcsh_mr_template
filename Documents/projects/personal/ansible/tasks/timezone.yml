@@ -1,4 +1,5 @@
 - name: Set timezone to Asia/Tehran
+  become: true
   copy:
     content: "Asia/Tehran"
     dest: /etc/timezone
@@ -8,5 +9,6 @@
   register: timezone
 
 - name: Reconfigure Timezone Data (if changed)
+  become: true
   shell: dpkg-reconfigure -f noninteractive tzdata
   when: timezone.changed
