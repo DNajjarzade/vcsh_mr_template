@@ -45,12 +45,9 @@
   tasks:
     - name: install packages
       include_tasks: tasks/packages.yml
-      become: true
       
     - name: Create users 
       include_tasks: tasks/users.yml
-      become: true
     
     - name: Set Timezone
       include_tasks: tasks/timezone.yml
-      become: true
