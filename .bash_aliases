@@ -110,3 +110,5 @@ alias bp='bashrc p'
 
 alias wallpaper='~/.local/bin-repo/wallpaper_rotate.sh'
 
+
+alias xkb='xkbset ma 60 10 10 10 2'
