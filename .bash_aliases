@@ -87,11 +87,14 @@ alias git-stage='~/.local/bin-repo/git-stage.sh'
 alias stage='git-stage '
 alias git-commit='~/.local/bin-repo/git-commit.sh'
 alias commit='git-commit'
-alias bin-repo='vcsh bin-repo && ga'
-alias bash-repo='vcsh bash && ga'
 alias motd='~/fancy-motd/motd.sh'
+#
+# vcsh aliases
+#
+alias v="vcsh list-tracked | fzf --preview 'bat --style=numbers --color=always --line-range=:500 {}' --bind 'enter:execute(vim {})'"
 alias vs='vcsh status'
 alias vp='vcsh push'
+alias vmr='vs && mr status && echo vs status: finished \($(vs | wc -w) repositorys\)'
 #
 # Aliases added with aalias shortcut to the end of the file.
 
@@ -105,8 +108,5 @@ alias bf='bashrc f'
 
 alias bp='bashrc p'
 
-alias v='vcsh'
-
 alias wallpaper='~/.local/bin-repo/wallpaper_rotate.sh'
 
-alias vmr='vs && mr status && echo vs status: finished \($(vs | wc -w) repositorys\)'
