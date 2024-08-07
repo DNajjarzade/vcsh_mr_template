@@ -23,6 +23,7 @@
       - vim
       - vcsh
       - wget 
+      - xkbset
       - zip
       
  
