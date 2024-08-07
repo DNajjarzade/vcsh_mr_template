@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    ansible_become_password: "{{ lookup('env', 'SUDO_PASSWORD') }}"
+  pre_tasks:
+    - name: Detect WSL
+      ansible.builtin.import_tasks: tasks/detect_wsl.yml
+      tags:
+        - always
+
+    - name: Detect wsl
+      ansible.builtin.debug:
+      var: ansible_host_environment_is_wsl
+      tags:
+        - always
+
+    - name: Confirm Windows PowerShell Execution Policy
+      ansible.builtin.import_tasks: tasks/powershell_executionpolicy.yml
+      when: ansible_host_environment_is_wsl
+    
+    - name: Display the ssh user
+      debug:
+        msg: "Current ssh user is {{ ansible_user_id }}"        
+
+  tasks:                      
+    - name: Set Cronjobs
+      include_tasks: tasks/cronjob.yml
+      become: yes
+
