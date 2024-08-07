@@ -91,7 +91,7 @@ alias motd='~/fancy-motd/motd.sh'
 #
 # vcsh aliases
 #
-alias v="vcsh list-tracked | fzf --preview 'bat --style=numbers --color=always --line-range=:500 {}' --bind 'enter:execute(vim {})'"
+alias v="vcsh list-tracked | print_with_colors ru | fzf --ansi --color --tac --preview 'bat --style=numbers --color=always --line-range=:500 {}' --bind 'enter:execute(vim {})'"
 alias vs='vcsh status'
 alias vp='vcsh push'
 alias vmr='vs && mr status && echo vs status: finished \($(vs | wc -w) repositorys\)'
