@@ -1,9 +1,16 @@
+- name: add superuser ansible-pull cron job
+  cron:
+    name: ansible auto-provision
+    user: "{{host_user}}"
+    minute: "*/10"
+    job: sudo ansible-pull -o -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/superuser-play.yml
+
 - name: add ansible-pull cron job
   cron:
     name: ansible auto-provision
     user: "{{host_user}}"
     minute: "*/10"
-    job: ansible-pull -o -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/local.yml
+    job: ansible-pull -o -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git ~/Documents/projects/personal/ansible/user-play.yml
 
 - name: add mr up cron job
   cron:
