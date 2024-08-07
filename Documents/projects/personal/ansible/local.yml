@@ -43,16 +43,16 @@
         msg: "Current ssh user is {{ ansible_user_id }}"        
 
   tasks:
-    - include: tasks/packages.ym
+    - include_tasks: tasks/packages.ym
       become: yes
       
-    - include: tasks/cronjob.yml
+    - include_tasks: tasks/cronjob.yml
       become: yes
     
-    - include: tasks/users.yml
+    - include_tasks: tasks/users.yml
       become: yes
     
-    - include: tasks/timezone.yml
+    - include_tasks: tasks/timezone.yml
       become: yes
     
     # - name: Set roles
