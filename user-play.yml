@@ -11,14 +11,33 @@
 
     - name: Detect wsl
       ansible.builtin.debug:
-      var: ansible_host_environment_is_wsl
+        var: ansible_host_environment_is_wsl
       tags:
         - always
 
     - name: Confirm Windows PowerShell Execution Policy
       ansible.builtin.import_tasks: tasks/powershell_executionpolicy.yml
       when: ansible_host_environment_is_wsl
-    
+      tags:
+        - always
+
+    - name: Detect Host User
+      ansible.builtin.import_tasks: tasks/whoami_wsl.yml
+      when: ansible_host_environment_is_wsl
+      tags:
+        - always
+
+    - name: Detect Host User
+      ansible.builtin.import_tasks: tasks/whoami.yml
+      become: false
+      vars:
+        ansible_become: false
+      tags:
+        - always
+
+    - name: Display the current user
+      debug:
+        msg: "Current user is {{ host_user }}"        
     - name: Display the ssh user
       debug:
         msg: "Current ssh user is {{ ansible_user_id }}"        
