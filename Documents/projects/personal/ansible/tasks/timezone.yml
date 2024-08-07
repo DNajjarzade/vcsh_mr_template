@@ -1,3 +1,30 @@
+- name: Check sudo capabilities
+  become: yes
+  command: sudo -n true
+  register: sudo_check
+  ignore_errors: yes
+
+- name: Display sudo check result
+  debug:
+    var: sudo_check
+
+- name: Check write permissions on /etc
+  become: yes
+  command: touch /etc/ansible_test_file
+  register: etc_write_check
+  ignore_errors: yes
+
+- name: Remove test file
+  become: yes
+  file:
+    path: /etc/ansible_test_file
+    state: absent
+  when: etc_write_check is success
+
+- name: Display /etc write check result
+  debug:
+    var: etc_write_check
+
 - name: Check current timezone
   command: timedatectl show --property=Timezone --value
   register: current_timezone
