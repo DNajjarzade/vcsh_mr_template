@@ -1,7 +1,8 @@
 ---
 - hosts: localhost
   connection: local
-  # become: true
+  vars:
+    ansible_become_password: "{{ lookup('env', 'SUDO_PASSWORD') }}"
   pre_tasks:
     - name: Detect WSL
       ansible.builtin.import_tasks: tasks/detect_wsl.yml
