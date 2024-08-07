@@ -1,16 +1,32 @@
+- name: Check current timezone
+  command: timedatectl show --property=Timezone --value
+  register: current_timezone
+  changed_when: false
+
 - name: Set timezone to Asia/Tehran
   become: yes
-  become_user: root
-  copy:
-    content: "Asia/Tehran"
-    dest: /etc/timezone
-    owner: root
-    group: root
-    mode: '0644'
-  register: timezone
+  command: timedatectl set-timezone Asia/Tehran
+  when: current_timezone.stdout != 'Asia/Tehran'
+  register: timezone_change
 
 - name: Reconfigure Timezone Data (if changed)
   become: yes
-  become_user: root
-  shell: dpkg-reconfigure -f noninteractive tzdata
-  when: timezone.changed
+  command: dpkg-reconfigure -f noninteractive tzdata
+  when: timezone_change.changed
+
+# - name: Set timezone to Asia/Tehran
+#   become: yes
+#   become_user: root
+#   copy:
+#     content: "Asia/Tehran"
+#     dest: /etc/timezone
+#     owner: root
+#     group: root
+#     mode: '0644'
+#   register: timezone
+
+# - name: Reconfigure Timezone Data (if changed)
+#   become: yes
+#   become_user: root
+#   shell: dpkg-reconfigure -f noninteractive tzdata
+#   when: timezone.changed
