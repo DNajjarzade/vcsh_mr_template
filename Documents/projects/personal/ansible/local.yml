@@ -42,10 +42,18 @@
         msg: "Current ssh user is {{ ansible_user_id }}"        
 
   tasks:
-    - include: tasks/packages.yml
+    - include: tasks/packages.ym
+      become: yes
+      
     - include: tasks/cronjob.yml
+      become: yes
+    
     - include: tasks/users.yml
+      become: yes
+    
     - include: tasks/timezone.yml
+      become: yes
+    
     # - name: Set roles
       # ansible.builtin.set_fact:
         # run_roles: "{{ ansible_run_tags != ['all'] and ansible_run_tags or default_roles | difference(exclude_roles | default([])) }}"
