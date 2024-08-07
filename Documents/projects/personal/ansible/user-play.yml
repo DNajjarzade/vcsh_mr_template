@@ -29,9 +29,6 @@
 
     - name: Detect Host User
       ansible.builtin.import_tasks: tasks/whoami.yml
-      become: false
-      vars:
-        ansible_become: false
       tags:
         - always
 
@@ -45,5 +42,3 @@
   tasks:                      
     - name: Set Cronjobs
       include_tasks: tasks/cronjob.yml
-      become: yes
-
