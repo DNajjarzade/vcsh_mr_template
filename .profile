@@ -78,13 +78,8 @@ if [ -f "~/.nvm" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 fi
 
-# Load environment variables from .env file
-load_env
-
-# Print proxy variables
-echo "Proxy URL: $PROXY_URL"
-echo "No Proxy List: $NO_PROXY_LIST"
-
 # Apply custom key mappings
 [ -f ~/xmodemap ] && xmodmap ~/xmodemap
 
+# Load environment variables from .env file
+load_env
