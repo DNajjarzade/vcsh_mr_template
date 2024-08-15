@@ -23,7 +23,7 @@
 # Description: Configuration and customization for login shells.
 # Author: dariush najjarzade
 # created: 2024-07-14
-# Last Modified: 2024-07-14
+# Last Modified: Thu Aug 15 11:46:50 PM +0330 2024
 #
 # Function to add directories to PATH if they exist
 add_to_path() {
@@ -58,14 +58,6 @@ export XDG_DATA_DIRS="$HOME/.nix-profile/share:$HOME/.share:${XDG_DATA_DIRS:-/us
 [ -f /usr/local/go/bin ] && add_to_path "/usr/local/go/bin"
 [ -f /nix/var/nix/profiles/default/bin ] && add_to_path "/nix/var/nix/profiles/default/bin"
 
-
-# Proxy settings
-# export HTTP_PROXY="http://192.168.1.12:8081"
-# export HTTPS_PROXY="http://192.168.1.12:8081"
-# export NO_PROXY="*.najarza.de,git.najjarza.de,${no_proxy},$(echo 192.168.1.{1..255} | sed 's/ /,/g')"
-# export no_proxy="*.najarza.de,git.najjarza.de,$(echo 192.168.1.{1..10} | sed 's/ /,/g'),$(echo 10.0.0.{20..30} | sed 's/ /,/g'),$(echo 172.16.0.{30..40} | sed 's/ /,/g')"
-# export NO_PROXY=${no_proxy}
-
 # Display fancy MOTD (Message of the Day) if not already shown
 if [ -z "$FANCY_MOTD" ]; then
     ~/fancy-motd/motd.sh
@@ -86,6 +78,12 @@ if [ -f "~/.nvm" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 fi
 
+# Load environment variables from .env file
+load_env
+
+# Print proxy variables
+echo "Proxy URL: $PROXY_URL"
+echo "No Proxy List: $NO_PROXY_LIST"
 
 # Apply custom key mappings
 [ -f ~/xmodemap ] && xmodmap ~/xmodemap

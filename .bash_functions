@@ -1,4 +1,38 @@
 #!/bin/bash
+
+# Author: dariush najjarzade
+# Created: Thu Aug 15 11:42:17 PM +0330 2024
+# Last Modified: Thu Aug 15 11:42:17 PM +0330 2024
+# a Bash function that reads the .env file and exports the variables
+function load_env() {
+    local env_file=".env"
+
+    if [ -f "$env_file" ]; then
+        echo "[INFO]: Reading $env_file file."
+        
+        while IFS= read -r line; do
+            # Skip comments and empty lines
+            if [[ "$line" =~ ^\s*#.*$ || -z "$line" ]]; then
+                continue
+            fi
+            
+            # Split the line into key and value
+            key=$(echo "$line" | cut -d '=' -f 1)
+            value=$(echo "$line" | cut -d '=' -f 2-)
+
+            # Remove quotes and trim whitespace
+            value=$(echo "$value" | sed -e 's/^"//;s/"$//;s/^'\''//;s/'\''$//;s/^[ \t]*//;s/[ \t]*$//')
+
+            # Export the key and value as environment variables
+            export "$key=$value"
+        done < "$env_file"
+
+        echo "[DONE]: Loaded variables from $env_file."
+    else
+        echo "[ERROR]: $env_file not found."
+    fi
+}
+
 # _                    _                                     
 #| |_ ___   __ _  __ _| | ___      _ __  _ __ _____  ___   _ 
 #| __/ _ \ / _` |/ _` | |/ _ \    | '_ \| '__/ _ \ \/ / | | |
@@ -12,9 +46,7 @@
 # Last Modified: July 10, 2024
 #
 # toggle_proxy:
-# Added a new status action to the function.
 # The status action prints out the current values of all proxy-related environment variables.
-# Used a case statement for better readability and easier expansion of actions.
 # The status function shows "Not set" for variables that are not defined.
 #
 # Usage:
@@ -59,20 +91,11 @@
 # ALL_PROXY:   Not set
 # NO_PROXY:    Not set
 #
-# This enhanced version of the function provides a comprehensive way to manage and view your proxy settings in the shell environment. Remember to add this function to your .bashrc or .bash_profile file and source it or restart your terminal for the changes to take effect.
-# Related
-# How can I create a status function to display current variables in bash
-# What is the best way to format the output of a status function in bash
-# Can I use the declare command to show current variables in bash
-# How do I integrate a status function into an existing bash script
-# Is it possible to update the status function dynamically in bash
 #
 function toggle_proxy() {
     local action=$1
-    local proxy_url=http://192.168.1.12:8081
-    local no_proxy_list=192.168.1.0/24,localhost,git.najjarza.de,*.najjarza.de
-    # local proxy_url=$2
-    # local no_proxy_list=$3
+    local proxy_url=$PROXY_URL
+    local no_proxy_list=$NO_PROXY_LIST
 
     case "$action" in
         set)
@@ -80,6 +103,8 @@ function toggle_proxy() {
                 echo "Error: Proxy URL is required to set the proxy."
                 return 1
             fi
+            
+            # Set environment variables
             export http_proxy="$proxy_url"
             export https_proxy="$proxy_url"
             export all_proxy="$proxy_url"
@@ -94,11 +119,37 @@ function toggle_proxy() {
             else
                 echo "Proxy set to $proxy_url"
             fi
+            
+            # Set proxy for apt
+            echo "Acquire::http::Proxy \"$proxy_url\";" | sudo tee /etc/apt/apt.conf.d/99proxy > /dev/null
+            echo "Acquire::https::Proxy \"$proxy_url\";" | sudo tee -a /etc/apt/apt.conf.d/99proxy > /dev/null
+            
+            # Set proxy for wget
+            echo "http_proxy = $proxy_url" | sudo tee /etc/wgetrc > /dev/null
+            echo "https_proxy = $proxy_url" | sudo tee -a /etc/wgetrc > /dev/null
+            
+            # Set proxy for curl
+            echo "export http_proxy=\"$proxy_url\"" >> ~/.curlrc
+            echo "export https_proxy=\"$proxy_url\"" >> ~/.curlrc
+            
             ;;
         unset)
+            # Unset environment variables
             unset http_proxy https_proxy all_proxy no_proxy
             unset HTTP_PROXY HTTPS_PROXY ALL_PROXY NO_PROXY
             echo "All proxy settings unset"
+
+            # Remove proxy settings for apt
+            sudo rm -f /etc/apt/apt.conf.d/99proxy
+            
+            # Remove proxy settings for wget
+            sudo sed -i '/http_proxy/d' /etc/wgetrc
+            sudo sed -i '/https_proxy/d' /etc/wgetrc
+            
+            # Remove proxy settings for curl
+            sed -i '/export http_proxy/d' ~/.curlrc
+            sed -i '/export https_proxy/d' ~/.curlrc
+            
             ;;
         status)
             echo "Current Proxy Settings:"
