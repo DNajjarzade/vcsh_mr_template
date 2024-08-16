@@ -35,6 +35,16 @@ add_to_path "$HOME/.local/bin"
 add_to_path "$HOME/.local/emacs/bin"
 add_to_path "$HOME/.SpaceVim/bin"
 
+files_to_source=(
+    "$HOME/.bash_aliases"
+    "$HOME/.bash_functions"
+    "$HOME/.bash_completions/*"
+)
+
+for file in "${files_to_source[@]}"; do
+    [ -f "$file" ] && source "$file"
+done
+
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 add_to_path "$PYENV_ROOT/bin"
