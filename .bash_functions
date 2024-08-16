@@ -129,8 +129,7 @@ function toggle_proxy() {
             echo "https_proxy = $proxy_url" | sudo tee -a /etc/wgetrc > /dev/null
             
             # Set proxy for curl
-            echo "export http_proxy=\"$proxy_url\"" >> ~/.curlrc
-            echo "export https_proxy=\"$proxy_url\"" >> ~/.curlrc
+            echo "proxy = \"$proxy_url\"" >> ~/.curlrc
             
             ;;
         unset)
@@ -147,8 +146,7 @@ function toggle_proxy() {
             sudo sed -i '/https_proxy/d' /etc/wgetrc
             
             # Remove proxy settings for curl
-            sed -i '/export http_proxy/d' ~/.curlrc
-            sed -i '/export https_proxy/d' ~/.curlrc
+            sed -i '/proxy/d' ~/.curlrc
             
             ;;
         status)
