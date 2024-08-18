@@ -30,6 +30,7 @@ wezterm.on('update-right-status', function(window, pane)
 end)
 
 config.leader = { key = 'Space', mods = 'CTRL|SHIFT' }
+-- config.leader = { key = 'q', mods = 'ALT' }
 config.keys = {
   -- CTRL+SHIFT+Space, followed by 'r' will put us in resize-pane
   -- mode until we cancel that mode.
@@ -50,9 +51,79 @@ config.keys = {
     mods = 'LEADER',
     action = act.ActivateKeyTable {
       name = 'activate_pane',
-      timeout_milliseconds = 1000,
+      timeout_milliseconds = 2000,
     },
   },
+      {
+        mods = "LEADER",
+        key = "c",
+        action = wezterm.action.SpawnTab "CurrentPaneDomain",
+    },
+    {
+        mods = "LEADER",
+        key = "x",
+        action = wezterm.action.CloseCurrentPane { confirm = true }
+    },
+    {
+        mods = "LEADER",
+        key = "b",
+        action = wezterm.action.ActivateTabRelative(-1)
+    },
+    {
+        mods = "LEADER",
+        key = "n",
+        action = wezterm.action.ActivateTabRelative(1)
+    },
+    {
+        mods = "LEADER",
+        key = "s",
+        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
+    },
+    {
+        mods = "LEADER",
+        key = "v",
+        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }
+    },
+    {
+        mods = "LEADER",
+        key = "h",
+        action = wezterm.action.ActivatePaneDirection "Left"
+    },
+    {
+        mods = "LEADER",
+        key = "j",
+        action = wezterm.action.ActivatePaneDirection "Down"
+    },
+    {
+        mods = "LEADER",
+        key = "k",
+        action = wezterm.action.ActivatePaneDirection "Up"
+    },
+    {
+        mods = "LEADER",
+        key = "l",
+        action = wezterm.action.ActivatePaneDirection "Right"
+    },
+    {
+        mods = "LEADER",
+        key = "LeftArrow",
+        action = wezterm.action.AdjustPaneSize { "Left", 5 }
+    },
+    {
+        mods = "LEADER",
+        key = "RightArrow",
+        action = wezterm.action.AdjustPaneSize { "Right", 5 }
+    },
+    {
+        mods = "LEADER",
+        key = "DownArrow",
+        action = wezterm.action.AdjustPaneSize { "Down", 5 }
+    },
+    {
+        mods = "LEADER",
+        key = "UpArrow",
+        action = wezterm.action.AdjustPaneSize { "Up", 5 }
+    },
 }
 
 config.key_tables = {
