@@ -177,7 +177,11 @@ wezterm.on("update-right-status", function(window, pane)
   -- It's a little silly to have workspace name all the time
   -- Utilize this to display LDR or current key table name
   if window:active_key_table() then stat = window:active_key_table() end
-  if window:leader_is_active() then stat = "LDR" end
+  if window:leader_is_active() then 
+    stat = "LDR" 
+    prefix = " " .. utf8.char(0x1f30a) -- ocean wave
+    SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+  end
 
   -- Current working directory
   local basename = function(s)
