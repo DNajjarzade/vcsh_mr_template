@@ -104,13 +104,13 @@
         extra_opts: [--strip-components=1]
         creates: ~/.local/bin/sesh
 
-    - name: Install jq
-      unarchive:
-        src: "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz"
-        dest: ~/.local/bin
-        remote_src: yes
-        extra_opts: [--strip-components=1]
-        creates: ~/.local/bin/jq
+    # - name: Install jq
+    #   unarchive:
+    #     src: "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz"
+    #     dest: ~/.local/bin
+    #     remote_src: yes
+    #     extra_opts: [--strip-components=1]
+    #     creates: ~/.local/bin/jq
 
     - name: Install yq
       unarchive:
@@ -119,7 +119,19 @@
         remote_src: yes
         extra_opts: [--strip-components=1]
         creates: ~/.local/bin/yq
-
+        
+    - name: Rename yq executable
+      command: mv ~/.local/bin/yq_amd64_something ~/.local/bin/yq
+      args:
+        removes: ~/.local/bin/yq
+      when: ansible_os_family == "Linux"
+    
+    - name: Create symlink for jq
+      file:
+        src: ~/.local/bin/yq
+        dest: ~/.local/bin/jq
+        state: link
+        
     - name: Install teller
       unarchive:
         src: "https://github.com/tellerops/teller/releases/download/v2.0.7/teller-{{ ansible_architecture }}-linux.tar.xz"
