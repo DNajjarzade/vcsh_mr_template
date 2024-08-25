@@ -25,6 +25,8 @@
       - wget 
       - xkbset
       - zip
+    state: present
+    
 - name: Get Starship install script
   get_url:
     url: https://starship.rs/install.sh
