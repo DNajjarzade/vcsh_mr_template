@@ -1,0 +1,7 @@
+[$HOME/.config/vcsh/repo.d/omf.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout = vcsh clone -b omf https://github.com/DNajjarzade/vcsh_mr_template.git omf && \
+           vcsh omf branch --set-upstream-to=origin/omf omf
+           vcsh omf checkout -b omf && \
+           vcsh omf branch --track omf origin/omf
