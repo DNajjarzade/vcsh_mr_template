@@ -98,7 +98,7 @@
 
     - name: Install sesh
       unarchive:
-        src: "https://github.com/joshmedeski/sesh/releases/download/v1.2.0/sesh_{{ ansible_os_family | lower }}_{{ ansible_architecture }}.tar.gz"
+        src: "https://github.com/joshmedeski/sesh/releases/download/v2.0.2/sesh_{{ ansible_os_family | lower }}_{{ ansible_architecture }}.tar.gz"
         dest: ~/.local/bin
         remote_src: yes
         extra_opts: [--strip-components=1]
