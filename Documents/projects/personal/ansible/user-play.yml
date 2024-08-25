@@ -104,14 +104,6 @@
         extra_opts: [--strip-components=1]
         creates: ~/.local/bin/sesh
 
-    # - name: Install jq
-    #   unarchive:
-    #     src: "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz"
-    #     dest: ~/.local/bin
-    #     remote_src: yes
-    #     extra_opts: [--strip-components=1]
-    #     creates: ~/.local/bin/jq
-
     - name: Install yq
       unarchive:
         src: "https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64.tar.gz"
