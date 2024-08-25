@@ -3,7 +3,7 @@
     name: superuser ansible-pull cron job
     user: "{{host_user}}"
     minute: "*/10"
-    job: sudo ansible-pull --purge -o -C ansible -d /tmp/su_user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/su_user_tasks/tasks/Documents/projects/personal/ansible/superuser-play.yml
+    job: sudo ansible-pull --purge -o -C ansible -d /tmp/su_user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/su_user_tasks/Documents/projects/personal/ansible/superuser-play.yml
 
 - name: user ansible-pull cron job
   cron:
