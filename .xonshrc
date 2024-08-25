@@ -1,0 +1,6 @@
+# XONSH WEBCONFIG START
+$XONSH_COLOR_STYLE = 'gruvbox-dark'
+$PROMPT = '[{localtime}] {YELLOW}{env_name} {BOLD_BLUE}{user}@{hostname} {BOLD_GREEN}{cwd} {gitstatus}{RESET}\n@ '
+xontrib load coreutils
+# XONSH WEBCONFIG END
+execx($(starship init xonsh))
