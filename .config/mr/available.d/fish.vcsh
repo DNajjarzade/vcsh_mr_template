@@ -1,0 +1,7 @@
+[$HOME/.config/vcsh/repo.d/fish.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout = vcsh clone -b fish https://github.com/DNajjarzade/vcsh_mr_template.git fish && \
+           vcsh fish branch --set-upstream-to=origin/fish fish
+           vcsh fish checkout -b fish && \
+           vcsh fish branch --track fish origin/fish
