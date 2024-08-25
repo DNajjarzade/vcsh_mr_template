@@ -1,0 +1,7 @@
+[$HOME/.config/vcsh/repo.d/starship.git]
+order = 10
+# NOTE: put the correct url for your repository
+checkout = vcsh clone -b starship https://github.com/DNajjarzade/vcsh_mr_template.git starship && \
+           vcsh starship branch --set-upstream-to=origin/starship starship
+           vcsh starship checkout -b starship && \
+           vcsh starship branch --track starship origin/starship
