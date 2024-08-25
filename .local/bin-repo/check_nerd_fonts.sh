@@ -56,6 +56,7 @@ EOF
 # Array of common Nerd Font names and their download URLs
 set -e
 declare -A nerd_fonts=(
+    ["JetBrainsMono"]="https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip"
     ["0xProto"]="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/0xProto.zip"
     ["3270"]="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/3270.zip"
     ["Agave"]="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Agave.zip"
