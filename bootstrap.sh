@@ -253,8 +253,9 @@ ansible_pull() {
     # Print the current user
     echo "Current user is: $USER"
     export forcce=yes
-    run_with_sudo ansible-pull  -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git 'Documents/projects/personal/ansible/superuser-play.yml'
-    ansible-pull -C ansible -U https://github.com/DNajjarzade/vcsh_mr_template.git 'Documents/projects/personal/ansible/user-play.yml'
+
+    run_with_sudo ansible-pull --purge -o -C ansible -d /tmp/super_user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/super_user_tasks/Documents/projects/personal/ansible/superuser-play.yml
+    ansible-pull --purge -o -C ansible -d /tmp/user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/user_tasks/Documents/projects/personal/ansible/user-play.yml
 }
 trap ansible_pull EXIT
 
