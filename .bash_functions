@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Author: dariush najjarzade
 # Created: Thu Aug 15 11:42:17 PM +0330 2024
 # Last Modified: Thu Aug 15 11:42:17 PM +0330 2024

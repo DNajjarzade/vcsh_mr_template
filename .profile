@@ -93,3 +93,29 @@ fi
 
 # Load environment variables from .env file
 load_env
+
+
+#
+# starship update status icons
+#
+PACKAGE_INFO_FILE="$HOME/.config/starship/package_updates.txt"
+
+# Read from the package info file if it exists
+if [ -f "$PACKAGE_INFO_FILE" ]; then
+  while read -r line; do
+    export "$line"
+  done < "$PACKAGE_INFO_FILE"
+fi
+
+# Combine all update variables into a single variable
+SOFTWARE_UPDATE_AVAILABLE=""
+for update in "$APT_UPDATE" "$BREW_UPDATE" "$PIP_UPDATE" "$FLATPAK_UPDATE"; do
+  if [ -n "$update" ]; then
+    SOFTWARE_UPDATE_AVAILABLE+="$update "
+  fi
+done
+
+# Export the combined variable
+export SOFTWARE_UPDATE_AVAILABLE
+
+

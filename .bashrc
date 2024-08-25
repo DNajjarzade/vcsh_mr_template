@@ -42,16 +42,16 @@ for file in "${files_to_source[@]}"; do
 done
 
 # Oh My Bash Configuration
-export OSH=~/.oh-my-bash
-OSH_THEME="font"
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-OMB_USE_SUDO=true
-OMB_PROMPT_SHOW_PYTHON_VENV=true
-
-[[ $- = *i* ]] && source "$OSH/oh-my-bash.sh"
-[[ $- = *i* ]] && source ~/.config/liquidpromptrc
-
+# export OSH=~/.oh-my-bash
+# OSH_THEME="font"
+# ENABLE_CORRECTION="true"
+# COMPLETION_WAITING_DOTS="true"
+# OMB_USE_SUDO=true
+# OMB_PROMPT_SHOW_PYTHON_VENV=true
+#
+# [[ $- = *i* ]] && source "$OSH/oh-my-bash.sh"
+# [[ $- = *i* ]] && source ~/.config/liquidpromptrc
+eval "$(starship init bash)"
 # Man page configuration
 export MANPATH="/usr/local/man:$MANPATH"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

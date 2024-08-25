@@ -64,12 +64,23 @@ alias tms='tm new-session -s' #	Start a new tmux session.
 #
 # eza aliases 
 #
-alias ld='eza -lD' # ld — lists only directories (no files)
-alias lf='eza -lf --color=always | grep -v /' # lf — lists only files (no directories)
-alias lh='eza -dl .* --group-directories-first' # lh — lists only hidden files (no directories)
-alias ll='eza -al --group-directories-first' # ll — lists everything with directories first
-alias la='eza -alf --color=always --sort=size | grep -v /' # la — lists only files sorted by size
-alias lt='eza -al --sort=modified' # lt — lists everything sorted by time updated
+# alias ld='eza -lD' # ld — lists only directories (no files)
+# alias lf='eza -lf --color=always | grep -v /' # lf — lists only files (no directories)
+# alias lh='eza -dl .* --group-directories-first' # lh — lists only hidden files (no directories)
+# alias ll='eza -al --group-directories-first' # ll — lists everything with directories first
+# alias la='eza -alf --color=always --sort=size | grep -v /' # la — lists only files sorted by size
+# alias lt='eza -al --sort=modified' # lt — lists everything sorted by time updated
+
+alias ls='eza --color=always --group-directories-first --icons'
+alias ll='eza -la --icons --octal-permissions --group-directories-first'
+alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
+alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons'
+alias la='eza --long --all --group --group-directories-first'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
+
+alias lS='eza -1 --color=always --group-directories-first --icons'
+alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
+alias l.="eza -a | grep -E '^\.'"
 #
 # git aliases 
 #
@@ -112,3 +123,5 @@ alias wallpaper='~/.local/bin-repo/wallpaper_rotate.sh'
 
 
 alias xkb='xkbset ma 60 10 10 10 2'
+
+alias pip-update-all='pip install -U `pip list --outdated | awk NR'
