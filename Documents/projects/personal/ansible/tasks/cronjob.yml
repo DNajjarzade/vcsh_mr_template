@@ -3,14 +3,14 @@
     name: superuser ansible-pull cron job
     user: "{{host_user}}"
     minute: "*/10"
-    job: sudo ansible-pull -o -C ansible -d /tmp/su_user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/su_user/tasks/Documents/projects/personal/ansible/superuser-play.yml
+    job: sudo ansible-pull --purge -o -C ansible -d /tmp/su_user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/su_user_tasks/tasks/Documents/projects/personal/ansible/superuser-play.yml
 
 - name: user ansible-pull cron job
   cron:
     name: ansible auto-provision
     user: "{{host_user}}"
     minute: "*/10"
-    job: ansible-pull -o -C ansible -d /tmp/user_taks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/user_tasks/Documents/projects/personal/ansible/user-play.yml
+    job: ansible-pull --purge -o -C ansible -d /tmp/user_taks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/user_tasks/Documents/projects/personal/ansible/user-play.yml
 
 - name: add mr up cron job
   cron:
