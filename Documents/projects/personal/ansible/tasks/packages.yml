@@ -26,24 +26,15 @@
       - xkbset
       - zip
       
+
+- name: Get Starship install script
+  get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship_install.sh
+    mode: '0755'
+
 - name: Install Starship
-  become: true
-  tasks:
-    - name: Install necessary packages
-      package:
-        name:
-          - curl
-          - git
-        state: present
-
-    - name: Get Starship install script
-      get_url:
-        url: https://starship.rs/install.sh
-        dest: /tmp/starship_install.sh
-        mode: '0755'
-
-    - name: Install Starship
-      shell: /tmp/starship_install.sh --yes
-      args:
-        executable: /bin/sh 
+  shell: /tmp/starship_install.sh --yes
+  args:
+    executable: /bin/sh 
 
