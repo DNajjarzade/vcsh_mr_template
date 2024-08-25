@@ -46,3 +46,4 @@
       shell: /tmp/starship_install.sh --yes
       args:
         executable: /bin/sh 
+
