@@ -121,7 +121,7 @@
         creates: ~/.local/bin/yq
         
     - name: Rename yq executable
-      command: mv ~/.local/bin/yq_amd64_something ~/.local/bin/yq
+      command: mv ~/.local/bin/yq_linux_amd64 ~/.local/bin/yq
       args:
         removes: ~/.local/bin/yq
       when: ansible_os_family == "Linux"
