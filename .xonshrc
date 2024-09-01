@@ -1,6 +1,15 @@
 # XONSH WEBCONFIG START
-$XONSH_COLOR_STYLE = 'gruvbox-dark'
-$PROMPT = '[{localtime}] {YELLOW}{env_name} {BOLD_BLUE}{user}@{hostname} {BOLD_GREEN}{cwd} {gitstatus}{RESET}\n@ '
+#$XONSH_COLOR_STYLE = 'gruvbox-dark'
+#$prompt = '[{LOCALTIME}] {yellow}{ENV_NAME} {bold_blue}{USER}@{HOSTNAME} {bold_green}{CWD} {GITSTATUS}{reset}\N@ '
+#XONSH WEBCONFIG END
 xontrib load coreutils
-# XONSH WEBCONFIG END
+xontrib load zoxide
+xontrib load z
+xontrib load vox
+xontrib load autovox
+xontrib load voxapi
+xontrib load avox_poetry
+xontrib load dalias
+
 execx($(starship init xonsh))
+execx($(atuin init xonsh))  
