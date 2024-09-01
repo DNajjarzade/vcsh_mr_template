@@ -106,7 +106,7 @@ eval "$(zoxide init --cmd cd zsh)"
 
 source <(pkgx --shellcode)  #docs.pkgx.sh/shellcode
 
-[[ $- = *i* ]] && source ~/.config/liquidpromptrc
+# [[ $- = *i* ]] && source ~/.config/liquidpromptrc
 # Source other Bash configuration files
 files_to_source=(
     "$HOME/.bash_aliases"
@@ -116,3 +116,8 @@ files_to_source=(
 for file in "${files_to_source[@]}"; do
     [ -f "$file" ] && source "$file"
 done
+# 
+# add ble.sh
+#
+# [ -f ~/.local/share/blesh/ble.sh ] && source ~/.local/share/blesh/ble.sh
+eval "$(atuin init zsh)"
