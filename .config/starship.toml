@@ -328,8 +328,10 @@ disabled = false
 [vcsh]
 symbol = ''
 #ignore_branches = ['master', 'main']
-style = "bold yellow"
-format = "[$symbol vcsh $repo]($style) "
+# style = "bold yellow"
+style = 'bold yellow'
+format = "vcsh [$symbol $repo]($style) "
+# format = '[🆅 $repo](bold blue) '
 disabled = false
 
 [aws]
@@ -365,6 +367,7 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [docker_context]
+disabled = false
 format = '\[[$symbol$context]($style)\]'
 
 [dotnet]
@@ -467,6 +470,7 @@ format = '\[[$symbol$stack]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [python]
+symbol = ' '
 format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
 style = "bold green"
 
