@@ -79,7 +79,7 @@ if command -v zoxide >/dev/null; then
 fi
 
 # Initialize fzf if installed
-if [ -f ~/.fzf.bash ]; then
+if [ -f "~/.fzf.bash" ]; then
   . ~/.fzf.bash
   eval "$(fzf --bash)"
 fi
@@ -108,3 +108,7 @@ fi
 if [ -f  "$HOME/.local/bin/pkgx" ]; then
   eval "$(pkgx --shellcode)"  
 fi
+if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
+  source ~/.local/share/blesh/ble.sh
+fi
+eval "$(atuin init bash)"
