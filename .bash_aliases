@@ -122,6 +122,6 @@ alias bp='bashrc p'
 alias wallpaper='~/.local/bin-repo/wallpaper_rotate.sh'
 
 
-alias xkb='xkbset ma 60 10 10 10 2'
+alias xkb='xkbset ma 60 10 10 5 2'
 
-alias pip-update-all="pip install -U `pip list --outdated | awk 'NR>2 {print $1}'`"
+# alias pip-update-all="pip install -U `pip list --outdated | awk 'NR>2 {print $1}'`"
