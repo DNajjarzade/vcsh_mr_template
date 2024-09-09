@@ -145,3 +145,8 @@
         url: "https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64"
         dest: ~/.local/bin/ctop
         mode: '0755'
+        
+    - name: Run Atuin setup script
+      shell: "curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh"
+      args:
+        executable: /bin/bash
