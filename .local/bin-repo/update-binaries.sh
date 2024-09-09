@@ -100,6 +100,7 @@ download_targz_binary() {
         case "$name" in
             atuin)
                tar -xzf "$name.tar.gz" -c "$extract_dir" --strip-components=1 "atuin-x86_64-unknown-linux-musl/atuin"
+               ;;
             ripgrep)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg"
                 ;;
