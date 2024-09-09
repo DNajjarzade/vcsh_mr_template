@@ -70,6 +70,7 @@ set -e # Exit immediately if a command exits with a non-zero status.
 declare -A binaries=(
 ["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-$(uname -m)-unknown-linux-musl.tar.gz:14.1.0"
     ["assh"]="targz:https://github.com/moul/assh/releases/download/v2.16.0/assh_2.16.0_linux_amd64.tar.gz:2.16.0"
+    ["atuin"]="targz:https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-musl.tar.gz:18.3.0"
     ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz:0.24.0"
     ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-$(uname -m)-unknown-linux-musl.tar.gz:0.17.0"
     ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_$(uname -m)-unknown-linux-musl.tar.gz:0.18.21"
@@ -79,7 +80,6 @@ declare -A binaries=(
     ["yq"]="targz:https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64.tar.gz:4.44.3"
     ["ctop"]="standalone:https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64:0.7.7"
     ["teller"]="targz:https://github.com/tellerops/teller/releases/download/v2.0.7/teller-$(uname -m)-linux.tar.xz:2.0.7"
-    
     ["pkgx"]="targz:https://pkgx.sh/$(uname)/$(uname -m).tgz:1.1.6"
 )
 
@@ -98,6 +98,8 @@ download_targz_binary() {
         echo "Download successful. Extracting..." | print_func
         mkdir -p "$extract_dir"
         case "$name" in
+            atuin)
+               tar -xzf "$name.tar.gz" -c "$extract_dir" --strip-components=1 "atuin-x86_64-unknown-linux-musl/atuin"
             ripgrep)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg"
                 ;;
