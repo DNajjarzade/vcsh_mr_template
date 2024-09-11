@@ -108,7 +108,14 @@ fi
 if [ -f  "$HOME/.local/bin/pkgx" ]; then
   eval "$(pkgx --shellcode)"  
 fi
+
+# install blesh
 if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
   source ~/.local/share/blesh/ble.sh
 fi
-eval "$(atuin init bash)"
+
+# load atuin history manager
+if [ -f "$HOME/.atuin/bin/env" ]; then
+  . "$HOME/.atuin/bin/env"
+  eval "$(atuin init bash)"
+fi
