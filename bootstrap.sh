@@ -240,6 +240,13 @@ mr update &
 show_progress $!
 
 echo "Setup complete!"
+
+# install starship
+curl -sS https://starship.rs/install.sh | sh
+
+# install atuin
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+
 # Ansible pull function
 ansible_pull() {
     echo "Setting up locale and ansible-pull..."
