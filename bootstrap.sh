@@ -1,6 +1,6 @@
 #!/bin/bash
-cat << 'EOF'
 
+cat << 'EOF'
 ______________________________________________________________________________________________
 / 888                     888           888                              .d888                 \
 | 888                     888           888                             d88P"                  |
@@ -39,6 +39,12 @@ ________________________________________________________________________________
      #  long url command:
        
      #  curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
+
+     #  Usage: sudo ./setup_vcsh_mr.sh [-h] [-v] [repository_url]
+     #  -h  Display this help message
+     #  -v  Verbose mode
+     #  -y  Automatic yes to prompts
+     #  repository_url  Optional: Specify a custom repository URL
 EOF
 
 ##############################################################################
@@ -48,22 +54,18 @@ EOF
 # Author: dariush najjarzde
 # Usage: sudo ./setup_vcsh_mr.sh [-h] [-v] [repository_url]
 # Creation Date: 2024-07-15
-# Last Modified: 2024-07-15
+# Last Modified: 2025-01-28
 ##############################################################################
 
-# set -e
-# trap 'echo "An error occurred. Exiting..."; exit 1' ERR
+set -euo pipefail
+trap 'echo "Error: Script failed at line $LINENO. Check logs for details."; exit 1' ERR
 
 # Set locale
 export LC_ALL=C.UTF-8
 export LANG=en_US.UTF-8
 
-# variable USER
+# Variables
 USER=$(whoami)
-# Print the current user
-echo "Current user is: $USER"
-
-# Default values
 REPO_URL="https://github.com/DNajjarzade/vcsh_mr_template.git"
 BRANCH_NAME="mr"
 LOG_FILE="/var/log/vcsh_mr_setup.log"
@@ -82,50 +84,16 @@ show_help() {
 # Parse command-line options
 while getopts ":hvyY" opt; do
     case ${opt} in
-        h )
-            show_help
-            exit 0
-            ;;
-        v )
-            VERBOSE=true
-            set -x
-            ;;
-        y|Y )
-            AUTO_YES=true
-            ;;
-        \? )
-            echo "Invalid Option: -$OPTARG" 1>&2
-            show_help
-            exit 1
-            ;;
+        h ) show_help; exit 0 ;;
+        v ) VERBOSE=true; set -x ;;
+        y|Y ) AUTO_YES=true ;;
+        \? ) echo "Invalid Option: -$OPTARG" 1>&2; show_help; exit 1 ;;
     esac
 done
 shift $((OPTIND -1))
 
-# Check for root privileges
-# if [[ $EUID -ne 0 ]]; then
-#    echo "This script must be run as root or with sudo privileges"
-#    exit 1
-# fi
-
-# check for sudo
-# Function to check if a command exists
-command_exists() {
-    command -v "$1" >/dev/null 2>&1
-}
-
-# Function to run a command with sudo if available and necessary
-run_with_sudo() {
-    # if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
-    if command_exists sudo; then
-        sudo "$@"
-    else
-        "$@"
-    fi
-}
-
 # Setup logging
-exec > >(run_with_sudo tee -a "$LOG_FILE") 2>&1
+exec > >(tee -a "$LOG_FILE") 2>&1
 echo "Starting setup at $(date)"
 
 # Use custom repository URL if provided
@@ -133,136 +101,177 @@ if [ $# -eq 1 ]; then
     REPO_URL=$1
 fi
 
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Function to run a command with sudo if available and necessary
+run_with_sudo() {
+    if command_exists sudo; then
+        sudo "$@"
+    else
+        "$@"
+    fi
+}
+
+# List of required packages
+REQUIRED_PACKAGES=(
+    vcsh
+    ansible
+    curl
+    git
+    git-crypt
+    gpg
+    gpg-agent
+    lolcat
+    neofetch
+    mc
+    myrepos
+    wget
+    vim
+    tmux
+)
+
+# Function to check if a package is installed
+is_package_installed() {
+    if command_exists "$1"; then
+        return 0  # Package is installed
+    else
+        return 1  # Package is not installed
+    fi
+}
+
+# Function to install missing packages
+install_missing_packages() {
+    local missing_packages=()
+
+    # Check which packages are missing
+    for pkg in "${REQUIRED_PACKAGES[@]}"; do
+        if ! is_package_installed "$pkg"; then
+            missing_packages+=("$pkg")
+        fi
+    done
+
+    # If there are missing packages, install them
+    if [ ${#missing_packages[@]} -gt 0 ]; then
+        echo "The following packages are missing and will be installed: ${missing_packages[*]}"
+        install_package "${missing_packages[@]}"
+    else
+        echo "All required packages are already installed."
+    fi
+}
+
 # Function to install packages based on the package manager
 install_package() {
-    # # Function to check if a command exists
-    # command_exists() {
-    #     command -v "$1" >/dev/null 2>&1
-    # }
-
-    # # Function to run a command with sudo if available and necessary
-    # run_with_sudo() {
-    #     if command_exists sudo && [ "$(id -u)" -ne 0 ]; then
-    #         sudo "$@"
-    #     else
-    #         "$@"
-    #     fi
-    # }
+    local packages=("$@")
+    local pkg_manager=""
+    local install_cmd=""
 
     if command_exists apt-get; then
-        run_with_sudo apt-get update
-        run_with_sudo apt-get install -y "$@"
+        pkg_manager="apt-get"
+        install_cmd="apt-get install -y"
     elif command_exists dnf; then
-        run_with_sudo dnf install -y "$@"
+        pkg_manager="dnf"
+        install_cmd="dnf install -y"
     elif command_exists yum; then
-        run_with_sudo yum install -y "$@"
+        pkg_manager="yum"
+        install_cmd="yum install -y"
     elif command_exists pacman; then
-        run_with_sudo pacman -Sy --noconfirm "$@"
+        pkg_manager="pacman"
+        install_cmd="pacman -Sy --noconfirm"
     elif command_exists apk; then
+        pkg_manager="apk"
         echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" | run_with_sudo tee -a /etc/apk/repositories
-        run_with_sudo apk update
-        run_with_sudo apk add "$@"
+        install_cmd="apk add"
+    elif command_exists zypper; then
+        pkg_manager="zypper"
+        install_cmd="zypper install -y"
+    elif command_exists brew; then
+        pkg_manager="brew"
+        install_cmd="brew install"
     else
-        echo "Unsupported package manager. Please install $* manually."
+        echo "Unsupported package manager. Please install the following packages manually: ${packages[*]}"
         return 1
     fi
-}
 
-
-# Function to check vcsh version
-check_vcsh_version() {
-    local version=$(vcsh version | awk '{print $2}')
-    if [[ $(echo "$version 1.20" | awk '{print ($1 < $2)}') -eq 1 ]]; then
-        echo "vcsh version $version is too old. Please upgrade to 1.20 or newer."
-        exit 1
+    # Update package manager (if applicable)
+    if [[ "$pkg_manager" != "brew" ]]; then
+        echo "Updating package manager ($pkg_manager)..."
+        run_with_sudo $pkg_manager update || echo "Warning: Failed to update $pkg_manager. Continuing..."
     fi
-}
 
-# Function to show progress
-show_progress() {
-    local pid=$1
-    local delay=0.75
-    local spinstr='|/-\'
-    while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
-        local temp=${spinstr#?}
-        printf " [%c]  " "$spinstr"
-        local spinstr=$temp${spinstr%"$temp"}
-        sleep $delay
-        printf "\b\b\b\b\b\b"
+    # Install packages
+    for pkg in "${packages[@]}"; do
+        echo "Installing $pkg using $pkg_manager..."
+        if run_with_sudo $install_cmd "$pkg"; then
+            echo "Successfully installed $pkg."
+        else
+            echo "Failed to install $pkg. Please install it manually."
+        fi
     done
-    printf "    \b\b\b\b"
 }
 
-# Install required packages
-if ! command_exists mr; then
-    echo "Installing required packages..."
-    install_package vcsh ansible curl git git-crypt gpg gpg-agent lolcat neofetch mc myrepos wget vim
-    if ! command_exists vcsh; then
-        echo "Installing vcsh ..."
-        curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/.local/bin/vcsh
-        chmod +x ~/.local/bin/vcsh
-    fi
+# Install required packages if they are not already installed
+echo "Checking for missing packages..."
+install_missing_packages
+
+# Special handling for vcsh (if not installed via package manager)
+if ! command_exists vcsh; then
+    echo "Installing vcsh manually..."
+    curl -fsLS https://github.com/RichiH/vcsh/releases/latest/download/vcsh-standalone.sh -o ~/.local/bin/vcsh
+    chmod +x ~/.local/bin/vcsh
 fi
-
-
-# check_vcsh_version
-echo vcsh version $(vcsh version)
 
 # Clone the repository using vcsh
 echo "Cloning the home repository..."
-vcsh clone -b "$BRANCH_NAME" "$REPO_URL" mr &
-show_progress $!
-
-vcsh mr checkout "$BRANCH_NAME"
-# vcsh mr branch --track "$BRANCH_NAME" origin/"$BRANCH_NAME"
+vcsh clone -b "$BRANCH_NAME" "$REPO_URL" mr
 
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
-
-# # Run mr update
-# echo "Running mr update..."
-# mr update &
-# show_progress $!
+mr update
 
 # Run update-binaries.sh if it exists
 if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
     echo "Running update-binaries.sh..."
-    bash ~/.local/bin-repo/update-binaries.sh &
-    show_progress $!
+    bash ~/.local/bin-repo/update-binaries.sh
     echo "update-binaries.sh completed."
 else
     echo "update-binaries.sh not found, skipping."
 fi
 
-# Run mr update
-echo "Running mr update..."
-mr update &
-show_progress $!
-
-echo "Setup complete!"
-
-# install starship
+# Install starship
+echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
-# install atuin
+# Install ble.sh (required by atuin)
+if ! command_exists ble.sh; then
+    echo "Installing ble.sh..."
+    curl -fsSL https://raw.githubusercontent.com/akinomyoga/ble.sh/master/install.sh | bash
+    echo "ble.sh installed successfully."
+else
+    echo "ble.sh is already installed."
+fi
+
+# Install atuin
+echo "Installing atuin..."
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+echo "atuin installed successfully."
 
 # Ansible pull function
 ansible_pull() {
     echo "Setting up locale and ansible-pull..."
-    # Add any necessary ansible_pull tasks here
     echo LC_ALL=C.UTF-8 | run_with_sudo tee /etc/default/locale
     echo LANG=en_US.UTF-8 | run_with_sudo tee -a /etc/default/locale
     echo LANGUAGE=en_US.UTF-8 | run_with_sudo tee -a /etc/default/locale
     run_with_sudo locale-gen en_US.UTF-8
     run_with_sudo export LC_ALL=C.UTF-8
     USER=$(whoami)
-    # Print the current user
     echo "Current user is: $USER"
     export forcce=yes
 
-    run_with_sudo ansible-pull --purge -o -C ansible -d /tmp/super_user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/super_user_tasks/Documents/projects/personal/ansible/superuser-play.yml
-    ansible-pull --purge -o -C ansible -d /tmp/user_tasks/ -f -U https://github.com/DNajjarzade/vcsh_mr_template.git /tmp/user_tasks/Documents/projects/personal/ansible/user-play.yml
+    run_with_sudo ansible-pull --purge -o -C ansible -d /tmp/super_user_tasks/ -f -U "$REPO_URL" /tmp/super_user_tasks/Documents/projects/personal/ansible/superuser-play.yml
+    ansible-pull --purge -o -C ansible -d /tmp/user_tasks/ -f -U "$REPO_URL" /tmp/user_tasks/Documents/projects/personal/ansible/user-play.yml
 }
 trap ansible_pull EXIT
 
