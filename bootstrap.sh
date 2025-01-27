@@ -1,4 +1,4 @@
-##!/bin/bash
+#!/bin/bash
 
 cat << 'EOF'
 ______________________________________________________________________________________________
@@ -68,7 +68,7 @@ export LANG=en_US.UTF-8
 USER=$(whoami)
 REPO_URL="https://github.com/DNajjarzade/vcsh_mr_template.git"
 BRANCH_NAME="mr"
-LOG_FILE="/var/log/vcsh_mr_setup.log"
+LOG_FILE="$HOME/vcsh_mr_setup.log"  # Changed to user-specific log file
 VERBOSE=false
 AUTO_YES=false
 
@@ -115,7 +115,7 @@ run_with_sudo() {
     fi
 }
 
-# Backup and remove existing .bashrc and .profile files
+# Function to backup and remove existing files
 backup_and_remove() {
     local file=$1
     if [ -f "$HOME/$file" ]; then
@@ -127,28 +127,29 @@ backup_and_remove() {
     fi
 }
 
+# Backup and remove .bashrc and .profile
 backup_and_remove ".bashrc"
 backup_and_remove ".profile"
 
 # List of required packages
 REQUIRED_PACKAGES=(
-- `ansible`
-- `atuin`
-- `ble.sh` (required by `atuin`)
-- `curl`
-- `git`
-- `git-crypt`
-- `gpg`
-- `gpg-agent`
-- `lolcat`
-- `mc`
-- `myrepos`
-- `neofetch`
-- `starship`
-- `tmux`
-- `vcsh`
-- `vim`
-- `wget`
+    vcsh
+    ansible
+    curl
+    git
+    git-crypt
+    gpg
+    gpg-agent
+    lolcat
+    neofetch
+    mc
+    myrepos
+    wget
+    vim
+    tmux
+    ble.sh
+    atuin
+    starship
 )
 
 # Function to check if a package is installed
