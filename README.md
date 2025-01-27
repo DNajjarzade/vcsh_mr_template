@@ -130,6 +130,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 - **Dariush Najjarzade**  
   GitHub: [DNajjarzade](https://github.com/DNajjarzade)  
-  Email: [dariush.najjarzade@example.com](mailto:dariush.najjarzade@example.com)
+  Email: [dnajjarzade@gmail.com](mailto:dnajjarzade@gmail.com)
 
 ---
