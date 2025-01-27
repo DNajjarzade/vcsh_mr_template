@@ -83,6 +83,7 @@ The script installs the following packages if they are not already installed:
 - `tmux`
 - `ble.sh` (required by `atuin`)
 - `atuin`
+- `starship`
 
 ---
 
