@@ -1,4 +1,4 @@
-#!/bin/bash
+##!/bin/bash
 
 cat << 'EOF'
 ______________________________________________________________________________________________
@@ -54,7 +54,7 @@ EOF
 # Author: dariush najjarzde
 # Usage: sudo ./setup_vcsh_mr.sh [-h] [-v] [repository_url]
 # Creation Date: 2024-07-15
-# Last Modified: 2025-01-28
+# Last Modified: 2024-07-15
 ##############################################################################
 
 set -euo pipefail
@@ -115,22 +115,40 @@ run_with_sudo() {
     fi
 }
 
+# Backup and remove existing .bashrc and .profile files
+backup_and_remove() {
+    local file=$1
+    if [ -f "$HOME/$file" ]; then
+        echo "Backing up and removing existing $file..."
+        mv "$HOME/$file" "$HOME/${file}.bak"
+        echo "Existing $file backed up to ${file}.bak and removed."
+    else
+        echo "$file does not exist. No action needed."
+    fi
+}
+
+backup_and_remove ".bashrc"
+backup_and_remove ".profile"
+
 # List of required packages
 REQUIRED_PACKAGES=(
-    vcsh
-    ansible
-    curl
-    git
-    git-crypt
-    gpg
-    gpg-agent
-    lolcat
-    neofetch
-    mc
-    myrepos
-    wget
-    vim
-    tmux
+- `ansible`
+- `atuin`
+- `ble.sh` (required by `atuin`)
+- `curl`
+- `git`
+- `git-crypt`
+- `gpg`
+- `gpg-agent`
+- `lolcat`
+- `mc`
+- `myrepos`
+- `neofetch`
+- `starship`
+- `tmux`
+- `vcsh`
+- `vim`
+- `wget`
 )
 
 # Function to check if a package is installed
