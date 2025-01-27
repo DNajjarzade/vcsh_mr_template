@@ -66,24 +66,23 @@ Usage: ./bootstrap.sh [-h] [-v] [-y] [repository_url]
 ## Dependencies
 
 The script installs the following packages if they are not already installed:
-- `vcsh`
-- `mr`
 - `ansible`
+- `atuin`
+- `ble.sh` (required by `atuin`)
 - `curl`
 - `git`
 - `git-crypt`
 - `gpg`
 - `gpg-agent`
 - `lolcat`
-- `neofetch`
 - `mc`
 - `myrepos`
-- `wget`
-- `vim`
-- `tmux`
-- `ble.sh` (required by `atuin`)
-- `atuin`
+- `neofetch`
 - `starship`
+- `tmux`
+- `vcsh`
+- `vim`
+- `wget`
 
 ---
 
