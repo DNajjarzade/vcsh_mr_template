@@ -3,8 +3,8 @@ order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b git https://github.com/DNajjarzade/vcsh_mr_template.git git && \
            vcsh git branch --set-upstream-to=origin/git git
-           vcsh git checkout -b git && \
-           vcsh git branch --track git origin/git
+           vcsh git checkout -b ${user}_$(hostname) && \ 
+           vcsh git push --set-upstream origin ${user}_$(hostname)
 
 
 

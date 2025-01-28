@@ -1,2 +1,5 @@
 [$HOME/.config/vcsh/repo.d/mr.git]
-checkout = vcsh clone -b mr https://github.com/DNajjarzade/vcsh_mr_template mr
+checkout = vcsh clone -b mr https://github.com/DNajjarzade/vcsh_mr_template mr && \
+           vcsh mr branch --set-upstream-to=origin/mr mr
+           vcsh mr checkout -b ${user}_$(hostname) && \ 
+           vcsh mr push --set-upstream origin ${user}_$(hostname)

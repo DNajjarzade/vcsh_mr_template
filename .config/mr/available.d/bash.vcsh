@@ -1,7 +1,7 @@
 [$HOME/.config/vcsh/repo.d/bash.git]
 order = 10
 # NOTE: put the correct url for your repository
-checkout = vcsh clone -b bash https://github.com/DNajjarzade/vcsh_mr_template.git bash && \
+checkout = vcsh clone -b bash https://github.com/DNajjarzade/vcsh_mr_template.git bash  && \
            vcsh bash branch --set-upstream-to=origin/bash bash
-           vcsh bash checkout -b bash && \
-           vcsh bash branch --track bash origin/bash
+           vcsh bash checkout -b ${user}_$(hostname) && \ 
+           vcsh bash push --set-upstream origin ${user}_$(hostname)
