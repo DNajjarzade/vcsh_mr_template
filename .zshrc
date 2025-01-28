@@ -121,3 +121,5 @@ done
 #
 # [ -f ~/.local/share/blesh/ble.sh ] && source ~/.local/share/blesh/ble.sh
 eval "$(atuin init zsh)"
+
+. "$HOME/.atuin/bin/env"
