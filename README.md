@@ -8,17 +8,12 @@ Install `vcsh`, `mr`, and checkout projects with ease. This script automates the
 
 ### Install with Shortened URL:
 ```bash
-curl https://pb.najjarza.de/~bootstrap | bash
+curl https://pb.najjarza.de/setup | bash
 ```
 
 ### Install Directly from GitHub:
 ```bash
 curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash
-```
-
-### Alternative Shortened URL:
-```bash
-curl https://pb.najjarza.de/~setup | xargs -I{} curl {} | bash
 ```
 
 ---
