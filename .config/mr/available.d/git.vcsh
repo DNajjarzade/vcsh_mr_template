@@ -4,7 +4,5 @@ order = 10
 checkout = vcsh clone -b git https://github.com/DNajjarzade/vcsh_mr_template.git git && \
            vcsh git branch --set-upstream-to=origin/git git
            vcsh git checkout -b ${user}_$(hostname) && \ 
+           vcsh git remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh git push --set-upstream origin ${user}_$(hostname)
-
-
-

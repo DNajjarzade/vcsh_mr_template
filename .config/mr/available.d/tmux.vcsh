@@ -6,4 +6,5 @@ order = 10
 checkout = vcsh clone -b tmux https://github.com/DNajjarzade/vcsh_mr_template.git tmux && \
            vcsh tmux branch --set-upstream-to=origin/tmux tmux
            vcsh tmux checkout -b ${user}_$(hostname) && \ 
+           vcsh tmux remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh tmux push --set-upstream origin ${user}_$(hostname)

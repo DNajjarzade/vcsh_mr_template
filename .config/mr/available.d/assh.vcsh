@@ -1,7 +1,8 @@
 [$HOME/.config/vcsh/repo.d/assh.git]
 order = 10
 # NOTE: put the correct url for your repository
-checkout =  VCSH_BASE="$HOME/" vcsh clone -b assh https://github.com/DNajjarzade/vcsh_mr_template.git assh && \
+checkout = VCSH_BASE="$HOME/" vcsh clone -b assh https://github.com/DNajjarzade/vcsh_mr_template.git assh && \
            vcsh assh branch --set-upstream-to=origin/assh assh
            vcsh assh checkout -b ${user}_$(hostname) && \ 
+           vcsh assh remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh assh push --set-upstream origin ${user}_$(hostname)

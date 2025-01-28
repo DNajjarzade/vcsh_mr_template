@@ -3,5 +3,6 @@ order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b mpd https://github.com/DNajjarzade/vcsh_mr_template.git mpd && \
            vcsh mpd branch --set-upstream-to=origin/mpd mpd
-           vcsh mpd checkout -b mpd && \
-           vcsh mpd branch --track mpd origin/mpd
+           vcsh mpd checkout -b ${user}_$(hostname) && \ 
+           vcsh mpd remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
+           vcsh mpd push --set-upstream origin ${user}_$(hostname) 
