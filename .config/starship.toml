@@ -20,20 +20,22 @@
 #   If Nerd-fonts are already installed on your system (e.g. MesloLG Nerd Font, FiraCode Nerd Font, ...) it should work.
 
 
+#$env_var\
 # Customizing the prompt (and placing desired modules at desired position and sequence):
 format = """
 [╭╴](fg:#505050)\
 $os\
 $username\
 $hostname\
-$sudo\
-$env_var\
-$custom\
 $shell\
-$package\
 $container\
 $shlvl\
 $singularity\
+
+$sudo\
+
+$custom\
+$package\
 $kubernetes\
 $fossil_branch\
 $pijul_channel\
@@ -407,6 +409,7 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [helm]
+disabled = false
 format = '\[[$symbol($version)]($style)\]'
 
 [hg_branch]
@@ -422,9 +425,9 @@ format = '\[[$symbol($version)]($style)\]'
 format = '\[[$symbol($version)]($style)\]'
 
 [kubernetes]
-symbol = "☸️  "
-style = "green"
 disabled = false
+  #symbol = "☸️  "
+  #style = "green"
 format = '\[[$symbol$context( \($namespace\))]($style)\]'
 
 [lua]
