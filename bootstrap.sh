@@ -30,11 +30,7 @@ ________________________________________________________________________________
             (__)\       )\/\
                 ||----w |
                 ||     ||
-     #  curl https://pb.najjarza.de/~setup | bash
-       
-     #  create short url with:
-       
-     #  curl -F c=@- https://pb.najjarza.de/~setup <<< $(curl https://raw.githubusercontent.com/DNajjarzade/vcsh_mr_template/bootstrap/bootstrap.sh | bash)
+     #  curl -L https://pb.najjarza.de/setup | bash
        
      #  long url command:
        
