@@ -8,7 +8,7 @@ Install `vcsh`, `mr`, and checkout projects with ease. This script automates the
 
 ### Install with Shortened URL:
 ```bash
-curl https://pb.najjarza.de/setup | bash
+curl -L https://pb.najjarza.de/setup | bash
 ```
 
 ### Install Directly from GitHub:
