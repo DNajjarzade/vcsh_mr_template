@@ -143,9 +143,6 @@ REQUIRED_PACKAGES=(
     wget
     vim
     tmux
-    ble.sh
-    atuin
-    starship
 )
 
 # Function to check if a package is installed
