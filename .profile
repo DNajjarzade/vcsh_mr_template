@@ -119,3 +119,6 @@ done
 export SOFTWARE_UPDATE_AVAILABLE
 
 
+
+. "$HOME/.atuin/bin/env"
+. "$HOME/.cargo/env"
