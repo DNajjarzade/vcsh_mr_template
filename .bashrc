@@ -115,7 +115,12 @@ if [ -f "$HOME/.local/share/blesh/ble.sh" ]; then
 fi
 
 # load atuin history manager
-if [ -f "$HOME/.atuin/bin/env" ]; then
+if [ -f "$HOME/.atuin/bin/atuin" ]; then
   . "$HOME/.atuin/bin/env"
   eval "$(atuin init bash)"
 fi
+. "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
