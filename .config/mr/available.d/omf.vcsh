@@ -2,7 +2,7 @@
 order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b omf https://github.com/DNajjarzade/vcsh_mr_template.git omf && \
-           vcsh omf branch --set-upstream-to=origin/omf omf
+           vcsh omf branch --set-upstream-to=origin/omf omf && \
            vcsh omf checkout -b $(whoami)@$(hostname) && \ 
            vcsh omf remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh omf push --set-upstream origin $(whoami)@$(hostname) 

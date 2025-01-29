@@ -2,7 +2,7 @@
 order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b polybar https://github.com/DNajjarzade/vcsh_mr_template.git polybar && \
-           vcsh polybar branch --set-upstream-to=origin/polybar polybar
+           vcsh polybar branch --set-upstream-to=origin/polybar polybar && \
            vcsh fish checkout -b $(whoami)@$(hostname) && \ 
            vcsh fish remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh fish push --set-upstream origin $(whoami)@$(hostname) 

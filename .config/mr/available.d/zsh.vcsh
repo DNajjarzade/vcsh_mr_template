@@ -1,6 +1,6 @@
 [$HOME/.config/vcsh/repo.d/zsh.git]
 checkout = vcsh clone -b zsh https://github.com/DNajjarzade/vcsh_mr_template.git zsh && \
-           vcsh zsh branch --set-upstream-to=origin/zsh zsh
+           vcsh zsh branch --set-upstream-to=origin/zsh zsh && \
            vcsh zsh checkout -b $(whoami)@$(hostname) && \ 
            vcsh zsh remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh zsh push --set-upstream origin $(whoami)@$(hostname)
