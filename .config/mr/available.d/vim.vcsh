@@ -2,7 +2,7 @@
 order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b vim https://github.com/DNajjarzade/vcsh_mr_template.git vim && \
-           vcsh vim branch --set-upstream-to=origin/vim vim
+           vcsh vim branch --set-upstream-to=origin/vim vim && \
            vcsh vim checkout -b ${user}_$(hostname) && \ 
            vcsh vim remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
            vcsh vim push --set-upstream origin ${user}_$(hostname)
