@@ -69,15 +69,15 @@ post_checkout =
 tag = tools, shell
 skip = ${SKIP_FZF:-false}
 
-[.oh-my-bash]
-checkout = git clone 'https://github.com/DNajjarzade/oh-my-bash.git' '.oh-my-bash'
-tag = shell, customization
-skip = ${SKIP_OH_MY_BASH:-false}
+# [.oh-my-bash]
+# checkout = git clone 'https://github.com/DNajjarzade/oh-my-bash.git' '.oh-my-bash'
+# tag = shell, customization
+# skip = ${SKIP_OH_MY_BASH:-false}
 
-[.liquidprompt]
-checkout = git clone 'https://github.com/DNajjarzade/liquidprompt.git' '.liquidprompt'
-tag = shell, prompt
-skip = ${SKIP_LIQUIDPROMPT:-false}
+# [.liquidprompt]
+# checkout = git clone 'https://github.com/DNajjarzade/liquidprompt.git' '.liquidprompt'
+# tag = shell, prompt
+# skip = ${SKIP_LIQUIDPROMPT:-false}
 
 [.tmux/plugins/tpm]
 checkout = git clone 'https://github.com/tmux-plugins/tpm' 'tpm'
