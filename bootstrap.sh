@@ -241,7 +241,14 @@ vcsh clone -b "$BRANCH_NAME" "$REPO_URL" mr
 
 # Initialize and update all repositories managed by mr
 echo "Initializing and updating repositories..."
-mr update
+# Temporarily disable exit on error for mr update
+set +e 
+mr checkout
+mr update >> "$LOG_FILE" 2>&1
+if [ $? -ne 0 ]; then
+    echo "Warning: 'mr update' encountered errors. Check $LOG_FILE for details."
+fi
+set -e  # Re-enable exit on error for the rest of the script
 
 # Run update-binaries.sh if it exists
 if [ -f ~/.local/bin-repo/update-binaries.sh ]; then
