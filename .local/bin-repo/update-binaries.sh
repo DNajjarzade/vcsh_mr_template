@@ -46,6 +46,8 @@ cat << EOF | print_func
 [38;5;219m╚═══════════════════════════════════════════════════════════════════════════════════════╝[0m
 EOF
 
+#!/bin/bash
+
 # [Binary Downloads]
 
 # This script downloads and installs binaries from specified URLs.
@@ -64,17 +66,16 @@ EOF
 # 14-07-2024 14:32:57
 
 set -e # Exit immediately if a command exits with a non-zero status.
-# set -x # Print commands and their arguments as they are executed.
 
 # List of binaries to manage
 declare -A binaries=(
-["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-$(uname -m)-unknown-linux-musl.tar.gz:14.1.0"
+    ["ripgrep"]="targz:https://github.com/BurntSushi/ripgrep/releases/download/14.1.0/ripgrep-14.1.0-$(uname -m)-unknown-linux-musl.tar.gz:14.1.0"
     ["assh"]="targz:https://github.com/moul/assh/releases/download/v2.16.0/assh_2.16.0_linux_amd64.tar.gz:2.16.0"
-    ["atuin"]="targz:https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-musl.tar.gz:18.3.0"
-    ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz:0.24.0"
-    ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-$(uname -m)-unknown-linux-musl.tar.gz:0.17.0"
-    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_$(uname -m)-unknown-linux-musl.tar.gz:0.18.21"
-    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-$(uname -m)-unknown-linux-musl.tar.gz:0.9.4"
+    ["atuin"]="targz:https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-v18.3.0-x86_64-unknown-linux-musl.tar.gz:18.3.0"
+    ["bat"]="targz:https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-unknown-linux-musl.tar.gz:0.24.0"
+    ["delta"]="targz:https://github.com/dandavison/delta/releases/download/0.17.0/delta-0.17.0-x86_64-unknown-linux-musl.tar.gz:0.17.0"
+    ["eza"]="targz:https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-musl.tar.gz:0.18.21"
+    ["zoxide"]="targz:https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz:0.9.4"
     ["sesh"]="targz:https://github.com/joshmedeski/sesh/releases/download/v2.0.2/sesh_$(uname)_$(uname -m).tar.gz:2.0.2"
     ["jq"]="targz:https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-1.7.1.tar.gz:1.7.1"
     ["yq"]="targz:https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64.tar.gz:4.44.3"
@@ -87,25 +88,30 @@ declare -A binaries=(
 BIN_DIR="$HOME/.local/bin"
 mkdir -p "$BIN_DIR"
 
+# Function to print messages
+print_func() {
+    echo "[INFO] $1"
+}
+
 # Function to download and extract tar.gz binary
 download_targz_binary() {
     local name=$1
     local url=$2
     local extract_dir=$3
-    echo "Downloading and extracting $name from $url" | print_func
+    print_func "Downloading and extracting $name from $url"
     wget -q "$url" -O "$name.tar.gz"
     if [ $? -eq 0 ]; then
-        echo "Download successful. Extracting..." | print_func
+        print_func "Download successful. Extracting..."
         mkdir -p "$extract_dir"
         case "$name" in
             atuin)
-               tar -xzf "$name.tar.gz" -c "$extract_dir" --strip-components=1 "atuin-x86_64-unknown-linux-musl/atuin"
-               ;;
+                tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "atuin-v18.3.0-x86_64-unknown-linux-musl/atuin"
+                ;;
             ripgrep)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "ripgrep-14.1.0-x86_64-unknown-linux-musl/rg"
                 ;;
             bat)
-                tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "bat-v0.24.0-i686-unknown-linux-musl/bat"
+                tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "bat-v0.24.0-x86_64-unknown-linux-musl/bat"
                 ;;
             delta)
                 tar -xzf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "delta-0.17.0-x86_64-unknown-linux-musl/delta"
@@ -114,23 +120,23 @@ download_targz_binary() {
                 tar -xzf "$name.tar.gz" -C "$extract_dir" && mv "$extract_dir/yq_linux_amd64" "$extract_dir/yq"
                 ;;
             teller)
-                tar -xf "$name.tar.gz" -C "$extract_dir"  --strip-components=1 "teller-x86_64-linux/teller"
+                tar -xf "$name.tar.gz" -C "$extract_dir" --strip-components=1 "teller-x86_64-linux/teller"
                 ;;
             *)
                 tar -xzf "$name.tar.gz" -C "$extract_dir"
                 ;;
         esac
         if [ $? -eq 0 ]; then
-            echo "Extraction successful. Removing tar.gz file..." | print_func
+            print_func "Extraction successful. Removing tar.gz file..."
             rm "$name.tar.gz"
-            echo "$name successfully downloaded and extracted." | print_func
+            print_func "$name successfully downloaded and extracted."
         else
-            echo "Failed to extract $name." | print_func
+            print_func "Failed to extract $name."
             rm "$name.tar.gz"
             return 1
         fi
     else
-        echo "Failed to download $name from $url" | print_func
+        print_func "Failed to download $name from $url"
         return 1
     fi
 }
@@ -140,13 +146,13 @@ download_standalone_binary() {
     local name=$1
     local url=$2
     local bin_dir=$3
-    echo "Downloading $name from $url" | print_func
+    print_func "Downloading $name from $url"
     wget -q "$url" -O "$bin_dir/$name"
     if [ $? -eq 0 ]; then
         chmod +x "$bin_dir/$name"
-        echo "$name successfully downloaded and made executable." | print_func
+        print_func "$name successfully downloaded and made executable."
     else
-        echo "Failed to download $name from $url" | print_func
+        print_func "Failed to download $name from $url"
         return 1
     fi
 }
@@ -165,104 +171,43 @@ get_binary_version() {
     local version
     case $name in
         ripgrep)
-            if [ -x "$bin_dir/rg" ]; then
-                version=$("$bin_dir/rg" --version 2>/dev/null | awk '{print $2; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/rg" --version 2>/dev/null | awk '{print $2; exit}')
             ;;
         assh)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $3; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $3; exit}')
             ;;
         bat)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
             ;;
         delta)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
             ;;
         ctop)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" -v 2>/dev/null | awk '{print $3; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" -v 2>/dev/null | awk '{print $3; exit}')
             ;;
         zoxide)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
             ;;
         eza)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk NR=='2 {print $1; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk 'NR==2 {print $1; exit}')
             ;;
         sesh)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $3; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $3; exit}')
             ;;
         jq)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | cut -d "-" -f 2)
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | cut -d "-" -f 2)
             ;;
         yq)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $4; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $4; exit}')
             ;;
         pkgx)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
             ;;
         teller)
-            if [ -x "$bin_dir/$name" ]; then
-                version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
-            else
-                echo "n/a"
-                return
-            fi
+            version=$("$bin_dir/$name" --version 2>/dev/null | awk '{print $2; exit}')
             ;;
         *)
-            echo "unknown"
-            return
+            version="unknown"
             ;;
     esac
     if [ -z "$version" ]; then
@@ -279,44 +224,34 @@ version_gt() {
 
 # Download and extract/copy binaries
 for name in "${!binaries[@]}"; do
-    echo "Processing $name..." | print_func
+    print_func "Processing $name..."
     value="${binaries[$name]}"
     type="${value%%:*}"
     rest="${value#*:}"
     url="${rest%:*}"
     version="${rest##*:}"
     current_version=$(get_binary_version "$name" "$BIN_DIR")
-    echo "Current version of $name: $current_version"
-    if [ "$name" = "assh" ]; then
-        echo "Download version of $name: $version (Online Version)"
-        read -p "Do you want to update $name? (y/n) " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            echo "Skipping $name update." | print_func
-            continue
+    print_func "Current version of $name: $current_version"
+    if [ "$current_version" = "n/a" ] || [ "$current_version" = "unknown" ] || version_gt "$version" "$current_version"; then
+        if [ "$current_version" != "n/a" ]; then
+            read -p "$name exists (version $current_version). New version ($version) available. Update? (y/n) " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+                print_func "Skipping $name update."
+                continue
+            fi
         fi
     else
-        echo "Current version of $name: $current_version"
-        if [ "$current_version" = "n/a" ] || [ "$current_version" = "unknown" ] || version_gt "$version" "$current_version"; then
-            if [ "$current_version" != "n/a" ]; then
-                read -p "$name exists (version $current_version). New version ($version) available. Update? (y/n) " -n 1 -r
-                echo
-                if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                    echo "Skipping $name update." | print_func
-                    continue
-                fi
-            fi
-        else
-            echo "$name is up to date (version $current_version). Skipping download." | print_func
-            continue
-        fi
+        print_func "$name is up to date (version $current_version). Skipping download."
+        continue
     fi
-    echo "Downloading $name version $version..."
+    print_func "Downloading $name version $version..."
     if [ "$type" == "targz" ]; then
         download_targz_binary "$name" "$url" "$BIN_DIR"
     elif [ "$type" == "standalone" ]; then
         download_standalone_binary "$name" "$url" "$BIN_DIR"
     else
-        echo "Unknown type for $name: $type" | print_func
+        print_func "Unknown type for $name: $type"
     fi
 done
+
