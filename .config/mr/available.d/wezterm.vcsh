@@ -3,6 +3,6 @@ order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b wezterm https://github.com/DNajjarzade/vcsh_mr_template.git wezterm && \
            vcsh wezterm branch --set-upstream-to=origin/wezterm wezterm
-           vcsh wezterm checkout -b ${user}_$(hostname) && \ 
+           vcsh wezterm checkout -b $(whoami)@(hostname) && \ 
            vcsh wezterm remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
-           vcsh wezterm push --set-upstream origin ${user}_$(hostname) 
+           vcsh wezterm push --set-upstream origin $(whoami)@$(hostname) 

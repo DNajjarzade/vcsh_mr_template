@@ -2,6 +2,6 @@
 order = 10
 checkout = vcsh clone -b vim https://github.com/DNajjarzade/vcsh_mr_template.git vim && \
            vcsh vim branch --set-upstream-to=origin/vim vim && \
-           vcsh vim checkout -b ${USER}@$(hostname) && \
+           vcsh vim checkout -b $(whoami)@$(hostname) && \
            vcsh vim remote set-url --push origin git@github.com:DNajjarzade/vcsh_mr_template.git && \
-           vcsh vim push --set-upstream origin ${USER}@$(hostname)
+           vcsh vim push --set-upstream origin $(whoami)@$(hostname)

@@ -3,6 +3,6 @@ order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b fish https://github.com/DNajjarzade/vcsh_mr_template.git fish && \
            vcsh fish branch --set-upstream-to=origin/fish fish && \
-           vcsh fish checkout -b ${user}_$(hostname) && \ 
+           vcsh fish checkout -b $(whoami)@$(hostname) && \ 
            vcsh fish remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
-           vcsh fish push --set-upstream origin ${user}_$(hostname) 
+           vcsh fish push --set-upstream origin $(whoami)@$(hostname) 

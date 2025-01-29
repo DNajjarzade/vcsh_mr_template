@@ -3,6 +3,6 @@ order = 10
 # NOTE: put the correct url for your repository
 checkout = vcsh clone -b git https://github.com/DNajjarzade/vcsh_mr_template.git git && \
            vcsh git branch --set-upstream-to=origin/git git
-           vcsh git checkout -b ${user}_$(hostname) && \ 
+           vcsh git checkout -b $(whoami)@$(hostname) && \ 
            vcsh git remote set-url --push origin  git@github.com:DNajjarzade/vcsh_mr_template.git && \ 
-           vcsh git push --set-upstream origin ${user}_$(hostname)
+           vcsh git push --set-upstream origin $(whoami)@$(hostname)
